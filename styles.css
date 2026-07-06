@@ -272,9 +272,9 @@ main:focus{outline:none}
 .conv-copy h2{font-size:clamp(1.8rem,3.6vw,2.7rem);margin-bottom:1.1rem}
 .conv-copy p{color:var(--nf-mist);margin-bottom:1rem}
 .conv-claim{font-size:var(--fs-xl);color:var(--nf-paper)}
-.conv-graph{width:100%;height:auto}
-.conv-labels text{fill:var(--nf-mist);font-family:var(--nf-font-mono);font-size:15px;letter-spacing:var(--tracking-label);font-weight:500}
-.conv-labels .label-out{fill:var(--nf-cyan)}
+.conv-visual img{width:100%;height:auto;display:block;
+  -webkit-mask-image:radial-gradient(88% 72% at 50% 50%,#000 30%,transparent 82%);
+  mask-image:radial-gradient(88% 72% at 50% 50%,#000 30%,transparent 82%)}
 
 /* ---------- Case studies ---------- */
 .cases{border-top:1px solid var(--nf-line-soft)}
@@ -371,25 +371,6 @@ html.js :where(.reveal){opacity:0;transform:translateY(22px);transition:opacity 
 .card-grid .reveal.in,.node-grid .reveal.in,.industry-grid .reveal.in,.flowline .reveal.in,
 .stat-band .reveal.in,.case-grid .reveal.in{transition-delay:var(--d,0ms)}
 
-/* SVG graph draw-in (triggered by .draw on the parent svg) */
-html.js :where(.edge-in path,.edge-out){stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1s var(--ease-flow)}
-html.js :where(.node-in circle,.node-halo,.node-core,.node-spark,.node-glow){opacity:0}
-.draw .edge-in path,.draw .edge-out{stroke-dashoffset:0}
-.draw .edge-in path:nth-child(1){transition-delay:.05s}
-.draw .edge-in path:nth-child(2){transition-delay:.13s}
-.draw .edge-in path:nth-child(3){transition-delay:.21s}
-.draw .edge-in path:nth-child(4){transition-delay:.29s}
-.draw .edge-in path:nth-child(5){transition-delay:.37s}
-.draw .edge-out{transition:stroke-dashoffset .8s var(--ease-flow);transition-delay:.6s}
-.draw .node-in circle{opacity:1;transition:opacity .5s var(--ease-flow)}
-.draw .node-glow{opacity:1;transition:opacity 1s var(--ease-flow) .55s}
-.draw .node-halo{opacity:.32;transition:opacity .6s var(--ease-flow) .55s}
-.draw .node-core{opacity:1;transition:opacity .5s var(--ease-flow) .55s}
-.draw .node-spark{opacity:1;transition:opacity .6s var(--ease-flow) .7s}
-html.js :where(.conv-labels){opacity:0;transition:opacity .6s var(--ease-flow) .5s}
-.draw .conv-labels{opacity:1}
-/* no-js: .node-halo keeps its inline opacity="0.32" SVG attribute — no extra rule needed */
-
 /* ============================================================
    Responsive
    ============================================================ */
@@ -409,7 +390,6 @@ html.js :where(.conv-labels){opacity:0;transition:opacity .6s var(--ease-flow) .
   .brand-word{font-size:var(--fs-base)}
   .proof-head{flex-direction:column;align-items:flex-start;gap:.35rem}
   .section-lede{font-size:var(--fs-base)}
-  .conv-labels text{font-size:13px}
   .stat-band{grid-template-columns:repeat(2,1fr)}
   /* vertical flowline: per-step connector segments (no overshoot) */
   .flowline{grid-template-columns:1fr;gap:0}
@@ -440,7 +420,4 @@ html.js :where(.conv-labels){opacity:0;transition:opacity .6s var(--ease-flow) .
   *,*::before,*::after{animation:none!important;transition:none!important}
   html .reveal{opacity:1;transform:none}
   html .plx,html [data-plx]{transform:none!important}
-  html .edge-in path,html .edge-out{stroke-dashoffset:0}
-  html .node-in circle,html .node-halo,html .node-core,html .node-spark,html .node-glow,html .conv-labels{opacity:1}
-  html .node-halo{opacity:.32}
 }
