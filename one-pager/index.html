@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovAIFlow — One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A1020;--carbon:#070B16;--paper:#F7F9FC;--mist2:#EEF2F8;--hairline:#D9E0EC;
+  --slate:#475569;--mist:#C7D2EA;--cyan:#18C8E6;--violet:#5B4BDB;--violet2:#4A3CC4;--nova:#FFB23E;
+  --fdisp:"Space Grotesk","Inter",system-ui,sans-serif;--fbody:"Inter",system-ui,sans-serif;--fmono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#2a2f40;font-family:var(--fbody);color:var(--slate);padding:24px;display:flex;flex-direction:column;align-items:center;gap:24px}
+.page{width:8.5in;min-height:11in;background:var(--paper);border-radius:6px;overflow:hidden;box-shadow:0 20px 60px -20px rgba(0,0,0,.5);position:relative}
+/* ---- PAGE 1 header (dark) ---- */
+.hero{background:linear-gradient(160deg,var(--ink),var(--carbon));color:#fff;padding:.55in .6in .5in;position:relative;overflow:hidden}
+.hero .motif{position:absolute;right:-30px;top:-20px;opacity:.55;width:280px;height:280px}
+.edge{stroke:var(--cyan);stroke-width:1.1;fill:none;opacity:.35}.edge.v{stroke:var(--violet)}
+.dot{fill:var(--mist);opacity:.6}.core{fill:var(--nova)}.halo{fill:none;stroke:var(--nova);stroke-width:1;opacity:.4}
+.out{stroke:var(--nova);stroke-width:1.5;fill:none;opacity:.7}
+.brandrow{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.wordmark{font-family:var(--fdisp);font-weight:600;font-size:1.35rem;letter-spacing:-.01em}
+.wordmark .ai{color:var(--cyan);font-weight:700}
+.contact{font-family:var(--fmono);font-size:.62rem;text-align:right;color:var(--mist);line-height:1.7;letter-spacing:.03em}
+.kicker{font-family:var(--fmono);text-transform:uppercase;letter-spacing:.16em;font-size:.6rem;color:var(--mist);opacity:.8;margin:.5in 0 .12in;position:relative;z-index:2}
+.hl{font-family:var(--fdisp);font-weight:700;font-size:2.5rem;line-height:1.06;letter-spacing:-.02em;position:relative;z-index:2;max-width:8.2in}
+.hl .cy{color:var(--cyan)}
+.sub{font-size:.95rem;color:var(--mist);margin-top:.16in;max-width:6.2in;position:relative;z-index:2;line-height:1.55}
+/* ---- body sections (light) ---- */
+.body{padding:.42in .6in .5in}
+.sechd{font-family:var(--fmono);text-transform:uppercase;letter-spacing:.14em;font-size:.6rem;color:var(--violet);margin-bottom:.14in;font-weight:500}
+.lead{font-family:var(--fdisp);font-weight:600;color:var(--ink);font-size:1.15rem;letter-spacing:-.01em;margin-bottom:.28in;line-height:1.25}
+.lead .cy{color:var(--violet)}
+.svc{display:grid;grid-template-columns:1fr 1fr;gap:.14in .3in;margin-bottom:.32in}
+.svc .row{display:flex;gap:.12in;align-items:baseline;padding:.09in 0;border-bottom:1px solid var(--hairline)}
+.svc .num{font-family:var(--fmono);font-size:.6rem;color:var(--violet);width:1.15in;flex:none;text-transform:uppercase;letter-spacing:.06em;padding-top:.02in}
+.svc .txt strong{font-family:var(--fdisp);color:var(--ink);font-weight:600;font-size:.9rem;display:block}
+.svc .txt span{font-size:.76rem;color:var(--slate)}
+.steps{display:flex;flex-wrap:wrap;gap:.08in;align-items:center;margin-bottom:.34in}
+.step{font-family:var(--fmono);font-size:.62rem;letter-spacing:.05em;padding:.06in .16in;border:1px solid var(--hairline);border-radius:999px;color:var(--slate)}
+.step.hot{border-color:var(--nova);color:#b9761a;background:#fff7ec}
+.arr{color:var(--slate);opacity:.5}
+.proof{background:var(--ink);border-radius:12px;padding:.3in .34in;display:grid;grid-template-columns:repeat(4,1fr);gap:.22in;margin-bottom:.02in}
+.proof .m .v{font-family:var(--fdisp);font-weight:700;color:#fff;font-size:1.4rem;letter-spacing:-.02em;line-height:1}
+.proof .m .v .u{color:var(--nova)}
+.proof .m .l{font-size:.62rem;color:var(--mist);margin-top:.06in;line-height:1.35}
+/* ---- PAGE 2 ---- */
+.p2 .body{padding:.5in .6in}
+.pricehd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.1in}
+.price{display:flex;justify-content:space-between;align-items:baseline;padding:.13in 0;border-bottom:1px solid var(--hairline)}
+.price .n{font-family:var(--fdisp);font-weight:600;color:var(--ink);font-size:.98rem}
+.price .d{display:block;font-size:.74rem;color:var(--slate);font-weight:400;font-family:var(--fbody);margin-top:.02in}
+.price .a{font-family:var(--fmono);color:var(--violet);font-size:.9rem;white-space:nowrap;padding-left:.2in}
+.why{display:grid;grid-template-columns:1fr 1fr;gap:.16in .3in;margin:.28in 0}
+.why .c{background:var(--mist2);border:1px solid var(--hairline);border-radius:10px;padding:.18in .2in}
+.why .c h4{font-family:var(--fdisp);color:var(--ink);font-size:.86rem;margin-bottom:.05in;font-weight:600}
+.why .c p{font-size:.75rem;color:var(--slate);line-height:1.45}
+.cta{background:linear-gradient(160deg,var(--ink),var(--carbon));color:#fff;border-radius:12px;padding:.3in .36in;display:flex;justify-content:space-between;align-items:center;gap:.3in;margin-top:.3in}
+.cta .t{font-family:var(--fdisp);font-weight:600;font-size:1.05rem}
+.cta .t span{color:var(--cyan)}
+.cta .t small{display:block;font-family:var(--fbody);font-weight:400;font-size:.76rem;color:var(--mist);margin-top:.06in}
+.cta .btn{font-family:var(--fdisp);font-weight:600;background:var(--nova);color:var(--ink);padding:.14in .3in;border-radius:999px;white-space:nowrap;font-size:.9rem}
+.foot{font-family:var(--fmono);font-size:.58rem;color:var(--slate);text-align:center;padding:.2in;letter-spacing:.05em;border-top:1px solid var(--hairline)}
+.hint{color:#cbd3e6;font-family:var(--fmono);font-size:.7rem;text-align:center}
+@media print{
+  @page{size:letter;margin:0}
+  body{background:#fff;padding:0;gap:0}
+  .page{box-shadow:none;border-radius:0;width:8.5in;min-height:11in;page-break-after:always}
+  .hint{display:none}
+}
+</style>
+</head>
+<body>
+<div class="hint">Print to PDF (Ctrl/Cmd-P · Letter · margins: None) → 2-page sales sheet.</div>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="hero">
+    <svg class="motif" viewBox="0 0 300 300" aria-hidden="true">
+      <path class="edge" d="M20,70 L160,150"/><path class="edge" d="M20,150 L160,150"/>
+      <path class="edge v" d="M20,230 L160,150"/><path class="edge v" d="M100,20 L160,150"/>
+      <path class="edge" d="M90,285 L160,150"/>
+      <circle class="dot" cx="20" cy="70" r="3.5"/><circle class="dot" cx="20" cy="150" r="3.5"/>
+      <circle class="dot" cx="20" cy="230" r="3.5"/><circle class="dot" cx="100" cy="20" r="3.5"/>
+      <circle class="dot" cx="90" cy="285" r="3.5"/>
+      <circle class="halo" cx="160" cy="150" r="16"/><circle class="core" cx="160" cy="150" r="7"/>
+      <path class="out" d="M160,150 L285,150"/><path class="out" d="M285,150 l-9,-5 M285,150 l-9,5"/>
+    </svg>
+    <div class="brandrow">
+      <div class="wordmark">Nov<span class="ai">AI</span>Flow</div>
+      <div class="contact">novaiflow.com<br>hello@novaiflow.com<br>Miami, FL · US &amp; LATAM · EN/ES</div>
+    </div>
+    <div class="kicker">AI · Automation · System Integration</div>
+    <h1 class="hl">Many systems in.<br><span class="cy">One flow out.</span></h1>
+    <p class="sub">We integrate AI, automation and your existing systems into one operated flow — from strategy to production. Not another single tool: the whole flow, owned end-to-end by an engineer who ships and operates what he builds.</p>
+  </div>
+
+  <div class="body">
+    <div class="sechd">What we do — 7 productized services</div>
+    <p class="lead">Contract one node, or the <span class="cy">whole flow</span>.</p>
+    <div class="svc">
+      <div class="row"><span class="num">01 Automate</span><span class="txt"><strong>Process automation</strong><span>Manual work, eliminated.</span></span></div>
+      <div class="row"><span class="num">02 Connect</span><span class="txt"><strong>System integration</strong><span>CRM, ERP &amp; APIs, synced.</span></span></div>
+      <div class="row"><span class="num">03 Agents</span><span class="txt"><strong>AI agents</strong><span>Voice &amp; chat, in production.</span></span></div>
+      <div class="row"><span class="num">04 Insight</span><span class="txt"><strong>Analytics &amp; BI</strong><span>Live dashboards &amp; KPIs.</span></span></div>
+      <div class="row"><span class="num">05 Optimize</span><span class="txt"><strong>Process optimization</strong><span>Bottlenecks, removed.</span></span></div>
+      <div class="row"><span class="num">06 Transform</span><span class="txt"><strong>AI strategy</strong><span>A roadmap to AI.</span></span></div>
+      <div class="row"><span class="num">07 Build</span><span class="txt"><strong>Custom development</strong><span>Made to your measure.</span></span></div>
+      <div class="row"><span class="num">★ FrontDesk</span><span class="txt"><strong>AI Voice Receptionist</strong><span>Bilingual, live in 14 days.</span></span></div>
+    </div>
+
+    <div class="sechd">How we work — one flow, end to end</div>
+    <div class="steps">
+      <span class="step">DIAGNOSE</span><span class="arr">→</span>
+      <span class="step">DESIGN</span><span class="arr">→</span>
+      <span class="step hot">BUILD</span><span class="arr">→</span>
+      <span class="step">INTEGRATE</span><span class="arr">→</span>
+      <span class="step">OPTIMIZE</span>
+    </div>
+
+    <div class="sechd">Proof — this stack already runs in production</div>
+    <div class="proof">
+      <div class="m"><div class="v">12<span class="u">+</span></div><div class="l">AI agents in production, 24/7</div></div>
+      <div class="m"><div class="v">EN<span class="u">/</span>ES</div><div class="l">Voice agents on real phone lines</div></div>
+      <div class="m"><div class="v">3</div><div class="l">Production MCP connectors (OAuth 2.1)</div></div>
+      <div class="m"><div class="v">5k<span class="u">+</span></div><div class="l">Automated tests, green in CI</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page p2">
+  <div class="body">
+    <div class="sechd">Why NovAIFlow</div>
+    <p class="lead">A builder who ships and <span class="cy">operates</span> what he builds.</p>
+    <div class="why">
+      <div class="c"><h4>Production depth, not demos</h4><p>Voice AI, multi-agent orchestration, RAG and MCP running live for paying clients — not proofs-of-concept.</p></div>
+      <div class="c"><h4>Bilingual at engineering level</h4><p>Native EN/ES with latency &amp; quality parity across languages — a real wedge for US-Hispanic &amp; LATAM operations.</p></div>
+      <div class="c"><h4>End-to-end ownership</h4><p>Strategy, build, integration and operation from one accountable engineer. No hand-offs, no agency overhead.</p></div>
+      <div class="c"><h4>Security by default</h4><p>Multi-tenant isolation (row-level security), STRIDE-audited voice, self-hosted option for sensitive data.</p></div>
+    </div>
+
+    <div class="sechd">How to engage — land small, grow with proof</div>
+    <div class="pricehd"></div>
+    <div class="price"><span><span class="n">The Convergence Audit</span><span class="d">Paid discovery — systems map, prioritized roadmap + ROI estimate, yours to keep (credited to a build)</span></span><span class="a">$750</span></div>
+    <div class="price"><span><span class="n">NovAIFlow FrontDesk ★</span><span class="d">Bilingual AI voice receptionist — answers & books 24/7, live in 14 days, you own the build</span></span><span class="a">$1,500 + $499/mo</span></div>
+    <div class="price"><span><span class="n">Project</span><span class="d">One agent / automation / integration, built to production — any of the 7 services</span></span><span class="a">$3k–18k</span></div>
+    <div class="price"><span><span class="n">Retainer</span><span class="d">We operate, support & improve it — Care · Grow · Partner</span></span><span class="a">$500–4k+/mo</span></div>
+    <div class="price"><span><span class="n">Advisory</span><span class="d">Fractional AI engineering, by the hour or day</span></span><span class="a">$75–150/hr</span></div>
+
+    <div class="cta">
+      <div class="t">Let's map your <span>flow</span>.<small>Book a paid Discovery — a systems map, roadmap &amp; fixed estimate in 1–2 weeks.</small></div>
+      <div class="btn">novaiflow.com →</div>
+    </div>
+  </div>
+  <div class="foot">NovAIFlow · L Monsalve Services — Miami, FL · novaiflow.com · hello@novaiflow.com · Client names withheld under NDA; live demos on request.</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NovAIFlow — Pitch Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A1020;--carbon:#070B16;--paper:#F7F9FC;--node-mist:#EEF2F8;--hairline:#D9E0EC;
+  --slate:#475569;--mist:#C7D2EA;--cyan:#18C8E6;--violet:#5B4BDB;--violet-2:#4A3CC4;
+  --nova:#FFB23E;--nova-2:#FFC46B;--nova-glow:#FFE0A8;
+  --grad:linear-gradient(120deg,#18C8E6 0%,#5B4BDB 100%);
+  --grad-warm:linear-gradient(120deg,#18C8E6 0%,#5B4BDB 70%,#FFB23E 100%);
+  --fdisp:"Space Grotesk","Inter",system-ui,sans-serif;--fbody:"Inter",system-ui,sans-serif;
+  --fmono:"JetBrains Mono",ui-monospace,Consolas,monospace;--ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--carbon);color:var(--mist);font-family:var(--fbody);line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.deck{scroll-snap-type:y mandatory;height:100vh;overflow-y:scroll}
+.slide{scroll-snap-align:start;min-height:100vh;width:100%;display:flex;flex-direction:column;
+  justify-content:center;padding:6vh 8vw;position:relative;
+  background:linear-gradient(180deg,var(--ink) 0%,var(--carbon) 100%);
+  border-bottom:1px solid rgba(217,224,236,.06)}
+.slide.light{background:var(--paper);color:var(--slate)}
+.kicker{font-family:var(--fmono);text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;
+  color:var(--mist);opacity:.7;margin-bottom:1.4rem}
+.slide.light .kicker{color:var(--slate);opacity:.65}
+h1{font-family:var(--fdisp);font-weight:700;letter-spacing:-.02em;line-height:1.05;
+  font-size:clamp(2.6rem,6.5vw,4.75rem);color:#fff;margin-bottom:1.2rem}
+.slide.light h1{color:var(--ink)}
+h2{font-family:var(--fdisp);font-weight:600;letter-spacing:-.015em;line-height:1.12;
+  font-size:clamp(1.9rem,4.2vw,3.05rem);color:#fff;margin-bottom:1.4rem}
+.slide.light h2{color:var(--ink)}
+.lead{font-size:clamp(1.05rem,1.7vw,1.35rem);max-width:60ch;color:var(--mist)}
+.slide.light .lead{color:var(--slate)}
+.cy{color:var(--cyan)} .vi{color:var(--violet)} .nv{color:var(--nova)}
+.slide.light .cy{color:var(--violet)} /* accent flips on light per brand */
+.ai{font-weight:700;color:var(--cyan)} .slide.light .ai{color:var(--violet)}
+.max{max-width:var(--container,1200px);width:100%;margin:0 auto}
+.grid{display:grid;gap:1.1rem;margin-top:2rem}
+.g2{grid-template-columns:repeat(2,1fr)} .g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.card{background:rgba(238,242,248,.03);border:1px solid rgba(217,224,236,.1);border-radius:14px;
+  padding:1.5rem 1.4rem}
+.slide.light .card{background:var(--node-mist);border-color:var(--hairline)}
+.card h3{font-family:var(--fdisp);font-weight:600;color:#fff;font-size:1.15rem;margin-bottom:.5rem;letter-spacing:-.01em}
+.slide.light .card h3{color:var(--ink)}
+.card p{font-size:.95rem;color:var(--mist)}.slide.light .card p{color:var(--slate)}
+.card .n{font-family:var(--fmono);color:var(--cyan);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase}
+.slide.light .card .n{color:var(--violet)}
+.metric{display:flex;flex-direction:column;gap:.3rem}
+.metric .v{font-family:var(--fdisp);font-weight:700;font-size:clamp(1.8rem,3.5vw,2.7rem);color:#fff;letter-spacing:-.02em}
+.metric .v .u{color:var(--nova)} .metric .l{font-size:.9rem;color:var(--mist)}
+.steps{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem;align-items:center}
+.step{font-family:var(--fmono);font-size:.82rem;letter-spacing:.06em;padding:.5rem .9rem;border:1px solid rgba(217,224,236,.16);border-radius:999px;color:var(--mist)}
+.step.hot{border-color:var(--nova);color:var(--nova-2)}
+.arrow{color:var(--slate);opacity:.5}
+.pill{display:inline-block;font-family:var(--fmono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--nova-2);border:1px solid rgba(255,178,62,.35);border-radius:999px;padding:.35rem .8rem;margin-bottom:1.4rem}
+.price{display:flex;justify-content:space-between;align-items:baseline;padding:1.1rem 0;border-bottom:1px solid rgba(217,224,236,.1)}
+.slide.light .price{border-color:var(--hairline)}
+.price .name{font-family:var(--fdisp);font-weight:600;color:#fff;font-size:1.1rem}
+.slide.light .price .name{color:var(--ink)}
+.price .desc{font-size:.85rem;color:var(--mist);display:block;font-family:var(--fbody);font-weight:400}
+.slide.light .price .desc{color:var(--slate)}
+.price .amt{font-family:var(--fmono);color:var(--cyan);white-space:nowrap}
+.slide.light .price .amt{color:var(--violet)}
+.cta{display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;font-family:var(--fdisp);font-weight:600;
+  color:var(--ink);background:var(--nova);padding:.9rem 1.6rem;border-radius:999px;text-decoration:none;font-size:1.05rem}
+.wordmark{font-family:var(--fdisp);font-weight:600;font-size:1.1rem;color:#fff;letter-spacing:-.01em}
+.wordmark .ai{color:var(--cyan)}
+.footer{position:absolute;bottom:3vh;left:8vw;right:8vw;display:flex;justify-content:space-between;
+  align-items:center;font-family:var(--fmono);font-size:.72rem;color:var(--slate);letter-spacing:.05em}
+.slide.light .footer{color:var(--slate)}
+.nav{position:fixed;bottom:22px;right:22px;z-index:50;display:flex;gap:8px}
+.nav button{width:40px;height:40px;border-radius:999px;border:1px solid rgba(217,224,236,.2);
+  background:rgba(10,16,32,.7);color:var(--mist);cursor:pointer;font-size:1.1rem;backdrop-filter:blur(8px)}
+.nav button:hover{border-color:var(--cyan);color:var(--cyan)}
+.count{position:fixed;bottom:30px;left:22px;z-index:50;font-family:var(--fmono);font-size:.72rem;color:var(--slate)}
+/* node motif */
+.motif{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:.5}
+.motif svg{position:absolute;right:-4%;top:50%;transform:translateY(-50%);width:min(46vw,620px);height:auto}
+.edge{stroke:var(--cyan);stroke-width:1.2;fill:none;opacity:.35}
+.edge.v{stroke:var(--violet)} .dot{fill:var(--mist);opacity:.6}
+.core{fill:var(--nova)} .halo{fill:none;stroke:var(--nova);stroke-width:1;opacity:.4}
+.out{stroke:var(--nova);stroke-width:1.6;opacity:.7;fill:none}
+ul.clean{list-style:none;margin-top:1.5rem;display:flex;flex-direction:column;gap:.9rem}
+ul.clean li{padding-left:1.6rem;position:relative;max-width:62ch;color:var(--mist)}
+.slide.light ul.clean li{color:var(--slate)}
+ul.clean li::before{content:"";position:absolute;left:0;top:.6em;width:8px;height:8px;border-radius:999px;
+  background:var(--cyan)}
+.slide.light ul.clean li::before{background:var(--violet)}
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{height:auto}.deck{height:auto;overflow:visible}
+  .slide{min-height:720px;height:720px;page-break-after:always;break-after:page}
+  .nav,.count{display:none}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 · COVER -->
+<section class="slide" id="s1">
+  <div class="motif"><svg viewBox="0 0 400 400" aria-hidden="true">
+    <path class="edge" d="M40,90 L210,200"/><path class="edge" d="M40,180 L210,200"/>
+    <path class="edge v" d="M40,270 L210,200"/><path class="edge v" d="M130,40 L210,200"/>
+    <path class="edge" d="M120,360 L210,200"/>
+    <circle class="dot" cx="40" cy="90" r="4"/><circle class="dot" cx="40" cy="180" r="4"/>
+    <circle class="dot" cx="40" cy="270" r="4"/><circle class="dot" cx="130" cy="40" r="4"/>
+    <circle class="dot" cx="120" cy="360" r="4"/>
+    <circle class="halo" cx="210" cy="200" r="20"/><circle class="core" cx="210" cy="200" r="9"/>
+    <path class="out" d="M210,200 L360,200"/><path class="out" d="M360,200 l-10,-6 M360,200 l-10,6"/>
+  </svg></div>
+  <div class="max">
+    <div class="kicker">AI · Automation · System Integration — Miami · LATAM · US</div>
+    <div class="wordmark" style="margin-bottom:2.2rem">Nov<span class="ai">AI</span>Flow</div>
+    <h1>Many systems in.<br><span class="cy">One flow out.</span></h1>
+    <p class="lead">We integrate AI, automation and your existing systems into one operated flow — from strategy to production.</p>
+  </div>
+  <div class="footer"><span>novaiflow.com</span><span>Company capabilities · 2026</span></div>
+</section>
+
+<!-- 2 · PROBLEM -->
+<section class="slide" id="s2">
+  <div class="max">
+    <div class="kicker">The problem</div>
+    <h2>Most vendors sell you one more <span class="cy">tool</span>.</h2>
+    <p class="lead">Scattered software. Manual work between systems. Data in silos. One tool solves one thing — and leaves the integration, the operations and the outcome to you.</p>
+    <div class="grid g3">
+      <div class="card"><span class="n">Symptom 01</span><h3>Manual glue</h3><p>People re-typing data between CRM, ERP, email and spreadsheets.</p></div>
+      <div class="card"><span class="n">Symptom 02</span><h3>Silos</h3><p>Systems that don't talk. Answers that take days to assemble.</p></div>
+      <div class="card"><span class="n">Symptom 03</span><h3>Single-tool traps</h3><p>A pile of subscriptions, no single operated flow, no owner.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · THE IDEA -->
+<section class="slide" id="s3">
+  <div class="motif"><svg viewBox="0 0 400 400" aria-hidden="true">
+    <path class="edge" d="M40,90 L210,200"/><path class="edge" d="M40,180 L210,200"/>
+    <path class="edge v" d="M40,270 L210,200"/><path class="edge v" d="M130,40 L210,200"/>
+    <path class="edge" d="M120,360 L210,200"/>
+    <circle class="halo" cx="210" cy="200" r="20"/><circle class="core" cx="210" cy="200" r="9"/>
+    <path class="out" d="M210,200 L360,200"/><path class="out" d="M360,200 l-10,-6 M360,200 l-10,6"/>
+  </svg></div>
+  <div class="max">
+    <div class="pill">The convergence point</div>
+    <h2>NovAIFlow is the <span class="nv">node</span> where everything flows together.</h2>
+    <p class="lead">Your systems, data and tasks stop being scattered parts and resolve into one automated flow — then leave as a single, bright flow of value. The model is the method: <span class="cy">diagnose → design → build → integrate → optimize.</span></p>
+  </div>
+</section>
+
+<!-- 4 · WHAT WE DO -->
+<section class="slide light" id="s4">
+  <div class="max">
+    <div class="kicker">What we do — 7 productized services, 5 pillars</div>
+    <h2>One catalog. Contract a node, or the whole flow.</h2>
+    <div class="grid g3">
+      <div class="card"><span class="n">01 · Automate</span><h3>Process automation</h3><p>Manual work, eliminated. Automatic flows between systems.</p></div>
+      <div class="card"><span class="n">02 · Connect</span><h3>System integration</h3><p>CRM, ERP & APIs synced in real time. Silos removed.</p></div>
+      <div class="card"><span class="n">03 · Agents</span><h3>AI agents</h3><p>Voice & chat agents for sales, support and internal ops — in production.</p></div>
+      <div class="card"><span class="n">04 · Insight</span><h3>Analytics & BI</h3><p>Live dashboards, automated KPIs, prediction.</p></div>
+      <div class="card"><span class="n">05 · Optimize</span><h3>Process optimization</h3><p>Audit, find bottlenecks, measurable efficiency gains.</p></div>
+      <div class="card"><span class="n">06 · Transform &nbsp;07 · Build</span><h3>Strategy & custom build</h3><p>AI roadmaps and bespoke software — the entry and the tailored edge.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · HOW WE WORK -->
+<section class="slide" id="s5">
+  <div class="max">
+    <div class="kicker">How we work — one flow, end to end</div>
+    <h2>From strategy to operation, in a <span class="cy">single flow</span>.</h2>
+    <div class="steps">
+      <span class="step">DIAGNOSE</span><span class="arrow">→</span>
+      <span class="step">DESIGN</span><span class="arrow">→</span>
+      <span class="step hot">BUILD</span><span class="arrow">→</span>
+      <span class="step">INTEGRATE</span><span class="arrow">→</span>
+      <span class="step">OPTIMIZE</span>
+    </div>
+    <ul class="clean">
+      <li><strong style="color:#fff">Diagnose</strong> — a paid Discovery: process audit, systems map, prioritized roadmap.</li>
+      <li><strong style="color:#fff">Design & Build</strong> — the highest-ROI agent or automation, built to production standards.</li>
+      <li><strong style="color:#fff">Integrate</strong> — wired into your CRM/ERP/APIs, with data isolation and security.</li>
+      <li><strong style="color:#fff">Optimize</strong> — we operate it, measure it, and improve it every month.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6 · PROOF -->
+<section class="slide" id="s6">
+  <div class="max">
+    <div class="kicker">Proof — this stack already runs in production</div>
+    <h2>Not slideware. Operated systems.</h2>
+    <div class="grid g4">
+      <div class="card metric"><span class="v">12<span class="u">+</span></span><span class="l">AI agents in production, coordinated 24/7</span></div>
+      <div class="card metric"><span class="v">EN<span class="u">/</span>ES</span><span class="l">Bilingual voice agents on real phone lines</span></div>
+      <div class="card metric"><span class="v">3</span><span class="l">Production MCP connectors (OAuth 2.1) for Claude & ChatGPT</span></div>
+      <div class="card metric"><span class="v">&lt;30<span class="u">d</span></span><span class="l">Multi-tenant SaaS shipped to production</span></div>
+      <div class="card metric"><span class="v">5,000<span class="u">+</span></span><span class="l">Automated tests, green in CI</span></div>
+      <div class="card metric"><span class="v">99<span class="u">%</span></span><span class="l">Automated reconciliation via embeddings/RAG</span></div>
+      <div class="card metric"><span class="v">11</span><span class="l">Live production systems across clients</span></div>
+      <div class="card metric"><span class="v">RAG</span><span class="l">Grounded on your documents (pgvector + embeddings)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · WHY US -->
+<section class="slide light" id="s7">
+  <div class="max">
+    <div class="kicker">Why NovAIFlow</div>
+    <h2>A builder who ships and <span class="cy">operates</span> what he builds.</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Production depth, not demos</h3><p>Voice AI, multi-agent orchestration, RAG and MCP — running live for paying clients, not proof-of-concepts.</p></div>
+      <div class="card"><h3>Bilingual EN/ES · Miami + LATAM</h3><p>Native English and Spanish. A real wedge for US-Hispanic and LATAM-facing operations.</p></div>
+      <div class="card"><h3>End-to-end ownership</h3><p>Strategy, build, integration and operation from one accountable engineer — no hand-offs, no agency overhead.</p></div>
+      <div class="card"><h3>Security by default</h3><p>Multi-tenant isolation (row-level security), STRIDE-audited voice, self-hosted option for sensitive data.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · ENGAGEMENT & PRICING -->
+<section class="slide" id="s8">
+  <div class="max">
+    <div class="kicker">How to engage — land small, grow with proof</div>
+    <h2>Start with a paid <span class="cy">Discovery</span>. Scale to a flow.</h2>
+    <div style="max-width:760px;margin-top:1.5rem">
+      <div class="price"><span><span class="name">The Convergence Audit</span><span class="desc">Paid discovery — systems map, prioritized roadmap + ROI estimate, yours to keep (credited to a build)</span></span><span class="amt">$750</span></div>
+      <div class="price"><span><span class="name">NovAIFlow FrontDesk <span style="color:var(--nova);font-family:var(--fmono);font-size:.7rem">★ FLAGSHIP</span></span><span class="desc">Bilingual AI voice receptionist — answers & books 24/7, live in 14 days, you own the build</span></span><span class="amt">$1,500 + $499/mo</span></div>
+      <div class="price"><span><span class="name">Project</span><span class="desc">One agent / automation / integration, built to production — the 7 services</span></span><span class="amt">$3k – 18k</span></div>
+      <div class="price"><span><span class="name">Retainer</span><span class="desc">We operate, support and improve it — Care · Grow · Partner</span></span><span class="amt">$500 – 4k+/mo</span></div>
+      <div class="price"><span><span class="name">Advisory</span><span class="desc">Fractional AI engineering by the hour or day</span></span><span class="amt">$75 – 150/hr</span></div>
+    </div>
+    <p class="lead" style="margin-top:1.4rem;font-size:1rem">The full flow — several services combined end-to-end — is quoted as a package.</p>
+  </div>
+</section>
+
+<!-- 9 · CASE SNAPSHOTS -->
+<section class="slide light" id="s9">
+  <div class="max">
+    <div class="kicker">Case snapshots — anonymized</div>
+    <h2>What "one flow out" looks like.</h2>
+    <div class="grid g3">
+      <div class="card"><span class="n">Logistics · Voice</span><h3>After-hours voice agent</h3><p>Bilingual agent answering a real phone line, routing and transferring to the right desk. Zero missed calls, humans freed for exceptions.</p></div>
+      <div class="card"><span class="n">Field service · Agents</span><h3>Multi-agent operations</h3><p>A dozen agents triaging, dispatching and reconciling across chat, voice and email for a large managed fleet, 24/7.</p></div>
+      <div class="card"><span class="n">Compliance · Build</span><h3>Multi-tenant SaaS in weeks</h3><p>A regulated-industry platform with row-level security and automated document intake — in production in under a month.</p></div>
+    </div>
+    <p class="lead" style="margin-top:1.5rem;font-size:.95rem;opacity:.8">Client names withheld under NDA. Live demos available on request.</p>
+  </div>
+</section>
+
+<!-- 10 · CTA -->
+<section class="slide" id="s10">
+  <div class="motif"><svg viewBox="0 0 400 400" aria-hidden="true">
+    <path class="edge" d="M40,120 L210,200"/><path class="edge v" d="M40,200 L210,200"/><path class="edge" d="M40,280 L210,200"/>
+    <circle class="halo" cx="210" cy="200" r="22"/><circle class="core" cx="210" cy="200" r="10"/>
+    <path class="out" d="M210,200 L370,200"/><path class="out" d="M370,200 l-11,-6 M370,200 l-11,6"/>
+  </svg></div>
+  <div class="max">
+    <div class="kicker">Next step</div>
+    <h1>Let's map your <span class="cy">flow</span>.</h1>
+    <p class="lead">Book a paid Discovery. In one to two weeks you'll have a systems map, a prioritized roadmap, and a fixed estimate for the first high-ROI build.</p>
+    <a class="cta" href="https://novaiflow.com">Book a discovery →</a>
+    <div style="margin-top:2.4rem" class="wordmark">Nov<span class="ai">AI</span>Flow</div>
+    <p style="font-family:var(--fmono);font-size:.8rem;color:var(--slate);margin-top:.4rem;letter-spacing:.05em">novaiflow.com · hello@novaiflow.com · Miami, FL</p>
+  </div>
+</section>
+
+</div>
+
+<div class="count" id="count">01 / 10</div>
+<div class="nav">
+  <button id="prev" aria-label="Previous slide">↑</button>
+  <button id="next" aria-label="Next slide">↓</button>
+</div>
+<script>
+const deck=document.getElementById('deck');
+const slides=[...document.querySelectorAll('.slide')];
+const count=document.getElementById('count');
+function current(){let i=0,min=1e9;slides.forEach((s,idx)=>{const d=Math.abs(s.getBoundingClientRect().top);if(d<min){min=d;i=idx}});return i}
+function go(n){const i=Math.max(0,Math.min(slides.length-1,n));slides[i].scrollIntoView({behavior:'smooth'})}
+document.getElementById('next').onclick=()=>go(current()+1);
+document.getElementById('prev').onclick=()=>go(current()-1);
+document.addEventListener('keydown',e=>{
+  if(['ArrowDown','ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(current()+1)}
+  if(['ArrowUp','ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(current()-1)}
+});
+deck.addEventListener('scroll',()=>{const i=current();count.textContent=String(i+1).padStart(2,'0')+' / '+String(slides.length).padStart(2,'0')},{passive:true});
+</script>
+</body>
+</html>
