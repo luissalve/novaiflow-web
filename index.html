@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NovAIFlow — Where AI, automation and your systems flow together</title>
   <meta name="description" id="meta-desc" content="NovAIFlow integrates AI, automation and your systems to eliminate manual work and optimize operations — measurable impact, live in under 30 days.">
-  <meta name="theme-color" id="meta-theme" content="#0A1020">
+  <meta name="theme-color" id="meta-theme" content="#F7F9FC">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -24,7 +24,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Set theme + language before paint (no flash). Falls back to dark/EN.
+  <!-- Set theme + language before paint (no flash). Falls back to LIGHT/EN
+       (light is the brand default; dark only by explicit choice or OS dark).
        Also flips no-js → js so CSS only hides .reveal content when JS actually runs. -->
   <script>
     (function () {
@@ -32,12 +33,12 @@
       document.documentElement.classList.add('js');
       try {
         var t = localStorage.getItem('nf-theme');
-        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.setAttribute('data-theme', t);
         var l = localStorage.getItem('nf-lang');
         if (l !== 'en' && l !== 'es') l = (navigator.language || 'en').toLowerCase().indexOf('es') === 0 ? 'es' : 'en';
         document.documentElement.setAttribute('lang', l);
-      } catch (e) { document.documentElement.setAttribute('data-theme', 'dark'); }
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
     })();
   </script>
 </head>
@@ -48,25 +49,19 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="NovAIFlow home">
+        <!-- Marca D2 "flow-cut": N ink con diagonal de gradiente + nodo ámbar en el ojo.
+             fill var(--nf-heading) => ink en claro, paper en oscuro (themeable). -->
         <svg class="brand-mark" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true" focusable="false">
           <defs>
-            <linearGradient id="navFlow" gradientUnits="userSpaceOnUse" x1="9" y1="50" x2="57" y2="38">
+            <linearGradient id="nfDiagH" gradientUnits="userSpaceOnUse" x1="18" y1="10" x2="48" y2="54">
               <stop offset="0" stop-color="#18C8E6"/><stop offset="1" stop-color="#5B4BDB"/>
             </linearGradient>
           </defs>
-          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <g class="mk-edge" stroke="#475569" stroke-width="3.5">
-              <path d="M9 36 L42 22"/><path d="M9 22 L42 22"/><path d="M14 10 L42 22"/><path d="M28 8 L42 22"/>
-            </g>
-            <path d="M9 50 L42 22 L57 40" stroke="url(#navFlow)" stroke-width="4.5"/>
-            <path d="M57 40 L56.5 34 M57 40 L51.2 38.4" stroke="#5B4BDB" stroke-width="4.5"/>
-          </g>
-          <g class="mk-node" fill="#475569">
-            <circle cx="9" cy="50" r="3.2"/><circle cx="9" cy="36" r="3.2"/><circle cx="9" cy="22" r="3.2"/>
-            <circle cx="14" cy="10" r="3.2"/><circle cx="28" cy="8" r="3.2"/>
-          </g>
-          <circle cx="42" cy="22" r="6.5" fill="#FFB23E"/>
-          <circle cx="42" cy="22" r="2.4" fill="#FFE0A8"/>
+          <path fill="var(--nf-heading)" d="M12 8h12v48H12z"/>
+          <path fill="var(--nf-heading)" d="M40 8h12v42a6 6 0 0 1-12 0z"/>
+          <path fill="url(#nfDiagH)" d="M12 8h12l28 38v10H40L12 18z"/>
+          <circle cx="46" cy="17" r="7.5" fill="var(--nf-canvas)"/>
+          <circle cx="46" cy="17" r="4" fill="#FFB23E"/>
         </svg>
         <span class="brand-word">Nov<span class="ai">AI</span>Flow</span>
       </a>
@@ -513,18 +508,16 @@
       <div class="footer-brand">
         <a class="brand" href="#top" aria-label="NovAIFlow home">
           <svg class="brand-mark" viewBox="0 0 64 64" width="30" height="30" aria-hidden="true" focusable="false">
-            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <g class="mk-edge" stroke="#475569" stroke-width="3.5">
-                <path d="M9 36 L42 22"/><path d="M9 22 L42 22"/><path d="M14 10 L42 22"/><path d="M28 8 L42 22"/>
-              </g>
-              <path d="M9 50 L42 22 L57 40" stroke="#5B4BDB" stroke-width="4.5"/>
-              <path d="M57 40 L56.5 34 M57 40 L51.2 38.4" stroke="#5B4BDB" stroke-width="4.5"/>
-            </g>
-            <g class="mk-node" fill="#475569">
-              <circle cx="9" cy="50" r="3.2"/><circle cx="9" cy="36" r="3.2"/><circle cx="9" cy="22" r="3.2"/>
-              <circle cx="14" cy="10" r="3.2"/><circle cx="28" cy="8" r="3.2"/>
-            </g>
-            <circle cx="42" cy="22" r="6.5" fill="#FFB23E"/>
+            <defs>
+              <linearGradient id="nfDiagF" gradientUnits="userSpaceOnUse" x1="18" y1="10" x2="48" y2="54">
+                <stop offset="0" stop-color="#18C8E6"/><stop offset="1" stop-color="#5B4BDB"/>
+              </linearGradient>
+            </defs>
+            <path fill="var(--nf-heading)" d="M12 8h12v48H12z"/>
+            <path fill="var(--nf-heading)" d="M40 8h12v42a6 6 0 0 1-12 0z"/>
+            <path fill="url(#nfDiagF)" d="M12 8h12l28 38v10H40L12 18z"/>
+            <circle cx="46" cy="17" r="7.5" fill="var(--nf-canvas)"/>
+            <circle cx="46" cy="17" r="4" fill="#FFB23E"/>
           </svg>
           <span class="brand-word">Nov<span class="ai">AI</span>Flow</span>
         </a>

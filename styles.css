@@ -205,7 +205,9 @@ main:focus{outline:none}
     radial-gradient(90% 90% at 82% 8%,rgba(255,178,62,.10),transparent 55%),
     radial-gradient(120% 120% at 20% 110%,rgba(91,75,219,.10),transparent 60%),
     linear-gradient(180deg,#FFFFFF 0%,var(--nf-paper) 55%,var(--nf-node-mist) 100%)}
-[data-theme="light"] .hero-art{display:none} /* arte fotográfico es dark-canvas */
+/* En claro el hero usa su propio arte high-key (el video dark se oculta) */
+[data-theme="light"] .hero-art{background-image:url("assets/nova-hero-light.jpg");opacity:.9}
+[data-theme="light"] .hero-art>.hero-video{display:none}
 .hero-glow{position:absolute;inset:auto -10% -40% 30%;height:80%;z-index:0;
   background:radial-gradient(closest-side,rgba(91,75,219,.30),rgba(24,200,230,.10) 55%,transparent 75%);
   filter:blur(10px);pointer-events:none}
