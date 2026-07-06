@@ -200,8 +200,8 @@
 
   var THEME_COLORS = { dark: '#0A1020', light: '#F7F9FC' };
 
-  /* Keeps browser chrome colour + theme-toggle aria-label in sync
-     with the active theme, in the active language. */
+  /* Keeps browser chrome colour, theme-toggle aria-label and the
+     hero ambient video in sync with the active theme. */
   function applyThemeUI() {
     var theme = root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
     var meta = document.getElementById('meta-theme');
@@ -210,6 +210,17 @@
     document.querySelectorAll('.theme-toggle').forEach(function (btn) {
       btn.setAttribute('aria-label', theme === 'dark' ? dict.theme_to_light : dict.theme_to_dark);
     });
+    /* Light mode uses the static hero art (Higgsfield's moderation rejects the
+       light-mode video; the swap code lives in git f2f82e0 if that changes).
+       Pausing the hidden video in light saves battery/CPU. */
+    var vid = document.querySelector('.hero-video');
+    if (vid) {
+      if (theme === 'light') { vid.pause(); }
+      else {
+        var p = vid.play();
+        if (p && p.catch) p.catch(function () { /* autoplay blocked: poster stays */ });
+      }
+    }
   }
 
   /* Renders the final, locale-formatted value of every counter
