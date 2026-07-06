@@ -108,7 +108,11 @@
   <main id="main" tabindex="-1">
     <!-- ===================== HERO (parallax) ===================== -->
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-art plx" data-plx="0.22" aria-hidden="true"></div>
+      <div class="hero-art plx" data-plx="0.22" aria-hidden="true">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="assets/nova-hero.jpg">
+          <source src="assets/nova-hero.mp4" type="video/mp4">
+        </video>
+      </div>
       <div class="hero-glow plx" data-plx="0.34" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy">
@@ -440,7 +444,7 @@
     </section>
 
     <!-- ===================== PORTFOLIO / SUB-BRANDS ===================== -->
-    <section class="section portfolio dark-plate" id="portfolio" aria-labelledby="portfolio-title">
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
         <header class="section-head reveal">
           <p class="kicker" data-i18n="port_kicker">Portfolio</p>
@@ -489,7 +493,7 @@
     </section>
 
     <!-- ===================== CTA / CONTACT (parallax) ===================== -->
-    <section class="section contact dark-plate" id="contact" aria-labelledby="contact-title">
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
       <div class="contact-art plx" data-plx="0.14" aria-hidden="true"></div>
       <div class="container contact-inner reveal">
         <p class="kicker" data-i18n="contact_kicker">Start a project</p>
