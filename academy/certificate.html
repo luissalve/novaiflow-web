@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Certificate of Completion · Certificado de Finalización · NovAIFlow Academy</title>
+<meta name="description" content="Bilingual print-ready completion certificate for the NovAIFlow Academy & Enablement program. Landscape A4/Letter, print-to-PDF clean. NovAIFlow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/tokens.css">
+<style>
+  /* ==========================================================================
+     NOVAIFLOW ACADEMY — COMPLETION CERTIFICATE (self-contained, bilingual)
+     --------------------------------------------------------------------------
+     Brand: red is var(--xg-red) #18C8E6 and ONLY that.
+     Fonts come from the same Google Fonts <link> as the decks (Space Grotesk,
+     Inter, JetBrains Mono). Colors come from shared/tokens.css via var(--xg-*).
+     Landscape A4/Letter, print-to-PDF clean. Print/PDF button hidden on print.
+     ========================================================================== */
+
+  /* ── Local aliases → canonical tokens (red stays the only brand red) ─────── */
+  :root{
+    --red:      var(--xg-red);
+    --red-ink:  var(--xg-red-ink);
+    --red-soft: var(--xg-red-soft);
+    --ink:      var(--xg-ink);
+    --graphite: var(--xg-graphite);
+    --slate:    var(--xg-slate);
+    --line:     var(--xg-line);
+    --paper:    var(--xg-white);
+    --font-display: var(--xg-font-display);
+    --font-body:    var(--xg-font-body);
+    --font-mono:    var(--xg-font-mono);
+  }
+
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  html{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    color-scheme:light;
+  }
+
+  body{
+    font-family:var(--font-body);
+    color:var(--ink);
+    background:#3F3F46;               /* neutral backdrop on screen */
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+
+  /* ── Print / PDF button (screen only) ────────────────────────────────────── */
+  .toolbar{
+    width:100%;
+    max-width:1122px;
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-bottom:16px;
+  }
+  .btn{
+    appearance:none;cursor:pointer;
+    font-family:var(--font-mono);
+    font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:#fff;background:var(--red);
+    border:0;border-radius:var(--xg-r-md);
+    padding:10px 18px;
+    box-shadow:0 2px 10px rgba(0,0,0,.28);
+  }
+  .btn:hover{background:var(--red-ink)}
+  .btn:focus-visible{outline:3px solid #fff;outline-offset:2px}
+
+  /* ── Certificate canvas: US Letter landscape (11×8.5in) ──────────────────── */
+  .cert{
+    position:relative;
+    width:11in;
+    height:8.5in;
+    background:var(--paper);
+    color:var(--ink);
+    box-shadow:0 24px 60px rgba(0,0,0,.45);
+    overflow:hidden;
+    /* inner decorative double frame */
+    padding:14mm;
+  }
+
+  /* red top accent band */
+  .cert::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;
+    height:8mm;
+    background:var(--red);
+  }
+  /* thin inner keyline frame */
+  .cert::after{
+    content:"";
+    position:absolute;
+    top:10mm;left:10mm;right:10mm;bottom:10mm;
+    border:1px solid var(--line);
+    pointer-events:none;
+  }
+
+  .cert__inner{
+    position:relative;
+    z-index:1;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    padding:10mm 14mm 8mm;
+  }
+
+  /* ── Header: wordmark + program meta ─────────────────────────────────────── */
+  .cert__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand__mark{
+    width:46px;height:46px;border-radius:var(--xg-r-md);
+    background:var(--red);color:#fff;
+    font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-.04em;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .brand__word{
+    font-family:var(--font-display);font-weight:600;font-size:18px;letter-spacing:-.01em;
+    color:var(--ink);line-height:1.05;
+  }
+  .brand__word .dot{color:var(--red)}
+  .brand__sub{
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--slate);margin-top:3px;
+  }
+  .cert__meta{
+    text-align:right;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--slate);
+  }
+  .cert__meta strong{display:block;color:var(--red);font-weight:600;letter-spacing:.12em}
+
+  /* ── Body ────────────────────────────────────────────────────────────────── */
+  .cert__body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  }
+
+  .eyebrow{
+    font-family:var(--font-mono);font-size:11px;font-weight:500;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+    margin-bottom:6px;
+  }
+  .eyebrow .es{color:var(--slate);font-weight:400}
+  .eyebrow .sep{color:var(--line);margin:0 8px}
+
+  .title{
+    font-family:var(--font-display);font-weight:700;
+    font-size:42px;line-height:1.04;letter-spacing:-.02em;
+    color:var(--ink);
+  }
+  .title .es{
+    display:block;
+    font-size:24px;font-weight:500;color:var(--graphite);
+    margin-top:4px;letter-spacing:-.01em;
+  }
+
+  .rule{
+    width:120px;height:3px;background:var(--red);
+    margin:14px auto 18px;
+    border-radius:2px;
+  }
+
+  .certifies{
+    font-size:13px;color:var(--slate);
+    font-style:italic;
+    margin-bottom:4px;
+  }
+  .certifies .es{display:block;color:var(--slate)}
+
+  .name{
+    font-family:var(--font-display);font-weight:600;
+    font-size:38px;line-height:1.1;letter-spacing:-.02em;
+    color:var(--red);
+    padding:0 12px 6px;
+    border-bottom:2px solid var(--line);
+    min-width:60%;
+    margin:4px auto 16px;
+  }
+
+  .completed{
+    font-size:15px;color:var(--ink);max-width:620px;
+  }
+  .completed .level{
+    font-family:var(--font-display);font-weight:600;color:var(--ink);
+  }
+  .completed .es{
+    display:block;color:var(--graphite);font-size:13px;margin-top:4px;
+  }
+
+  /* ── Footer: signatures + org line ───────────────────────────────────────── */
+  .cert__sign{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-top:auto;
+    padding-top:10px;
+  }
+  .sigblock{flex:1;max-width:33%;text-align:center}
+  .sigblock.seal{flex:0 0 auto;max-width:none}
+  .sig__line{
+    border-top:1.5px solid var(--ink);
+    margin:0 8px 6px;
+    height:0;
+  }
+  .sig__value{
+    font-family:var(--font-display);font-weight:500;font-size:15px;
+    color:var(--ink);min-height:20px;
+  }
+  .sig__label{
+    font-family:var(--font-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--slate);margin-top:3px;
+  }
+  .sig__label .es{display:block;color:var(--slate);opacity:.85}
+
+  /* Seal / badge in the center of the signature row */
+  .seal__badge{
+    width:74px;height:74px;border-radius:50%;
+    border:2px solid var(--red);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:var(--red);
+    background:var(--red-soft);
+    margin:0 auto;
+  }
+  .seal__mark{
+    font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.04em;line-height:1;
+  }
+  .seal__txt{
+    font-family:var(--font-mono);font-size:7px;letter-spacing:.16em;text-transform:uppercase;
+    margin-top:3px;color:var(--red-ink);
+  }
+
+  .cert__foot{
+    margin-top:12px;
+    text-align:center;
+    font-family:var(--font-mono);font-size:10px;letter-spacing:.1em;
+    color:var(--slate);
+  }
+  .cert__foot .red{color:var(--red)}
+
+  /* ── Print: US Letter landscape (11×8.5in), no margins, single clean page ── */
+  @page{ size:11in 8.5in; margin:0; }
+
+  @media print{
+    body{
+      background:#fff;
+      padding:0;
+      display:block;
+    }
+    .toolbar{display:none !important}
+    .cert{
+      width:11in;
+      height:8.5in;
+      box-shadow:none;
+      page-break-after:avoid;
+      break-after:avoid;
+      -webkit-print-color-adjust:exact;
+      print-color-adjust:exact;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Print / PDF button — screen only, hidden on print -->
+  <div class="toolbar">
+    <button class="btn" type="button" onclick="window.print()">
+      Print / PDF · Imprimir / PDF
+    </button>
+  </div>
+
+  <!-- Certificate canvas -->
+  <section class="cert" role="document" aria-label="Certificate of Completion — Certificado de Finalización">
+    <div class="cert__inner">
+
+      <!-- Header -->
+      <header class="cert__head">
+        <div class="brand">
+          <span class="brand__mark">NF</span>
+          <span>
+            <span class="brand__word">NovAIFlow<span class="dot">.</span></span>
+            <span class="brand__sub">AI Training &amp; Enablement</span>
+          </span>
+        </div>
+        <div class="cert__meta">
+          <strong>Certificate No.</strong>
+          {certificate_id}
+        </div>
+      </header>
+
+      <!-- Body -->
+      <div class="cert__body">
+        <div class="eyebrow">
+          <span class="en">Certificate of Completion</span>
+          <span class="sep">·</span>
+          <span class="es">Certificado de Finalización</span>
+        </div>
+
+        <h1 class="title">
+          Certificate of Completion
+          <span class="es">Certificado de Finalización</span>
+        </h1>
+
+        <div class="rule" aria-hidden="true"></div>
+
+        <p class="certifies">
+          This certifies that
+          <span class="es">Se certifica que</span>
+        </p>
+
+        <div class="name">{Participant Name}</div>
+
+        <p class="completed">
+          <span class="en">
+            completed <span class="level">{Level Name}</span> — AI Training &amp; Enablement
+          </span>
+          <span class="es">
+            completó <span class="level">{Level Name}</span> — Formación y Habilitación en IA
+          </span>
+        </p>
+      </div>
+
+      <!-- Signatures + seal -->
+      <div class="cert__sign">
+        <div class="sigblock">
+          <div class="sig__value">{date}</div>
+          <div class="sig__line" aria-hidden="true"></div>
+          <div class="sig__label">
+            <span class="en">Date of Completion</span>
+            <span class="es">Fecha de finalización</span>
+          </div>
+        </div>
+
+        <div class="sigblock seal">
+          <div class="seal__badge" aria-hidden="true">
+            <span class="seal__mark">NF</span>
+            <span class="seal__txt">Verified</span>
+          </div>
+        </div>
+
+        <div class="sigblock">
+          <div class="sig__value">{instructor}</div>
+          <div class="sig__line" aria-hidden="true"></div>
+          <div class="sig__label">
+            <span class="en">Instructor — Signature</span>
+            <span class="es">Instructor — Firma</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Org footer line -->
+      <div class="cert__foot">
+        NovAIFlow <span class="red">·</span> Miami, FL <span class="red">·</span> novaiflow.com
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

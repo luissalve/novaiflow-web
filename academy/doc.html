@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NovAIFlow Academy · Documento</title>
+<meta name="description" content="Visor imprimible de documentos del programa de capacitación en IA de NovAIFlow. Bilingüe EN/ES.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<link rel="stylesheet" href="shared/page.css">
+<style>
+  /* Viewer-specific styling for rendered Markdown inside <main class="md"> */
+  .md h1{font-family:var(--xg-font-display);font-weight:600;font-size:clamp(26px,4vw,36px);line-height:1.1;letter-spacing:-.02em;color:var(--xg-ink);margin:0 0 14px}
+  .md h2{margin-top:30px}
+  .md > h1:first-child{margin-top:0}
+  .md p{margin:0 0 12px}
+  .md ul,.md ol{margin:0 0 14px;padding-left:22px}
+  .md li{margin:4px 0}
+  .md li::marker{color:var(--xg-red)}
+  .md blockquote{border-left:3px solid var(--xg-red);background:var(--xg-paper);border-radius:0 8px 8px 0;padding:11px 16px;margin:0 0 16px;color:var(--xg-graphite)}
+  .md blockquote p:last-child{margin-bottom:0}
+  .md img{max-width:100%;height:auto;border-radius:10px;margin:6px 0 14px}
+  .md hr{border:0;border-top:1px solid var(--xg-line);margin:24px 0}
+  .md code{font-family:var(--xg-font-mono);font-size:.88em;background:var(--xg-paper);border:1px solid var(--xg-line);border-radius:5px;padding:1px 5px}
+  .md pre{background:var(--xg-paper);border:1px solid var(--xg-line);border-radius:9px;padding:13px 15px;overflow:auto;margin:0 0 16px}
+  .md pre code{background:none;border:0;padding:0;font-size:12.5px;line-height:1.6}
+  /* doc tables: keep page.css dark header, but relax the first-column nowrap/bold meant for cert tables */
+  .md td:first-child{white-space:normal;font-weight:400;color:inherit}
+  .md th{white-space:nowrap}
+  /* GFM task lists */
+  .md li input[type=checkbox]{appearance:none;-webkit-appearance:none;width:15px;height:15px;border:1.5px solid var(--xg-red);border-radius:4px;vertical-align:-2px;margin-right:8px}
+  .md li input[type=checkbox]:checked{background:var(--xg-red)}
+  .md ul:has(li input[type=checkbox]){list-style:none;padding-left:2px}
+  .loading,.error{color:var(--xg-slate);font-family:var(--xg-font-mono);font-size:13px;padding:20px 0}
+  .error{color:var(--xg-red)}
+  @media print{.md h1{font-size:24px}}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">⬡ Print / PDF</button>
+
+<div class="topbar">
+  <div class="brand">
+    <a class="brand-mark" href="index.html"><img src="assets/img/nf-mark.svg" alt="NovAIFlow"></a>
+    <div><div class="brand-name">NovAIFlow · Academy</div><div class="brand-sub" id="crumb">Document viewer</div></div>
+  </div>
+  <div class="right">
+    <a class="home" href="index.html"><span class="es-only">Hub</span><span class="en-only">Hub</span></a>
+    <div class="seg" id="langseg" role="group" aria-label="Language" hidden>
+      <button data-lang-btn="es">ES</button>
+      <button data-lang-btn="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<main class="md" id="doc"><div class="loading">Cargando…</div></main>
+
+<footer class="site">
+  <b>NovAIFlow<span style="color:var(--red)">.</span></b>
+  Academy · Applied AI · Miami, FL · <a href="https://novaiflow.com">novaiflow.com</a>
+</footer>
+
+<script src="shared/vendor/marked.min.js"></script>
+<script>
+(function(){
+  var doc = document.getElementById('doc');
+  var seg = document.getElementById('langseg');
+  var crumb = document.getElementById('crumb');
+  var params = new URLSearchParams(location.search);
+  var f = params.get('f') || '';
+
+  function langOf(p){ if(/\.en\.md$/.test(p)) return 'en'; if(/\.es\.md$/.test(p)) return 'es'; return null; }
+  function sibling(p, l){ return p.replace(/\.(en|es)\.md$/, '.'+l+'.md'); }
+  function dirOf(p){ var i=p.lastIndexOf('/'); return i<0?'':p.slice(0,i+1); }
+  function normalize(path){
+    var parts=path.split('/'), out=[];
+    for(var i=0;i<parts.length;i++){ var s=parts[i];
+      if(s==='..') out.pop(); else if(s==='.'||s==='') continue; else out.push(s); }
+    return out.join('/');
+  }
+  function setLangButtons(cur){
+    if(!cur){ seg.hidden=true; return; }
+    seg.hidden=false;
+    document.documentElement.setAttribute('data-lang',cur);
+    var b=seg.querySelectorAll('[data-lang-btn]');
+    for(var i=0;i<b.length;i++){ b[i].classList.toggle('on', b[i].getAttribute('data-lang-btn')===cur); }
+  }
+
+  function load(path){
+    f = path;
+    var url = new URL(location); url.searchParams.set('f', path); history.replaceState(null,'',url);
+    crumb.textContent = path;
+    doc.innerHTML = '<div class="loading">Cargando… / Loading…</div>';
+    fetch(path).then(function(r){ if(!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function(md){
+        marked.setOptions({gfm:true, breaks:false});
+        doc.innerHTML = marked.parse(md);
+        var h1 = doc.querySelector('h1');
+        if(h1) document.title = h1.textContent.trim() + ' — NovAIFlow Academy';
+        // resolve relative image sources against the .md's own folder
+        var base = dirOf(path);
+        var imgs = doc.querySelectorAll('img[src]');
+        for(var k=0;k<imgs.length;k++){
+          var s = imgs[k].getAttribute('src');
+          if(!s || /^(https?:|data:)/.test(s)) continue;
+          imgs[k].setAttribute('src', normalize(base+s));
+        }
+        // route relative .md links back through the viewer
+        var links = doc.querySelectorAll('a[href]');
+        for(var i=0;i<links.length;i++){
+          var raw = links[i].getAttribute('href');
+          if(!raw || /^(https?:|mailto:|#)/.test(raw)) continue;
+          if(/\.md(#.*)?$/.test(raw)){
+            var hash = ''; var clean = raw; var hi = raw.indexOf('#');
+            if(hi>=0){ hash=raw.slice(hi); clean=raw.slice(0,hi); }
+            links[i].setAttribute('href', 'doc.html?f=' + encodeURIComponent(normalize(base+clean)) + hash);
+          }
+        }
+        setLangButtons(langOf(path));
+        window.scrollTo(0,0);
+      })
+      .catch(function(e){
+        doc.innerHTML = '<div class="error">No se pudo cargar / Could not load: <code>'+path+'</code> ('+e.message+')<br><br>Abre este visor con un parámetro, p. ej. <code>doc.html?f=levels/01-fundamentals/manual/manual.es.md</code></div>';
+        seg.hidden=true;
+      });
+  }
+
+  // language toggle swaps to the sibling .en/.es file for the current doc
+  var btns = seg.querySelectorAll('[data-lang-btn]');
+  for(var i=0;i<btns.length;i++){
+    btns[i].addEventListener('click', function(){
+      var l=this.getAttribute('data-lang-btn');
+      if(langOf(f)) load(sibling(f, l));
+    });
+  }
+
+  if(f) load(f);
+  else doc.innerHTML = '<div class="error">Falta el parámetro <code>?f=</code>. Ejemplo: <code>doc.html?f=industry-packs/medical.es.md</code></div>';
+})();
+</script>
+</body>
+</html>

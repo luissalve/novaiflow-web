@@ -1,0 +1,46 @@
+/* ============================================================================
+   NovAIFlow ACADEMY — BRAND SKIN
+   NovAIFlow canonical tokens (--nf-*) + a compatibility remap of the ported
+   XG variable names (--xg-*) onto NovAIFlow values, so pages copied from
+   xg-ai-training rebrand wholesale without touching their per-page CSS.
+   Palette: navy ink · cyan/violet accents · rationed warm amber node.
+   ============================================================================ */
+:root {
+  /* ---- NovAIFlow canonical ---- */
+  --nf-ink:#0A1020; --nf-carbon:#070B16; --nf-paper:#F7F9FC; --nf-node-mist:#EEF2F8;
+  --nf-hairline:#D9E0EC; --nf-slate:#475569; --nf-mist:#C7D2EA;
+  --nf-cyan:#18C8E6; --nf-violet:#5B4BDB; --nf-violet-strong:#4A3CC4;
+  --nf-nova:#FFB23E; --nf-nova-text:#FFC46B; --nf-nova-glow:#FFE0A8;
+  --nf-grad-flow:linear-gradient(120deg,#18C8E6 0%,#5B4BDB 100%);
+  --nf-grad-flow-warm:linear-gradient(120deg,#18C8E6 0%,#5B4BDB 70%,#FFB23E 100%);
+
+  /* ---- XG-name compatibility skin → NovAIFlow values ---- */
+  --xg-red:          var(--nf-cyan);      /* structural accent (was brand red) */
+  --xg-red-heritage: var(--nf-violet);
+  --xg-red-ink:      var(--nf-violet-strong);
+  --xg-red-soft:     rgba(24,200,230,.10);
+  --xg-navy:         var(--nf-violet);
+
+  --xg-ink:      #0A0A0B;                  /* keep near-black text on light content */
+  --xg-ink-2:    #12172A;
+  --xg-charcoal: var(--nf-carbon);         /* dark cover/hero base → navy carbon */
+  --xg-graphite: var(--nf-slate);
+  --xg-slate:    var(--nf-slate);
+  --xg-mute:     #8FA0BD;                  /* muted text on dark */
+  --xg-line:     var(--nf-hairline);
+  --xg-line-2:   #EEF2F8;
+  --xg-paper:    #F4F7FB;                  /* zebra fills */
+  --xg-white:    #FFFFFF;                  /* light content stays white */
+
+  --xg-ok:#16A34A; --xg-warn:#EA580C; --xg-err:#DC2626; --xg-down:#71717A;
+
+  --xg-r-sm:6px; --xg-r-md:8px; --xg-r:10px; --xg-r-lg:14px;
+
+  --xg-font-display:"Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --xg-font-body:"Inter", ui-sans-serif, system-ui, sans-serif;
+  --xg-font-mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --xg-space-1:4px; --xg-space-2:8px; --xg-space-3:12px; --xg-space-4:16px;
+  --xg-space-5:20px; --xg-space-6:24px; --xg-space-8:32px; --xg-space-10:40px;
+  --xg-space-12:48px; --xg-space-16:64px; --xg-space-20:80px;
+}

@@ -1,0 +1,389 @@
+/* ============================================================================
+   NOVAIFLOW ACADEMY — CANONICAL SLIDE-DECK STYLESHEET
+   ----------------------------------------------------------------------------
+   Un solo stylesheet impulsa TODOS los decks de los 4 niveles. Reutiliza el
+   vocabulario y los tokens de la marca XG (brochure.css) pero adaptado a
+   diapositivas 16:9 (landscape) con navegación por teclado y print-to-PDF.
+
+   FILOSOFÍA
+     • Cada deck = una secuencia de .slide (16:9). Solo la activa es visible.
+     • .slide.dark  → portadas / divisores de sección (charcoal, texto blanco).
+     • .slide       → contenido (blanco puro, ink + rojo), datasheet-grade.
+     • Bilingüe EN/ES: data-lang en <html> alterna .es-only / .en-only.
+     • Tipografía escalada con container queries (cqw) → el texto crece con la
+       diapositiva sin JS de escalado.
+
+   VOCABULARIO (reutilizado de la marca, adaptado a slides)
+     Shell ......... .deck .slide .slide.dark .slide__safe .slide-bg
+     Furniture ..... .slidehead .slidehead__brand .slidehead__mark
+                     .slidehead__word .slidehead__meta
+                     .slidefoot .slidefoot__left .slidefoot__right .pagenum
+     Nav ........... .topbar (.seg ES/EN, prev/next, counter) .progress
+     Headings ...... .eyebrow .display .display--xl .display--cover
+                     .lead .kicker .subhead .accent .muted .mono
+     Layout ........ .cols .cols-2 .cols-3 .split .split--wide .center-stack
+     Components .... .chip-row .chip · .card .card--accent .card--ink
+                     .kpi-row .kpi · .stat-row .stat · .spec (tabla)
+                     .agenda · .steplist · .callout · .prompt (bloque mono)
+                     .bignum · .quote · .badge-row .badge · .industry-tag
+     Builds ........ .fragment (revelado opcional con flechas)
+     Print ......... @page landscape, una .slide por página
+   ============================================================================ */
+
+@import url("tokens.css");
+
+:root{
+  /* Alias locales → tokens canónicos (misma ergonomía que brochure.css) */
+  --red:      var(--xg-red);
+  --red-ink:  var(--xg-red-ink);
+  --red-soft: var(--xg-red-soft);
+  --red-line: rgba(24,200,230,.28);
+
+  --ink:      var(--xg-ink);
+  --ink-2:    var(--xg-ink-2);
+  --charcoal: var(--xg-charcoal);
+  --graphite: var(--xg-graphite);
+  --slate:    var(--xg-slate);
+  --line:     var(--xg-line);
+  --paper:    var(--xg-white);
+  --paper-2:  var(--xg-paper);
+
+  --d-text:   var(--xg-paper);
+  --d-mute:   var(--xg-mute);
+  --d-line:   rgba(255,255,255,.12);
+  --d-fill:   rgba(255,255,255,.05);
+
+  --font-display: var(--xg-font-display);
+  --font-body:    var(--xg-font-body);
+  --font-mono:    var(--xg-font-mono);
+
+  --radius:    var(--xg-r-lg);
+  --radius-sm: var(--xg-r-md);
+
+  /* Geometría de slide: lienzo lógico 1280×720 (16:9) */
+  --slide-w: 1280;
+  --slide-h: 720;
+}
+
+/* ── RESET ───────────────────────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-scheme:light}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:#3F3F46;                 /* backdrop neutro del presentador */
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+
+/* ── BILINGÜE (compat con slides.js) ─────────────────────────────────────── */
+[data-lang="en"] .es-only{display:none}
+[data-lang="es"] .en-only{display:none}
+:root:not([data-lang]) .en-only{display:none}   /* default ES antes de JS */
+
+/* ── TOPBAR (pantalla; nunca imprime) ────────────────────────────────────── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:10px 20px;background:var(--ink);color:var(--d-text);
+  font-family:var(--font-body);font-size:13px;border-bottom:2px solid var(--red);
+}
+.topbar a{color:inherit;text-decoration:none}
+.topbar .brand-mark{
+  width:30px;height:30px;border-radius:6px;background:var(--red);color:#fff;
+  font-family:var(--font-display);font-weight:700;display:flex;align-items:center;
+  justify-content:center;font-size:13px;letter-spacing:-.02em;
+}
+.topbar .brand-name{font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:-.02em}
+.topbar .brand-sub{font-family:var(--font-mono);font-size:10px;color:var(--d-mute);letter-spacing:.08em;text-transform:uppercase}
+.topbar .ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.topbar .ctrl-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--d-mute)}
+.topbar .seg{display:inline-flex;border:1px solid var(--d-line);border-radius:6px;overflow:hidden}
+.topbar .seg button{
+  appearance:none;border:0;background:transparent;color:var(--d-mute);
+  font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+  padding:5px 12px;cursor:pointer;
+}
+.topbar .seg button.on{background:var(--red);color:#fff}
+.topbar .nav-btn{
+  appearance:none;cursor:pointer;background:var(--charcoal);color:var(--d-text);
+  border:1px solid var(--d-line);border-radius:6px;padding:5px 11px;
+  font-family:var(--font-mono);font-size:12px;font-weight:600;
+}
+.topbar .nav-btn:hover{border-color:var(--red)}
+.topbar .counter{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--d-mute);min-width:54px;text-align:center}
+.topbar .back{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;
+  padding:5px 10px;border:1px solid var(--d-line);border-radius:6px;color:var(--d-mute);
+}
+.topbar .back:hover{border-color:var(--red);color:var(--d-text)}
+
+/* ── DECK + STAGE ────────────────────────────────────────────────────────── */
+.deck{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:64px 24px 24px;                  /* deja sitio al topbar */
+}
+
+/* ── SLIDE (lienzo 16:9 con container queries) ───────────────────────────── */
+.slide{
+  position:relative;
+  width:min(94vw, calc((100vh - 96px) * 16 / 9));
+  aspect-ratio:16 / 9;
+  background:var(--paper);color:var(--ink);
+  overflow:hidden;border-radius:6px;
+  box-shadow:0 30px 70px rgba(0,0,0,.5);
+  container-type:size;                       /* habilita unidades cqw/cqh */
+}
+/* En pantalla: solo la diapositiva activa es visible (JS pone .is-active) */
+.slide{display:none}
+.slide.is-active{display:block}
+
+/* ── SAFE AREA (entre header y footer) ───────────────────────────────────── */
+.slide__safe{
+  position:absolute;top:6.4cqh;left:0;right:0;bottom:5.6cqh;
+  display:flex;flex-direction:column;justify-content:center;  /* balance vertical: llena el lienzo, sin hueco inferior */
+  padding:4.2cqh 5cqw 3.4cqh;
+  z-index:5;
+}
+.slide__safe.center-stack{justify-content:center}
+/* Portada/divisor: el contenido ancla abajo (cover-stack absorbe el espacio superior) */
+.slide__safe:has(.cover-stack){justify-content:flex-start}
+
+/* ── DARK SLIDE (portada / divisor) ──────────────────────────────────────── */
+.slide.dark{background:var(--charcoal);color:var(--d-text)}
+.slide-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.slide.dark::after{
+  content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(10,10,11,.55) 0%, rgba(10,10,11,.20) 38%, rgba(10,10,11,.74) 80%, rgba(10,10,11,.92) 100%),
+    radial-gradient(120% 80% at 12% 92%, rgba(10,10,11,.55), transparent 60%);
+}
+.slide.dark.scrim-strong::after{
+  background:
+    linear-gradient(180deg, rgba(10,10,11,.72) 0%, rgba(10,10,11,.42) 40%, rgba(10,10,11,.82) 80%, rgba(10,10,11,.95) 100%),
+    radial-gradient(120% 80% at 12% 92%, rgba(10,10,11,.6), transparent 60%);
+}
+.slide.dark .slide__safe{z-index:5}
+.cover-stack{margin-top:auto}            /* contenido de portada ancla abajo */
+
+/* ── HEADER BAR ──────────────────────────────────────────────────────────── */
+.slidehead{
+  position:absolute;top:0;left:0;right:0;z-index:10;height:6.4cqh;
+  display:flex;align-items:center;justify-content:space-between;padding:0 5cqw;
+}
+.slide .slidehead{background:var(--paper);border-bottom:1px solid var(--line)}
+.slide.dark .slidehead{background:transparent;border-bottom:.28cqh solid var(--red)}
+.slidehead__brand{display:flex;align-items:center;gap:.8cqw}
+.slidehead__mark{
+  width:2.2cqh;height:2.2cqh;min-width:18px;min-height:18px;border-radius:5px;
+  background:var(--ink);color:#fff;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:700;font-size:1.4cqh;letter-spacing:-.03em;
+}
+.slide.dark .slidehead__mark{background:#fff;color:var(--ink)}
+.slidehead__word{font-family:var(--font-display);font-weight:600;font-size:1.9cqh;letter-spacing:-.02em;color:var(--ink)}
+.slide.dark .slidehead__word{color:#fff}
+.slidehead__word .dot{color:var(--red)}
+.slidehead__meta{font-family:var(--font-mono);font-size:1.5cqh;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.slide.dark .slidehead__meta{color:var(--d-mute)}
+
+/* ── FOOTER BAR ──────────────────────────────────────────────────────────── */
+.slidefoot{
+  position:absolute;bottom:0;left:0;right:0;z-index:10;height:5.6cqh;
+  display:flex;align-items:center;justify-content:space-between;padding:0 5cqw;
+  font-family:var(--font-mono);font-size:1.45cqh;letter-spacing:.1em;text-transform:uppercase;
+}
+.slide .slidefoot{background:var(--paper);border-top:1px solid var(--line);color:var(--slate)}
+.slide.dark .slidefoot{background:transparent;border-top:.28cqh solid var(--red);color:var(--d-mute)}
+.slidefoot__right{display:flex;align-items:center;gap:1.4cqw}
+.slide .pagenum{color:var(--ink)}
+.slide.dark .pagenum{color:#fff}
+
+/* ── PROGRESS BAR (pantalla) ─────────────────────────────────────────────── */
+.progress{position:fixed;left:0;bottom:0;height:3px;background:var(--red);z-index:1500;width:0;transition:width .2s ease}
+
+/* ── TYPOGRAFÍA (escala con cqw/cqh) ─────────────────────────────────────── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:1cqw;
+  font-family:var(--font-mono);font-size:1.7cqh;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--red);
+}
+.eyebrow::before{content:'';width:2.2cqw;height:.3cqh;min-height:2px;background:var(--red);flex:none}
+
+.display{
+  font-family:var(--font-display);font-weight:600;letter-spacing:-.02em;line-height:1.06;
+  font-size:5.4cqh;color:var(--ink);margin-top:1.4cqh;
+}
+.slide.dark .display{color:#fff}
+.display--xl{font-size:7.4cqh;line-height:1.04}
+.display--cover{font-size:9cqh;line-height:1.02;letter-spacing:-.025em}
+.display .em,.display em{color:var(--red);font-style:normal}
+.accent{color:var(--red)}
+
+.kicker{font-size:2.6cqh;line-height:1.55;color:var(--graphite);max-width:54ch;margin-top:1.8cqh}
+.slide.dark .kicker{color:var(--d-text)}
+.lead{font-size:2.8cqh;line-height:1.5;color:var(--graphite);margin-top:1.4cqh;max-width:62ch}
+.slide.dark .lead{color:var(--d-text)}
+.subhead{
+  font-family:var(--font-mono);font-size:1.65cqh;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--red);margin:0 0 1.4cqh;
+}
+.muted{color:var(--slate)}
+.mono{font-family:var(--font-mono)}
+.body{font-size:2.4cqh;line-height:1.55;color:var(--graphite)}
+.divider{height:1px;background:var(--line);border:0;margin:2.4cqh 0}
+.slide.dark .divider{background:var(--d-line)}
+
+/* ── LAYOUT HELPERS ──────────────────────────────────────────────────────── */
+.cols{display:grid;gap:2.6cqw}
+.cols-2{display:grid;grid-template-columns:1fr 1fr;gap:2.6cqw;align-items:start}
+.cols-3{display:grid;grid-template-columns:repeat(3,1fr);gap:2cqw;align-items:start}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:3cqw;align-items:start}
+.split--wide{grid-template-columns:1.15fr .85fr}
+.spread{display:flex;justify-content:space-between;align-items:flex-end;gap:2cqw}
+.mt-1{margin-top:1cqh}.mt-2{margin-top:2cqh}.mt-3{margin-top:3cqh}.mt-auto{margin-top:auto}
+
+/* ── CHIPS ───────────────────────────────────────────────────────────────── */
+.chip-row{display:flex;flex-wrap:wrap;gap:1cqw;margin-top:1.6cqh}
+.chip{
+  display:inline-flex;align-items:center;gap:.6cqw;
+  border:1px solid var(--red-line);background:var(--red-soft);border-radius:100px;
+  padding:.8cqh 1.5cqw;font-size:1.9cqh;font-weight:600;color:var(--graphite);
+}
+.chip::before{content:'✓';color:var(--red);font-weight:800;font-size:1.75cqh}
+.slide.dark .chip{background:var(--d-fill);color:var(--d-text);border-color:var(--red-line)}
+
+/* ── CARDS ───────────────────────────────────────────────────────────────── */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:2.4cqh 2cqw}
+.card--accent{border-color:var(--red-line);background:var(--red-soft)}
+.card--ink{background:var(--ink);color:var(--d-text);border-color:var(--ink)}
+.card--ink .muted{color:var(--d-mute)}
+.card__title{font-family:var(--font-display);font-weight:600;font-size:2.85cqh;letter-spacing:-.01em;color:var(--ink)}
+.card--ink .card__title{color:#fff}
+.card__body{font-size:2.25cqh;line-height:1.5;color:var(--graphite);margin-top:.8cqh}
+.card--ink .card__body{color:var(--d-text)}
+
+/* ── KPI / STAT PILLS ────────────────────────────────────────────────────── */
+.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6cqw;margin-top:2.2cqh}
+.kpi{padding:2.2cqh 1.6cqw;border-radius:var(--radius);background:var(--paper);border:1px solid var(--line)}
+.slide.dark .kpi{background:var(--d-fill);border:1px solid var(--red-line);backdrop-filter:blur(6px)}
+.kpi__num{font-family:var(--font-display);font-weight:600;font-size:5cqh;line-height:1;letter-spacing:-.03em;color:var(--ink)}
+.slide.dark .kpi__num{color:#fff}
+.kpi__num .accent{color:var(--red)}
+.kpi__lbl{font-family:var(--font-mono);font-size:1.55cqh;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-top:.8cqh}
+.slide.dark .kpi__lbl{color:var(--d-mute)}
+
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4cqw;margin-top:2cqh}
+.stat{border:1px solid var(--line);border-radius:var(--radius);padding:1.8cqh 1.6cqw;background:var(--paper-2)}
+.stat__num{font-family:var(--font-display);font-weight:600;font-size:4.4cqh;letter-spacing:-.03em;color:var(--ink)}
+.stat__num .accent{color:var(--red)}
+.stat__lbl{font-family:var(--font-mono);font-size:1.55cqh;letter-spacing:.12em;text-transform:uppercase;color:var(--slate);margin-top:.7cqh}
+
+/* ── BIG NUMBER (slide de impacto) ───────────────────────────────────────── */
+.bignum{font-family:var(--font-display);font-weight:600;font-size:18cqh;line-height:.9;letter-spacing:-.04em;color:var(--red)}
+.bignum__cap{font-family:var(--font-mono);font-size:2.2cqh;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-top:1.4cqh}
+.slide.dark .bignum__cap{color:var(--d-mute)}
+
+/* ── AGENDA / STEP LIST ──────────────────────────────────────────────────── */
+.agenda{list-style:none;display:flex;flex-direction:column;gap:1.5cqh;margin-top:1.6cqh}
+.agenda li{display:flex;gap:1.4cqw;align-items:baseline;font-size:2.6cqh;color:var(--graphite);line-height:1.45}
+.agenda li .n{font-family:var(--font-mono);font-size:1.9cqh;color:var(--red);font-weight:600;min-width:3.6cqw}
+.agenda li strong{color:var(--ink);font-weight:700}
+.slide.dark .agenda li{color:var(--d-text)}
+.slide.dark .agenda li strong{color:#fff}
+
+.steplist{list-style:none;counter-reset:step;margin-top:1.2cqh}
+.steplist li{
+  counter-increment:step;display:flex;gap:1.4cqw;margin-bottom:1.5cqh;
+  font-size:2.45cqh;color:var(--graphite);line-height:1.45;
+}
+.steplist li::before{
+  content:counter(step,decimal-leading-zero);
+  font-family:var(--font-display);font-weight:600;font-size:3.2cqh;color:var(--red);
+  min-width:3.6cqw;line-height:1;flex:none;
+}
+.steplist strong{color:var(--ink);font-weight:700}
+.slide.dark .steplist li{color:var(--d-text)}
+.slide.dark .steplist strong{color:#fff}
+
+/* ── CALLOUT (nota / aviso) ──────────────────────────────────────────────── */
+.callout{
+  border:1px solid var(--red-line);background:var(--red-soft);border-left:.5cqh solid var(--red);
+  border-radius:var(--radius-sm);padding:1.9cqh 2cqw;font-size:2.25cqh;color:var(--graphite);line-height:1.5;
+}
+.callout strong{color:var(--ink)}
+.callout__tag{font-family:var(--font-mono);font-size:1.5cqh;letter-spacing:.14em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.6cqh}
+.slide.dark .callout{background:var(--d-fill);color:var(--d-text)}
+.slide.dark .callout strong{color:#fff}
+
+/* ── PROMPT BLOCK (mostrar prompts en mono) ──────────────────────────────── */
+.prompt{
+  font-family:var(--font-mono);font-size:2cqh;line-height:1.55;
+  background:var(--ink);color:var(--d-text);border-radius:var(--radius-sm);
+  padding:1.9cqh 2cqw;white-space:pre-wrap;border-left:.5cqh solid var(--red);
+}
+.prompt .tok{color:#ff6b85}                 /* resalta variables {así} */
+.prompt__tag{font-family:var(--font-mono);font-size:1.45cqh;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:.8cqh}
+
+/* ── SPEC / DATA TABLE ───────────────────────────────────────────────────── */
+.spec{width:100%;border-collapse:collapse;font-size:2.1cqh;margin-top:1.4cqh}
+.spec thead th{
+  background:var(--ink);color:#fff;font-family:var(--font-mono);font-size:1.55cqh;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;text-align:left;padding:1.2cqh 1.2cqw;
+}
+.spec thead th:first-child{border-top-left-radius:6px}
+.spec thead th:last-child{border-top-right-radius:6px}
+.spec tbody td{padding:1.1cqh 1.2cqw;border-bottom:1px solid var(--line);color:var(--graphite);vertical-align:middle}
+.spec tbody tr:nth-child(even){background:var(--paper-2)}
+.spec tbody tr.popular{background:var(--red-soft);box-shadow:inset .4cqw 0 0 var(--red)}
+.spec tbody td strong{color:var(--ink);font-weight:700}
+.spec .xg{color:var(--red);font-weight:700}
+
+/* ── QUOTE ───────────────────────────────────────────────────────────────── */
+.quote{font-family:var(--font-display);font-weight:500;font-size:4.7cqh;line-height:1.2;letter-spacing:-.02em;color:var(--ink)}
+.slide.dark .quote{color:#fff}
+.quote::before{content:'\201C';color:var(--red)}
+.quote__who{font-family:var(--font-mono);font-size:1.8cqh;letter-spacing:.1em;text-transform:uppercase;color:var(--slate);margin-top:2cqh}
+
+/* ── INDUSTRY TAG ────────────────────────────────────────────────────────── */
+.industry-tag{font-family:var(--font-mono);color:var(--red);font-weight:500}
+
+/* ── BADGES ──────────────────────────────────────────────────────────────── */
+.badge-row{display:flex;align-items:center;gap:1.6cqw;flex-wrap:wrap;margin-top:1.6cqh}
+.badge{display:inline-flex;align-items:center;gap:.8cqw;height:5cqh}
+.badge img{height:5cqh;width:auto;display:block}
+
+/* ── FRAGMENTS (revelado opcional) ───────────────────────────────────────── */
+.fragment{opacity:0;transition:opacity .25s ease}
+.fragment.is-shown{opacity:1}
+@media print{.fragment{opacity:1}}
+
+/* ── PRINT / PDF: una .slide por página landscape ────────────────────────── */
+.print-btn{
+  position:fixed;right:22px;bottom:18px;z-index:2000;background:var(--red);color:#fff;border:0;cursor:pointer;
+  padding:12px 22px;border-radius:var(--radius-sm);font-family:var(--font-display);font-weight:600;font-size:13px;
+  box-shadow:0 10px 30px rgba(24,200,230,.4);
+}
+.print-btn:hover{background:var(--red-ink)}
+
+@media print{
+  /* US Letter landscape (11×8.5in). Each 16:9 slide prints at full Letter width,
+     centered on the sheet (letterbox) so it looks EXACTLY like on screen — no
+     reflow, no distortion. Thin white bands top/bottom are expected. */
+  @page{size:11in 8.5in;margin:0}
+  html,body{background:#fff}
+  .topbar,.print-btn,.progress{display:none!important}
+  .deck{display:block;min-height:0;padding:0}
+  .slide{
+    display:block!important;
+    width:11in;height:6.1875in;aspect-ratio:auto;       /* 16:9 at Letter width */
+    margin:1.15625in auto;                              /* center on the 8.5in sheet */
+    border-radius:0;box-shadow:none!important;
+    page-break-after:always;break-after:page;page-break-inside:avoid;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .slide:first-child{margin-top:1.15625in}
+  .slide:last-child{page-break-after:auto;break-after:auto}
+  .slide:not(.dark){background:#fff!important}
+  .slide.dark{background:var(--charcoal)!important}
+}

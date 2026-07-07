@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nivel 1 · Fundamentos · NovAIFlow Academy</title>
+<meta name="description" content="Deck Nivel 1 — Fundamentos de IA generativa. Teoría → demo → workshop → proyecto. Bilingüe EN/ES. NovAIFlow.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../shared/tokens.css">
+<link rel="stylesheet" href="../../../shared/slides.css">
+</head>
+<body>
+
+<!-- TOPBAR (EN/ES + nav) — injected by slides.js -->
+<div data-topbar data-level="01" data-title="Fundamentos · Fundamentals" data-back="../../../index.html"></div>
+
+<div class="deck">
+
+  <!-- ───────────── 1 · COVER (dark) ───────────── -->
+  <section class="slide dark is-active">
+    <img class="slide-bg" onerror="this.remove()" src="../../../assets/img/cover-l1.png" alt="">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="cover-stack">
+        <div class="eyebrow"><span class="es-only">Nivel 1 · Fundamentos</span><span class="en-only">Level 1 · Fundamentals</span></div>
+        <h1 class="display display--cover mt-2">
+          <span class="es-only">Forme a su equipo en IA.<br><em>Empezamos por lo esencial.</em></span>
+          <span class="en-only">Train your team on AI.<br><em>We start with the essentials.</em></span>
+        </h1>
+        <p class="kicker">
+          <span class="es-only">Una clase de 1 hora: teoría breve, demo en vivo, workshop práctico y un entregable real. Sin programar — todo en lenguaje natural, en español o inglés.</span>
+          <span class="en-only">A 1-hour class: short theory, live demo, hands-on workshop and a real deliverable. No code — everything in natural language, in Spanish or English.</span>
+        </p>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi__num">1<span class="accent">h</span></div><div class="kpi__lbl"><span class="es-only">Clase + demo</span><span class="en-only">Class + demo</span></div></div>
+          <div class="kpi"><div class="kpi__num">3</div><div class="kpi__lbl"><span class="es-only">Prompts para su rol</span><span class="en-only">Prompts for your role</span></div></div>
+          <div class="kpi"><div class="kpi__num"><span class="accent">✓</span></div><div class="kpi__lbl"><span class="es-only">Práctico</span><span class="en-only">Hands-on</span></div></div>
+        </div>
+        <div class="chip-row mt-2">
+          <span class="chip"><span class="es-only">Manual incluido</span><span class="en-only">Manual included</span></span>
+          <span class="chip"><span class="es-only">Certificado</span><span class="en-only">Certificate</span></span>
+          <span class="chip"><span class="es-only">Bilingüe EN/ES</span><span class="en-only">Bilingual EN/ES</span></span>
+        </div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left">novaiflow.com · Miami, FL</span><span class="slidefoot__right"><span>NovAIFlow Academy</span><span class="pagenum">01</span></span></footer>
+  </section>
+
+  <!-- ───────────── 2 · AGENDA ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Agenda · 60 minutos</span><span class="en-only">Agenda · 60 minutes</span></div>
+      <h2 class="display"><span class="es-only">Cómo trabaja cada clase</span><span class="en-only">How every class works</span></h2>
+      <ol class="agenda mt-2">
+        <li><span class="n">12'</span><span><strong><span class="es-only">Teoría.</span><span class="en-only">Theory.</span></strong> <span class="es-only">Qué es la IA generativa y qué puede hacer por usted.</span><span class="en-only">What generative AI is and what it can do for you.</span></span></li>
+        <li><span class="n">18'</span><span><strong>Demo.</strong> <span class="es-only">En vivo: preguntar, refinar, iterar — con ejemplos diarios.</span><span class="en-only">Live: ask, refine, iterate — with everyday examples.</span></span></li>
+        <li><span class="n">24'</span><span><strong>Workshop.</strong> <span class="es-only">Usted escribe su primer prompt útil, paso a paso.</span><span class="en-only">You write your first useful prompt, step by step.</span></span></li>
+        <li><span class="n">6'</span><span><strong><span class="es-only">Proyecto.</span><span class="en-only">Project.</span></strong> <span class="es-only">Captura de 3 prompts listos para su rol — su entregable.</span><span class="en-only">Capture 3 ready prompts for your role — your deliverable.</span></span></li>
+      </ol>
+      <div class="callout mt-3">
+        <span class="callout__tag"><span class="es-only">Resultado</span><span class="en-only">Outcome</span></span>
+        <span class="es-only">Sale de esta clase con <strong>3 prompts propios</strong> que puede usar mañana en su trabajo.</span>
+        <span class="en-only">You leave this class with <strong>3 prompts of your own</strong> you can use at work tomorrow.</span>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Agenda</span><span class="en-only">Agenda</span></span><span class="slidefoot__right"><span class="pagenum">02</span></span></footer>
+  </section>
+
+  <!-- ───────────── 3 · WHY IT MATTERS ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Por qué importa</span><span class="en-only">Why it matters</span></div>
+      <h2 class="display"><span class="es-only">Su equipo ya usa IA — sin método y sin estándar.</span><span class="en-only">Your team already uses AI — with no method, no standard.</span></h2>
+      <div class="stat-row mt-3">
+        <div class="stat"><div class="stat__num"><span class="accent">~</span>70<span class="accent">%</span></div><div class="stat__lbl"><span class="es-only">ya usan IA, sin guía formal (estimado típico)</span><span class="en-only">already use AI, no formal guidance (typical estimate)</span></div></div>
+        <div class="stat"><div class="stat__num"><span class="accent">~</span>40<span class="accent">%</span></div><div class="stat__lbl"><span class="es-only">del tiempo en tareas automatizables (estimado)</span><span class="en-only">of time on automatable tasks (estimate)</span></div></div>
+        <div class="stat"><div class="stat__num"><span class="accent">0</span></div><div class="stat__lbl"><span class="es-only">estándar de empresa, hoy</span><span class="en-only">company standard, today</span></div></div>
+      </div>
+      <p class="lead mt-3"><span class="es-only">Hoy empezamos a cambiar eso: un método simple, compartido y responsable para usar IA en su día a día.</span><span class="en-only">Today we start to change that: a simple, shared and responsible method to use AI in your day-to-day.</span></p>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Por qué importa</span><span class="en-only">Why it matters</span></span><span class="slidefoot__right"><span class="pagenum">03</span></span></footer>
+  </section>
+
+  <!-- ───────────── 4 · WHAT IS GENERATIVE AI ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Teoría</span><span class="en-only">Theory</span></div>
+      <h2 class="display"><span class="es-only">¿Qué es la IA generativa?</span><span class="en-only">What is generative AI?</span></h2>
+      <div class="cols-2 mt-3">
+        <div class="card">
+          <div class="card__title"><span class="es-only">En una frase</span><span class="en-only">In one sentence</span></div>
+          <div class="card__body"><span class="es-only">Un asistente que entiende lenguaje natural y <strong>genera</strong> texto, resúmenes, ideas, tablas e imágenes a partir de lo que usted le pide.</span><span class="en-only">An assistant that understands natural language and <strong>generates</strong> text, summaries, ideas, tables and images from what you ask.</span></div>
+        </div>
+        <div class="card card--accent">
+          <div class="card__title"><span class="es-only">Cómo pensarlo</span><span class="en-only">How to think of it</span></div>
+          <div class="card__body"><span class="es-only">Como un colega muy rápido y bien leído, que nunca se cansa — pero que <strong>puede equivocarse con seguridad.</strong> Usted lo dirige y lo revisa.</span><span class="en-only">Like a very fast, well-read colleague that never tires — but <strong>can be confidently wrong.</strong> You steer it and review it.</span></div>
+        </div>
+      </div>
+      <div class="cols-3 mt-3">
+        <div class="card"><div class="card__title"><span class="es-only">Sí hace bien</span><span class="en-only">Does well</span></div><div class="card__body"><span class="es-only">Redactar, resumir, traducir, reescribir, dar ideas, estructurar.</span><span class="en-only">Draft, summarize, translate, rewrite, brainstorm, structure.</span></div></div>
+        <div class="card"><div class="card__title"><span class="es-only">Hace con cuidado</span><span class="en-only">Do with care</span></div><div class="card__body"><span class="es-only">Datos, cifras y hechos: <strong>verifique siempre.</strong></span><span class="en-only">Data, figures and facts: <strong>always verify.</strong></span></div></div>
+        <div class="card"><div class="card__title"><span class="es-only">No debe</span><span class="en-only">Don't</span></div><div class="card__body"><span class="es-only">Recibir datos sensibles en herramientas públicas sin política.</span><span class="en-only">Receive sensitive data in public tools without a policy.</span></div></div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Teoría · ¿Qué es?</span><span class="en-only">Theory · What is it?</span></span><span class="slidefoot__right"><span class="pagenum">04</span></span></footer>
+  </section>
+
+  <!-- ───────────── 5 · ANATOMY OF A PROMPT ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Teoría · La fórmula</span><span class="en-only">Theory · The formula</span></div>
+      <h2 class="display"><span class="es-only">La anatomía de un buen prompt</span><span class="en-only">The anatomy of a good prompt</span></h2>
+      <div class="split--wide split mt-3">
+        <ol class="steplist">
+          <li><span><strong><span class="es-only">Rol.</span><span class="en-only">Role.</span></strong> <span class="es-only">"Actúa como un asistente de logística…"</span><span class="en-only">"Act as a logistics assistant…"</span></span></li>
+          <li><span><strong><span class="es-only">Tarea.</span><span class="en-only">Task.</span></strong> <span class="es-only">Qué quiere, en un verbo claro: redacta, resume, traduce.</span><span class="en-only">What you want, one clear verb: draft, summarize, translate.</span></span></li>
+          <li><span><strong><span class="es-only">Contexto.</span><span class="en-only">Context.</span></strong> <span class="es-only">Pegue los datos relevantes (no sensibles).</span><span class="en-only">Paste the relevant data (non-sensitive).</span></span></li>
+          <li><span><strong><span class="es-only">Formato.</span><span class="en-only">Format.</span></strong> <span class="es-only">"…en 5 viñetas, tono formal, en español."</span><span class="en-only">"…in 5 bullets, formal tone, in Spanish."</span></span></li>
+        </ol>
+        <div>
+          <div class="prompt"><span class="prompt__tag">Prompt</span><span class="es-only">Actúa como <span class="tok">{rol}</span>. <span class="tok">{Tarea}</span> el siguiente texto. Contexto: <span class="tok">{pega tu texto}</span>. Devuélvelo en <span class="tok">{formato}</span>, tono <span class="tok">{tono}</span>, en español.</span><span class="en-only">Act as <span class="tok">{role}</span>. <span class="tok">{Task}</span> the text below. Context: <span class="tok">{paste your text}</span>. Return it in <span class="tok">{format}</span>, <span class="tok">{tone}</span> tone, in English.</span></div>
+          <div class="callout mt-2"><span class="es-only"><strong>Regla práctica:</strong> si el resultado no le gusta, no empiece de cero — <strong>refine</strong>: "más corto", "más formal", "agrega un ejemplo".</span><span class="en-only"><strong>Rule of thumb:</strong> if you don't like the result, don't start over — <strong>refine</strong>: "shorter", "more formal", "add an example".</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Teoría · Anatomía</span><span class="en-only">Theory · Anatomy</span></span><span class="slidefoot__right"><span class="pagenum">05</span></span></footer>
+  </section>
+
+  <!-- ───────────── 6 · EVERYDAY USE CASES ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Casos de uso diarios</span><span class="en-only">Everyday use cases</span></div>
+      <h2 class="display"><span class="es-only">Lo que puede resolver hoy mismo</span><span class="en-only">What you can solve today</span></h2>
+      <div class="cols-3 mt-3">
+        <div class="card"><div class="card__title">✉️ <span class="es-only">Correos</span><span class="en-only">Emails</span></div><div class="card__body"><span class="es-only">Borradores, respuestas, tono más claro.</span><span class="en-only">Drafts, replies, clearer tone.</span></div></div>
+        <div class="card"><div class="card__title">📄 <span class="es-only">Resúmenes</span><span class="en-only">Summaries</span></div><div class="card__body"><span class="es-only">De documentos largos a 5 puntos clave.</span><span class="en-only">Long documents into 5 key points.</span></div></div>
+        <div class="card"><div class="card__title">🌐 <span class="es-only">Traducción</span><span class="en-only">Translation</span></div><div class="card__body"><span class="es-only">EN ⇄ ES manteniendo el tono.</span><span class="en-only">EN ⇄ ES keeping the tone.</span></div></div>
+        <div class="card"><div class="card__title">💡 <span class="es-only">Ideas</span><span class="en-only">Ideas</span></div><div class="card__body"><span class="es-only">Lluvia de ideas, títulos, enfoques.</span><span class="en-only">Brainstorms, titles, angles.</span></div></div>
+        <div class="card"><div class="card__title">📊 <span class="es-only">Tablas</span><span class="en-only">Tables</span></div><div class="card__body"><span class="es-only">Organizar texto en una tabla limpia.</span><span class="en-only">Organize text into a clean table.</span></div></div>
+        <div class="card"><div class="card__title">🧭 <span class="es-only">Explicar</span><span class="en-only">Explain</span></div><div class="card__body"><span class="es-only">"Explícamelo simple", paso a paso.</span><span class="en-only">"Explain it simply", step by step.</span></div></div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Casos diarios</span><span class="en-only">Everyday cases</span></span><span class="slidefoot__right"><span class="pagenum">06</span></span></footer>
+  </section>
+
+  <!-- ───────────── 7 · DEMO DIVIDER (dark) ───────────── -->
+  <section class="slide dark">
+    <img class="slide-bg" onerror="this.remove()" src="../../../assets/img/divider-demo.png" alt="">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe center-stack">
+      <div class="eyebrow"><span class="es-only">Demo · 18 minutos</span><span class="en-only">Demo · 18 minutes</span></div>
+      <h2 class="display display--xl"><span class="es-only">Demo en vivo:<br><em>preguntar → refinar → iterar.</em></span><span class="en-only">Live demo:<br><em>ask → refine → iterate.</em></span></h2>
+      <p class="lead"><span class="es-only">Tomamos una tarea real y la resolvemos juntos en pantalla. Observe cómo refinamos en vez de empezar de cero.</span><span class="en-only">We take a real task and solve it together on screen. Watch how we refine instead of starting over.</span></p>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left">Demo</span><span class="slidefoot__right"><span class="pagenum">07</span></span></footer>
+  </section>
+
+  <!-- ───────────── 8 · DEMO BEFORE/AFTER ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Demo · antes y después</span><span class="en-only">Demo · before & after</span></div>
+      <h2 class="display"><span class="es-only">Un prompt vago vs. uno útil</span><span class="en-only">A vague prompt vs. a useful one</span></h2>
+      <div class="cols-2 mt-3">
+        <div>
+          <p class="subhead" style="color:var(--slate)"><span class="es-only">Vago</span><span class="en-only">Vague</span></p>
+          <div class="prompt" style="border-left-color:var(--slate)"><span class="es-only">escribe un correo al cliente</span><span class="en-only">write an email to the client</span></div>
+          <div class="card__body mt-2 muted"><span class="es-only">Resultado genérico, hay que rehacerlo.</span><span class="en-only">Generic result, needs redoing.</span></div>
+        </div>
+        <div>
+          <p class="subhead"><span class="es-only">Útil</span><span class="en-only">Useful</span></p>
+          <div class="prompt"><span class="es-only">Actúa como coordinador de logística. Redacta un correo <span class="tok">formal y breve</span> al cliente avisando que su carga <span class="tok">#4821</span> sale mañana. Incluye número de tracking. En español, máx. 6 líneas.</span><span class="en-only">Act as a logistics coordinator. Draft a <span class="tok">short, formal</span> email to the client noting their shipment <span class="tok">#4821</span> ships tomorrow. Include the tracking number. In English, max 6 lines.</span></div>
+          <div class="card__body mt-2"><span class="es-only">Listo para enviar tras una revisión rápida.</span><span class="en-only">Ready to send after a quick review.</span></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Demo · comparación</span><span class="en-only">Demo · comparison</span></span><span class="slidefoot__right"><span class="pagenum">08</span></span></footer>
+  </section>
+
+  <!-- ───────────── 9 · RESPONSIBLE USE ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Uso responsable</span><span class="en-only">Responsible use</span></div>
+      <h2 class="display"><span class="es-only">Tres reglas de oro</span><span class="en-only">Three golden rules</span></h2>
+      <div class="cols-3 mt-3">
+        <div class="card card--ink"><div class="card__title">01</div><div class="card__body"><span class="es-only"><strong>No pegue datos sensibles</strong> en herramientas públicas sin una política aprobada (PHI, PII, confidencial).</span><span class="en-only"><strong>Don't paste sensitive data</strong> into public tools without an approved policy (PHI, PII, confidential).</span></div></div>
+        <div class="card card--ink"><div class="card__title">02</div><div class="card__body"><span class="es-only"><strong>Persona en el control:</strong> la IA borra, usted revisa y responde por el resultado.</span><span class="en-only"><strong>Human-in-the-loop:</strong> AI drafts, you review and own the result.</span></div></div>
+        <div class="card card--ink"><div class="card__title">03</div><div class="card__body"><span class="es-only"><strong>Verifique datos y cifras</strong> — la IA puede equivocarse con total seguridad.</span><span class="en-only"><strong>Verify facts & figures</strong> — AI can be confidently wrong.</span></div></div>
+      </div>
+      <div class="callout mt-3"><span class="callout__tag"><span class="es-only">Recuerde</span><span class="en-only">Remember</span></span><span class="es-only">El uso responsable no es un freno: es lo que hace que pueda usar IA con confianza en el trabajo.</span><span class="en-only">Responsible use isn't a brake: it's what lets you use AI with confidence at work.</span></div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Uso responsable</span><span class="en-only">Responsible use</span></span><span class="slidefoot__right"><span class="pagenum">09</span></span></footer>
+  </section>
+
+  <!-- ───────────── 10 · WORKSHOP DIVIDER (dark) ───────────── -->
+  <section class="slide dark">
+    <img class="slide-bg" onerror="this.remove()" src="../../../assets/img/divider-workshop.png" alt="">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe center-stack">
+      <div class="eyebrow"><span class="es-only">Workshop · 24 minutos</span><span class="en-only">Workshop · 24 minutes</span></div>
+      <h2 class="display display--xl"><span class="es-only">Su turno:<br><em>escriba su primer prompt útil.</em></span><span class="en-only">Your turn:<br><em>write your first useful prompt.</em></span></h2>
+      <p class="lead"><span class="es-only">Elija una tarea real de su semana. Vamos a construir juntos un prompt que la resuelva, usando la fórmula Rol · Tarea · Contexto · Formato.</span><span class="en-only">Pick a real task from your week. We'll build a prompt that solves it together, using the Role · Task · Context · Format formula.</span></p>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left">Workshop</span><span class="slidefoot__right"><span class="pagenum">10</span></span></footer>
+  </section>
+
+  <!-- ───────────── 11 · WORKSHOP STEPS ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Workshop · pasos</span><span class="en-only">Workshop · steps</span></div>
+      <h2 class="display"><span class="es-only">Cinco pasos, guiados</span><span class="en-only">Five steps, guided</span></h2>
+      <ol class="steplist mt-2">
+        <li><span><strong><span class="es-only">Elija la tarea.</span><span class="en-only">Pick the task.</span></strong> <span class="es-only">Algo que hace seguido (un correo, un resumen, una respuesta).</span><span class="en-only">Something you do often (an email, a summary, a reply).</span></span></li>
+        <li><span><strong><span class="es-only">Defina el rol y la tarea.</span><span class="en-only">Set role & task.</span></strong> <span class="es-only">"Actúa como…", + verbo claro.</span><span class="en-only">"Act as…", + a clear verb.</span></span></li>
+        <li><span><strong><span class="es-only">Agregue contexto.</span><span class="en-only">Add context.</span></strong> <span class="es-only">Pegue datos no sensibles relevantes.</span><span class="en-only">Paste relevant non-sensitive data.</span></span></li>
+        <li><span><strong><span class="es-only">Pida el formato.</span><span class="en-only">Ask for a format.</span></strong> <span class="es-only">Largo, tono, idioma, viñetas.</span><span class="en-only">Length, tone, language, bullets.</span></span></li>
+        <li><span><strong><span class="es-only">Refine 2 veces.</span><span class="en-only">Refine twice.</span></strong> <span class="es-only">Ajuste el resultado sin empezar de cero.</span><span class="en-only">Tune the result without starting over.</span></span></li>
+      </ol>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Workshop · pasos</span><span class="en-only">Workshop · steps</span></span><span class="slidefoot__right"><span class="pagenum">11</span></span></footer>
+  </section>
+
+  <!-- ───────────── 12 · PROJECT / DELIVERABLE ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Proyecto · su entregable</span><span class="en-only">Project · your deliverable</span></div>
+      <h2 class="display"><span class="es-only">3 prompts listos para su rol</span><span class="en-only">3 ready prompts for your role</span></h2>
+      <p class="lead mt-2"><span class="es-only">Guarde sus 3 mejores prompts en esta plantilla. Es su primer activo de IA — y la base del kit del Nivel 2.</span><span class="en-only">Save your 3 best prompts in this template. It's your first AI asset — and the base for the Level 2 kit.</span></p>
+      <div class="prompt mt-2"><span class="prompt__tag"><span class="es-only">Plantilla de entregable</span><span class="en-only">Deliverable template</span></span><span class="es-only">1) Tarea: ____  · Prompt: ____  · Cuándo lo uso: ____
+2) Tarea: ____  · Prompt: ____  · Cuándo lo uso: ____
+3) Tarea: ____  · Prompt: ____  · Cuándo lo uso: ____</span><span class="en-only">1) Task: ____  · Prompt: ____  · When I use it: ____
+2) Task: ____  · Prompt: ____  · When I use it: ____
+3) Task: ____  · Prompt: ____  · When I use it: ____</span></div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Proyecto</span><span class="en-only">Project</span></span><span class="slidefoot__right"><span class="pagenum">12</span></span></footer>
+  </section>
+
+  <!-- ───────────── 13 · RECAP + NEXT ───────────── -->
+  <section class="slide">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="eyebrow"><span class="es-only">Recapitulación</span><span class="en-only">Recap</span></div>
+      <h2 class="display"><span class="es-only">Lo que se lleva hoy</span><span class="en-only">What you take away today</span></h2>
+      <div class="chip-row mt-3">
+        <span class="chip"><span class="es-only">Qué es la IA generativa</span><span class="en-only">What generative AI is</span></span>
+        <span class="chip"><span class="es-only">Fórmula Rol·Tarea·Contexto·Formato</span><span class="en-only">Role·Task·Context·Format</span></span>
+        <span class="chip"><span class="es-only">Refinar en vez de rehacer</span><span class="en-only">Refine, don't redo</span></span>
+        <span class="chip"><span class="es-only">3 reglas de uso responsable</span><span class="en-only">3 responsible-use rules</span></span>
+        <span class="chip"><span class="es-only">3 prompts propios</span><span class="en-only">3 prompts of your own</span></span>
+      </div>
+      <div class="card card--accent mt-3">
+        <div class="card__title"><span class="es-only">Siguiente nivel → Aplicado (2 h)</span><span class="en-only">Next level → Applied (2 h)</span></div>
+        <div class="card__body"><span class="es-only">Plantillas, redacción, resúmenes, hojas de cálculo e imágenes — y su <strong>kit de plantillas del área</strong>.</span><span class="en-only">Templates, writing, summaries, spreadsheets and images — and your <strong>team template kit</strong>.</span></div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left"><span class="es-only">Recap</span><span class="en-only">Recap</span></span><span class="slidefoot__right"><span class="pagenum">13</span></span></footer>
+  </section>
+
+  <!-- ───────────── 14 · BACK COVER / CTA (dark) ───────────── -->
+  <section class="slide dark">
+    <img class="slide-bg" onerror="this.remove()" src="../../../assets/img/academy-hero.png" alt="">
+    <header class="slidehead">
+      <div class="slidehead__brand"><span class="slidehead__mark">NF</span><span class="slidehead__word">NovAIFlow<span class="dot">.</span></span></div>
+      <div class="slidehead__meta">AI Training · Nivel 01</div>
+    </header>
+    <div class="slide__safe">
+      <div class="cover-stack">
+        <div class="eyebrow"><span class="es-only">¡Felicidades!</span><span class="en-only">Congratulations!</span></div>
+        <h2 class="display display--cover"><span class="es-only">Completó Fundamentos.<br><em>Ya es usuario de IA con método.</em></span><span class="en-only">You completed Fundamentals.<br><em>You now use AI with a method.</em></span></h2>
+        <p class="kicker"><span class="es-only">Recibirá su certificado y el manual del nivel. ¿Listos para el Nivel 2? Hablemos.</span><span class="en-only">You'll get your certificate and the level manual. Ready for Level 2? Let's talk.</span></p>
+        <div class="badge-row mt-3">
+          <span class="chip"><span class="es-only">Certificado Nivel 1</span><span class="en-only">Level 1 certificate</span></span>
+          <span class="chip"><span class="es-only">Manual incluido</span><span class="en-only">Manual included</span></span>
+        </div>
+        <div class="spread mt-3">
+          <div><div class="kpi__lbl" style="color:var(--d-mute)"><span class="es-only">Correo</span><span class="en-only">Email</span></div><div class="card__title" style="color:#fff">info@novaiflow.com</div></div>
+          <div><div class="kpi__lbl" style="color:var(--d-mute)"><span class="es-only">Teléfono</span><span class="en-only">Phone</span></div><div class="card__title" style="color:#fff">NovAIFlow Academy</div></div>
+          <div><div class="kpi__lbl" style="color:var(--d-mute)">Web</div><div class="card__title" style="color:#fff">novaiflow.com</div></div>
+        </div>
+      </div>
+    </div>
+    <footer class="slidefoot"><span class="slidefoot__left">© 2026 NovAIFlow · AI Training</span><span class="slidefoot__right"><span>Miami, FL 33178</span><span class="pagenum">14</span></span></footer>
+  </section>
+
+</div><!-- /.deck -->
+
+<script src="../../../shared/slides.js"></script>
+</body>
+</html>

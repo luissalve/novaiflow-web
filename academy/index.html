@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NovAIFlow Academy · Aprende IA aplicada, de cero a agente</title>
+<meta name="description" content="NovAIFlow Academy — programa práctico y bilingüe de capacitación en IA: 5 niveles (de fundamentos a agéntico), certificaciones profesionales por rol, decks, manuales y ejercicios con entregable real. El método NovAIFlow: many systems in, one flow out. EN/ES.">
+<meta property="og:title" content="NovAIFlow Academy — from zero to agent">
+<meta property="og:description" content="Hands-on, bilingual AI training. Five levels, role-based certifications, real deliverables. Many systems in, one flow out.">
+<meta property="og:image" content="assets/img/og-academy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/tokens.css">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --red:var(--xg-red); --red-soft:var(--xg-red-soft); --red-line:rgba(24,200,230,.28);
+    --ink:var(--xg-ink); --charcoal:var(--xg-charcoal); --graphite:var(--xg-graphite);
+    --slate:var(--xg-slate); --line:var(--xg-line); --paper:var(--xg-white); --paper-2:var(--xg-paper);
+    --d-text:var(--xg-paper); --d-mute:var(--xg-mute); --d-line:rgba(255,255,255,.12);
+    --font-display:var(--xg-font-display); --font-body:var(--xg-font-body); --font-mono:var(--xg-font-mono);
+    --maxw:1180px;
+  }
+  html{font-size:16px;color-scheme:light}
+  body{font-family:var(--font-body);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  [data-lang="en"] .es-only{display:none}
+  [data-lang="es"] .en-only{display:none}
+  :root:not([data-lang]) .es-only{display:none}
+  a{color:inherit}
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:13px 28px;background:var(--ink);color:var(--d-text);border-bottom:2px solid var(--red)}
+  .topbar .brand{display:flex;align-items:center;gap:12px}
+  .topbar .right{display:flex;align-items:center;gap:16px}
+  .topbar .home{font-family:var(--font-mono);font-size:11px;color:var(--d-mute);text-decoration:none;letter-spacing:.06em}
+  .topbar .home:hover{color:#fff}
+  .brand-mark{width:34px;height:34px;border-radius:7px;background:#0c1326;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .brand-mark img{width:28px;height:28px;display:block}
+  .brand-name{font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:-.02em}
+  .brand-sub{font-family:var(--font-mono);font-size:10px;color:var(--d-mute);letter-spacing:.08em;text-transform:uppercase}
+  .seg{display:inline-flex;border:1px solid var(--d-line);border-radius:6px;overflow:hidden}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--d-mute);font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.06em;padding:7px 14px;cursor:pointer}
+  .seg button.on{background:var(--red);color:#fff}
+  /* ── HERO ───────────────────────────────────────────────────────────────── */
+  .hero{position:relative;background:var(--charcoal);color:var(--d-text);padding:88px 24px 80px;text-align:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,15,16,.70),rgba(15,15,16,.52) 52%,rgba(15,15,16,.84)),radial-gradient(120% 90% at 50% 0%,rgba(255,178,62,.20),transparent 60%)}
+  .wrap{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+  .eyebrow::before,.eyebrow::after{content:'';width:30px;height:2px;background:var(--red)}
+  .hero h1{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6.4vw,72px);line-height:1.03;letter-spacing:-.025em;margin-top:22px}
+  .hero h1 em{color:var(--red);font-style:normal}
+  .hero p{font-size:clamp(16px,2vw,21px);color:var(--d-text);max-width:62ch;margin:22px auto 0;opacity:.94}
+  .kpis{display:flex;flex-wrap:wrap;justify-content:center;gap:18px;margin-top:44px}
+  .kpi{border:1px solid var(--red-line);background:rgba(255,255,255,.05);border-radius:14px;padding:20px 28px;min-width:184px}
+  .kpi b{font-family:var(--font-display);font-weight:600;font-size:36px;letter-spacing:-.03em;display:block}
+  .kpi b .accent{color:var(--red)}
+  .kpi span{font-family:var(--font-mono);font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:7px;display:block;line-height:1.45}
+  /* ── RHYTHM STRIP (every class) ─────────────────────────────────────────── */
+  .rhythm-wrap{background:var(--paper-2);border-bottom:1px solid var(--line)}
+  .rhythm{max-width:var(--maxw);margin:0 auto;padding:38px 28px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+  .step{display:flex;align-items:flex-start;gap:15px}
+  .step .num{font-family:var(--font-display);font-weight:600;font-size:34px;line-height:1;color:var(--red);min-width:40px}
+  .step .t{font-family:var(--font-display);font-weight:600;font-size:18.5px;letter-spacing:-.01em}
+  .step .d{font-size:14.5px;color:var(--slate);margin-top:5px;line-height:1.55}
+  /* ── SECTIONS ───────────────────────────────────────────────────────────── */
+  section.block{max-width:var(--maxw);margin:0 auto;padding:58px 28px}
+  section.block + section.block{border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+  .sec-head h2{font-family:var(--font-display);font-weight:600;font-size:32px;letter-spacing:-.02em}
+  .sec-head .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+  .sec-intro{font-size:16px;color:var(--graphite);max-width:74ch;margin-bottom:28px}
+  /* ── LEVEL CARDS ────────────────────────────────────────────────────────── */
+  .levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+  .lvl{border:1px solid var(--line);border-left:4px solid var(--red);border-radius:14px;padding:28px;background:var(--paper);display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s}
+  .lvl:hover{box-shadow:0 18px 44px rgba(0,0,0,.10);transform:translateY(-3px)}
+  .lvl.soon{border-left-color:var(--line);opacity:.72}
+  .lvl.soon:hover{box-shadow:none;transform:none}
+  .lvl .n{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+  .lvl h3{font-family:var(--font-display);font-weight:600;font-size:25px;letter-spacing:-.01em;margin-top:7px}
+  .lvl .dur{font-family:var(--font-mono);font-size:12px;color:var(--slate);margin-top:5px}
+  .lvl .focus{font-size:15px;color:var(--graphite);margin-top:16px;flex:1;line-height:1.6}
+  .lvl .inc{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+  .lvl .inc span{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--slate);border:1px solid var(--line);border-radius:100px;padding:4px 10px}
+  .lvl .deliver{font-size:13.5px;color:var(--ink);margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+  .lvl .deliver b{color:var(--red)}
+  .links{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+  .links a{font-family:var(--font-mono);font-size:12px;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:8px;border:1px solid var(--line);color:var(--graphite)}
+  .links a.primary{background:var(--red);color:#fff;border-color:var(--red)}
+  .links a:hover{border-color:var(--red)}
+  .soon-badge{display:inline-flex;align-items:center;gap:7px;margin-top:18px;font-family:var(--font-mono);font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);border:1px dashed var(--line);border-radius:100px;padding:8px 14px}
+  .lvl.star{position:relative}
+  .lvl.star::before{content:'★';position:absolute;top:18px;right:18px;font-size:13px;color:var(--red)}
+  /* ── DELIVERY MODES ─────────────────────────────────────────────────────── */
+  .modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+  .mode{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--paper)}
+  .mode.pop{border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
+  .mode h4{font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.01em}
+  .mode .tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-top:4px}
+  .mode ul{list-style:none;margin-top:14px;font-size:14px;color:var(--graphite);line-height:1.85}
+  .mode li{display:flex;gap:8px}
+  .mode li::before{content:'›';color:var(--red);font-weight:700;flex:none}
+  /* ── DOC / LIST GRIDS ───────────────────────────────────────────────────── */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+  .doc{border:1px solid var(--line);border-radius:12px;padding:20px;text-decoration:none;display:block;background:var(--paper);transition:border-color .15s}
+  .doc:hover{border-color:var(--red)}
+  .doc b{font-family:var(--font-display);font-weight:600;font-size:16.5px;display:block}
+  .doc small{font-size:13px;color:var(--slate)}
+  .doc .langs{margin-top:12px;display:flex;gap:6px}
+  .doc .langs a{font-family:var(--font-mono);font-size:11px;font-weight:600;text-decoration:none;color:var(--red);border:1px solid var(--red-line);border-radius:5px;padding:4px 9px}
+  .chips{display:flex;flex-wrap:wrap;gap:11px}
+  .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--red-line);background:var(--red-soft);border-radius:100px;padding:10px 17px;font-size:13.5px;font-weight:600;color:var(--graphite);text-decoration:none}
+  .chip:hover{border-color:var(--red)}
+  /* ── FOOTER ─────────────────────────────────────────────────────────────── */
+  footer.site{background:var(--ink);color:var(--d-text);padding:44px 28px}
+  .foot{max-width:var(--maxw);margin:0 auto;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:center}
+  .foot .c{font-family:var(--font-mono);font-size:11px;color:var(--d-mute);letter-spacing:.04em}
+  .foot .c b{color:#fff;font-family:var(--font-display);font-weight:600;font-size:15px;display:block;letter-spacing:-.01em}
+  .note{font-family:var(--font-mono);font-size:10px;color:var(--slate);letter-spacing:.06em;margin-top:14px}
+  .note::before{content:'※ ';color:var(--red)}
+  /* ── BACK COVER (closing page, mirrors the hero) ────────────────────────── */
+  .backcover{position:relative;background:var(--charcoal);color:var(--d-text);overflow:hidden;padding:104px 24px;text-align:center}
+  .backcover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.55}
+  .backcover::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,rgba(15,15,16,.78),rgba(15,15,16,.6) 50%,rgba(15,15,16,.9)),radial-gradient(120% 90% at 50% 0%,rgba(255,178,62,.20),transparent 60%)}
+  .backcover .wrap{position:relative;z-index:2}
+  .backcover .eyebrow{justify-content:center}
+  .backcover h2{font-family:var(--font-display);font-weight:600;font-size:clamp(34px,5vw,58px);line-height:1.04;letter-spacing:-.025em;margin-top:20px}
+  .backcover h2 em{color:var(--red);font-style:normal}
+  .backcover .bc-lead{font-size:clamp(15px,1.7vw,18px);color:var(--d-text);opacity:.92;max-width:60ch;margin:22px auto 0;line-height:1.6}
+  .bc-contact{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px}
+  .bc-cta{display:inline-flex;align-items:center;gap:9px;background:var(--red);color:#06121f;font-family:var(--font-display);font-weight:600;font-size:15px;text-decoration:none;padding:15px 30px;border-radius:10px}
+  .bc-cta:hover{background:var(--nf-nova-text)}
+  .bc-item{border:1px solid var(--red-line);background:rgba(255,255,255,.06);border-radius:12px;padding:16px 26px;min-width:210px}
+  .bc-item .k{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--d-mute);display:block;margin-bottom:6px}
+  .bc-item .v{font-family:var(--font-display);font-weight:600;font-size:16px;color:#fff;text-decoration:none}
+  .bc-mark{display:inline-flex;align-items:center;gap:11px;margin-top:38px}
+  .bc-mark .m{width:34px;height:34px;border-radius:7px;background:#0c1326;border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .bc-mark .m img{width:28px;height:28px;display:block}
+  .bc-mark .w{font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em}
+  /* Print / PDF button (screen only) */
+  .print-btn{position:fixed;right:22px;bottom:22px;z-index:60;background:var(--red);color:#06121f;border:0;cursor:pointer;padding:13px 24px;border-radius:8px;font-family:var(--font-display);font-weight:600;font-size:13px;box-shadow:0 10px 30px rgba(24,200,230,.4)}
+  .print-btn:hover{background:var(--xg-red-ink)}
+
+  /* ══ PRINT ══ US Letter, orientation chosen by the user (portrait OR landscape).
+     We do NOT lock @page size — locking it greys out Landscape in Chrome's dialog.
+     @page margin is 0 so the COVER (hero) can fill a whole sheet edge-to-edge. ── */
+  @media print{
+    @page{margin:0}
+    html,body{background:#fff!important}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .topbar,.print-btn{display:none!important}
+    /* COVER = one full page */
+    .hero{height:100vh;min-height:100vh;padding:0.7in;display:flex;flex-direction:column;justify-content:center;
+          break-after:page;page-break-after:always;break-inside:avoid;overflow:hidden}
+    .hero h1{font-size:46px}
+    .hero p{font-size:15px;margin-top:18px}
+    .kpis{margin-top:34px}
+    /* content flows CONTINUOUSLY across pages. We do NOT force section breaks:
+       forcing break-inside:avoid on whole sections pushed each one to a fresh
+       page and left huge half-empty sheets. Only individual cards and the
+       heading-to-body bond are kept intact so nothing splits awkwardly. */
+    .rhythm-wrap{break-inside:avoid}
+    .rhythm{padding:0.3in 0.6in;gap:0.34in}
+    .step .num{font-size:26px}
+    .step .t{font-size:15px}
+    .step .d{font-size:11.5px}
+    section.block{max-width:none!important;padding:0.32in 0.6in!important}
+    section.block + section.block{border-top:1px solid var(--line)}
+    .sec-head{break-after:avoid}
+    .sec-head h2{font-size:22px}
+    .sec-intro{font-size:12.5px;margin-bottom:14px}
+    /* Grids → inline-block so ROWS flow across page breaks. A CSS grid container
+       jumps as ONE block when it does not fit, which left "Los 5 niveles" with
+       just a heading and a near-empty sheet. Inline-block rows fill the page. */
+    .levels,.cards,.modes{display:block!important;font-size:0}  /* font-size:0 kills the inline-block whitespace that pushed cards onto their own row */
+    .lvl,.doc,.mode{display:inline-block!important;vertical-align:top;width:48.7%;margin:0 0 0.16in;font-size:12px;break-inside:avoid}
+    .lvl:nth-child(odd),.doc:nth-child(odd),.mode:nth-child(odd){margin-right:2.4%}
+    /* Compact the level cards so all four fit on their page */
+    .lvl{padding:0.17in 0.2in;border-radius:10px}
+    .lvl h3{font-size:18px;margin-top:4px}
+    .lvl .dur{font-size:10px;margin-top:3px}
+    .lvl .focus{font-size:11px;line-height:1.45;margin-top:9px}
+    .lvl .inc{margin-top:9px;gap:5px}
+    .lvl .inc span{font-size:8px;padding:2px 6px}
+    .lvl .deliver{font-size:10px;margin-top:9px;padding-top:9px}
+    .links{margin-top:9px;gap:6px}
+    .links a{font-size:9px;padding:5px 9px}
+    .doc{padding:0.15in 0.17in}
+    .doc b{font-size:14px}
+    .doc small{font-size:10.5px}
+    .mode{padding:0.16in 0.18in}
+    .mode h4{font-size:15px}
+    .mode ul{font-size:11px;margin-top:9px}
+    .chip{break-inside:avoid;font-size:11px;padding:7px 13px}
+    .lvl:hover,.doc:hover{box-shadow:none!important;transform:none!important}
+    .links a.primary{background:var(--red)!important;color:#fff!important}
+    /* The dark footer banner is replaced by the back cover when printing */
+    footer.site{display:none!important}
+    a{text-decoration:none}
+    /* BACK COVER = one full closing page with image */
+    .backcover{break-before:page;page-break-before:always;height:100vh;min-height:100vh;
+               padding:0.7in;display:flex;flex-direction:column;justify-content:center;break-inside:avoid;overflow:hidden}
+    .backcover h2{font-size:40px}
+    .backcover .bc-lead{font-size:14px;margin-top:16px}
+    .bc-contact{margin-top:30px}
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">⬡ Print / PDF</button>
+
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><img src="assets/img/nf-mark.svg" alt="NovAIFlow"></div>
+    <div><div class="brand-name">NovAIFlow · Academy</div><div class="brand-sub">AI Enablement</div></div>
+  </div>
+  <div class="right">
+    <a class="home" href="/">novaiflow.com ▸</a>
+    <div class="seg" role="group" aria-label="Language">
+      <button data-lang-btn="es">ES</button>
+      <button data-lang-btn="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HERO / COVER ══ -->
+<div class="hero">
+  <img class="hero-bg" src="assets/img/academy-hero.png" alt="" onerror="this.remove()">
+  <div class="wrap">
+    <div class="eyebrow">NovAIFlow Academy</div>
+    <h1><span class="es-only">Pon la IA a trabajar.<br><em>De cero a agente.</em></span><span class="en-only">Put AI to work.<br><em>From zero to agent.</em></span></h1>
+    <p><span class="es-only">Cinco niveles prácticos y bilingües. Cada clase combina teoría breve, demo en vivo, workshop con tus propios datos y un proyecto con entregable real — el método NovAIFlow para pasar de <i>probar</i> IA a <i>operarla</i>.</span><span class="en-only">Five hands-on, bilingual levels. Every class pairs short theory, a live demo, a workshop on your own data and a project with a real deliverable — the NovAIFlow method for going from <i>trying</i> AI to <i>operating</i> it.</span></p>
+    <div class="kpis">
+      <div class="kpi"><b>5</b><span class="es-only">Niveles · de básico a agéntico</span><span class="en-only">Levels · basic to agentic</span></div>
+      <div class="kpi"><b>6</b><span class="es-only">Roles · certificaciones</span><span class="en-only">Roles · certifications</span></div>
+      <div class="kpi"><b>EN/ES</b><span class="es-only">Bilingüe en todo</span><span class="en-only">Bilingual throughout</span></div>
+      <div class="kpi"><b><span class="accent">1</span></b><span class="es-only">Entregable real por nivel</span><span class="en-only">Real deliverable per level</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RHYTHM: every class ══ -->
+<div class="rhythm-wrap">
+  <div class="rhythm">
+    <div class="step"><div class="num">1</div><div><div class="t"><span class="es-only">Teoría</span><span class="en-only">Theory</span></div><div class="d"><span class="es-only">Lo esencial, en lenguaje simple. ~20%</span><span class="en-only">The essentials, in plain language. ~20%</span></div></div></div>
+    <div class="step"><div class="num">2</div><div><div class="t">Demo</div><div class="d"><span class="es-only">En vivo: preguntar, refinar, iterar. ~30%</span><span class="en-only">Live: ask, refine, iterate. ~30%</span></div></div></div>
+    <div class="step"><div class="num">3</div><div><div class="t">Workshop</div><div class="d"><span class="es-only">Práctica con tus propias tareas. ~40%</span><span class="en-only">Practice with your own tasks. ~40%</span></div></div></div>
+    <div class="step"><div class="num">4</div><div><div class="t"><span class="es-only">Proyecto</span><span class="en-only">Project</span></div><div class="d"><span class="es-only">Un entregable real para tu equipo. ~10%</span><span class="en-only">A real deliverable for your team. ~10%</span></div></div></div>
+  </div>
+</div>
+
+<!-- ══ LEVELS ══ -->
+<section class="block">
+  <div class="sec-head"><h2><span class="es-only">Los 5 niveles</span><span class="en-only">The 5 levels</span></h2><span class="tag">levels/</span></div>
+  <p class="sec-intro"><span class="es-only">Una ruta progresiva: cada nivel construye sobre el anterior y termina con un entregable que puedes usar de inmediato. Cada nivel incluye manual, workshop y certificado. Los niveles 1 y 2 ya están disponibles; el resto llega pronto.</span><span class="en-only">A progressive path: each level builds on the previous one and ends with a deliverable you can use right away. Every level includes a manual, a workshop and a certificate. Levels 1 and 2 are live now; the rest are coming soon.</span></p>
+  <div class="levels">
+
+    <div class="lvl">
+      <div class="n">Nivel 01</div>
+      <h3><span class="es-only">Fundamentos</span><span class="en-only">Fundamentals</span></h3>
+      <div class="dur">1 h · <span class="es-only">Clase + demo</span><span class="en-only">Class + demo</span></div>
+      <div class="focus"><span class="es-only">Qué es la IA generativa, cómo conversar con ella, casos de uso diarios y la fórmula Rol·Tarea·Contexto·Formato.</span><span class="en-only">What generative AI is, how to talk to it, everyday use cases and the Role·Task·Context·Format formula.</span></div>
+      <div class="inc"><span>Manual</span><span>Workshop</span><span class="es-only">Certificado</span><span class="en-only">Certificate</span></div>
+      <div class="deliver"><span class="es-only">Entregable:</span><span class="en-only">Deliverable:</span> <b><span class="es-only">3 prompts para tu rol</span><span class="en-only">3 prompts for your role</span></b></div>
+      <div class="links">
+        <a class="primary" href="levels/01-fundamentals/slides/index.html">Deck ▸</a>
+        <a class="es-only" href="doc.html?f=levels/01-fundamentals/manual/manual.es.md">Manual</a><a class="en-only" href="doc.html?f=levels/01-fundamentals/manual/manual.en.md">Manual</a>
+        <a class="es-only" href="doc.html?f=levels/01-fundamentals/handouts/prompt-cheatsheet.es.md">Cheat-sheet</a><a class="en-only" href="doc.html?f=levels/01-fundamentals/handouts/prompt-cheatsheet.en.md">Cheat-sheet</a>
+        <a class="es-only" href="doc.html?f=levels/01-fundamentals/exercises/01-your-first-prompt.es.md">Ejercicios</a><a class="en-only" href="doc.html?f=levels/01-fundamentals/exercises/01-your-first-prompt.en.md">Exercises</a>
+      </div>
+    </div>
+
+    <div class="lvl">
+      <div class="n">Nivel 02</div>
+      <h3><span class="es-only">Aplicado</span><span class="en-only">Applied</span></h3>
+      <div class="dur">2 h · <span class="es-only">Clase + workshop</span><span class="en-only">Class + workshop</span></div>
+      <div class="focus"><span class="es-only">Prompts efectivos, plantillas reutilizables, redacción, resúmenes, hojas de cálculo e imágenes.</span><span class="en-only">Effective prompts, reusable templates, writing, summaries, spreadsheets and images.</span></div>
+      <div class="inc"><span>Manual</span><span>Workshop</span><span class="es-only">Certificado</span><span class="en-only">Certificate</span></div>
+      <div class="deliver"><span class="es-only">Entregable:</span><span class="en-only">Deliverable:</span> <b><span class="es-only">Kit de plantillas del área</span><span class="en-only">Team template kit</span></b></div>
+      <div class="links">
+        <a class="primary" href="levels/02-applied/slides/index.html">Deck ▸</a>
+        <a class="es-only" href="doc.html?f=levels/02-applied/manual/manual.es.md">Manual</a><a class="en-only" href="doc.html?f=levels/02-applied/manual/manual.en.md">Manual</a>
+        <a class="es-only" href="doc.html?f=levels/02-applied/handouts/prompt-cheatsheet.es.md">Cheat-sheet</a><a class="en-only" href="doc.html?f=levels/02-applied/handouts/prompt-cheatsheet.en.md">Cheat-sheet</a>
+        <a class="es-only" href="doc.html?f=levels/02-applied/exercises/01-build-a-template.es.md">Ejercicios</a><a class="en-only" href="doc.html?f=levels/02-applied/exercises/01-build-a-template.en.md">Exercises</a>
+      </div>
+    </div>
+
+    <div class="lvl soon">
+      <div class="n"><span class="es-only">Nivel 03 · Más solicitado</span><span class="en-only">Level 03 · Most requested</span></div>
+      <h3><span class="es-only">Avanzado</span><span class="en-only">Advanced</span></h3>
+      <div class="dur">3 h · <span class="es-only">Workshop + proyecto</span><span class="en-only">Workshop + project</span></div>
+      <div class="focus"><span class="es-only">Automatización, encadenado de tareas, análisis de datos e integración con tus herramientas.</span><span class="en-only">Automation, task chaining, data analysis and integration with your tools.</span></div>
+      <div class="deliver"><span class="es-only">Entregable:</span><span class="en-only">Deliverable:</span> <b><span class="es-only">Un flujo automatizado real</span><span class="en-only">One real automated workflow</span></b></div>
+      <div class="soon-badge"><span class="es-only">Próximamente</span><span class="en-only">Coming soon</span></div>
+    </div>
+
+    <div class="lvl soon">
+      <div class="n">Nivel 04</div>
+      <h3>Power User</h3>
+      <div class="dur">3 h + <span class="es-only">proyecto</span><span class="en-only">project</span></div>
+      <div class="focus"><span class="es-only">Diseño de flujos para el equipo, criterios de calidad, uso responsable y privacidad, liderazgo de adopción.</span><span class="en-only">Designing team workflows, quality criteria, responsible use and privacy, adoption leadership.</span></div>
+      <div class="deliver"><span class="es-only">Entregable:</span><span class="en-only">Deliverable:</span> <b><span class="es-only">Proyecto final + playbook interno</span><span class="en-only">Final project + internal playbook</span></b></div>
+      <div class="soon-badge"><span class="es-only">Próximamente</span><span class="en-only">Coming soon</span></div>
+    </div>
+
+    <div class="lvl soon">
+      <div class="n"><span class="es-only">Nivel 05 · Nuevo</span><span class="en-only">Level 05 · New</span></div>
+      <h3><span class="es-only">Claude Local y Agéntico</span><span class="en-only">Local &amp; Agentic Claude</span></h3>
+      <div class="dur">3 h · <span class="es-only">Workshop + proyecto</span><span class="en-only">Workshop + project</span></div>
+      <div class="focus"><span class="es-only">Usa Claude como agente en tu PC: Claude Desktop, conectores (MCP), permisos y tu "copiloto de orden" que encuentra archivos, crea carpetas y resume proyectos.</span><span class="en-only">Use Claude as an agent on your PC: Claude Desktop, connectors (MCP), permissions and your "tidy-up copilot" that finds files, creates folders and summarizes projects.</span></div>
+      <div class="deliver"><span class="es-only">Entregable:</span><span class="en-only">Deliverable:</span> <b><span class="es-only">Tu copiloto de orden, configurado</span><span class="en-only">Your tidy-up copilot, set up</span></b></div>
+      <div class="soon-badge"><span class="es-only">Próximamente</span><span class="en-only">Coming soon</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ PROFESSIONAL CERTIFICATIONS (AI Productivity Professional Series) ══ -->
+<section class="block">
+  <div class="sec-head"><h2><span class="es-only">Certificaciones profesionales</span><span class="en-only">Professional certifications</span></h2><span class="tag">certifications/</span></div>
+  <p class="sec-intro"><span class="es-only">Otra puerta al mismo método: certificaciones cortas <b>por rol</b>, construidas sobre Claude. Misma espina de 6 módulos, afinada a los documentos y decisiones de cada profesión. 6–12 h · online · certificado profesional · bilingüe.</span><span class="en-only">Another door into the same method: short, <b>role-based</b> certifications built on Claude. The same 6-module spine, tuned to each profession's real documents and decisions. 6–12 h · online · professional certificate · bilingual.</span></p>
+  <div class="cards">
+    <a class="doc" href="certifications/executive-assistant.html" style="border-left:4px solid var(--red)"><b><span class="es-only">★ Asistente Ejecutivo de Alto Rendimiento</span><span class="en-only">★ High-Performance Executive Assistant</span></b><small><span class="es-only">Programa estrella · 8 h · CEOs, directores, gerentes</span><span class="en-only">Flagship program · 8 h · CEOs, directors, managers</span></small></a>
+    <a class="doc" href="certifications/healthcare.html"><b>AI Medical Assistant</b><small><span class="es-only">Salud · 8 h · PHI/HIPAA responsable</span><span class="en-only">Healthcare · 8 h · responsible PHI/HIPAA</span></small></a>
+    <a class="doc" href="certifications/accounting-finance.html"><b>AI for Accounting &amp; Finance</b><small><span class="es-only">Contabilidad y finanzas · 8–12 h</span><span class="en-only">Accounting &amp; finance · 8–12 h</span></small></a>
+    <a class="doc" href="certifications/human-resources.html"><b><span class="es-only">AI para Recursos Humanos</span><span class="en-only">AI for Human Resources</span></b><small><span class="es-only">RRHH · 8 h · EEOC, sesgo, human-in-the-loop</span><span class="en-only">HR · 8 h · EEOC, bias, human-in-the-loop</span></small></a>
+    <a class="doc" href="certifications/legal.html"><b><span class="es-only">AI para Abogados</span><span class="en-only">AI for Lawyers</span></b><small><span class="es-only">Legal · 8–12 h · ABA 512, confidencialidad</span><span class="en-only">Legal · 8–12 h · ABA 512, confidentiality</span></small></a>
+    <a class="doc" href="certifications/marketing.html"><b><span class="es-only">AI para Marketing y Comunicación</span><span class="en-only">AI for Marketing &amp; Communication</span></b><small><span class="es-only">Marketing · 8 h · FTC, marca, derechos</span><span class="en-only">Marketing · 8 h · FTC, brand, copyright</span></small></a>
+  </div>
+  <p class="note"><span class="es-only">Página de la serie (los 6 tracks + espina de 6 módulos): <a href="certifications/index.html">certifications/index.html</a>.</span><span class="en-only">Series page (the 6 tracks + 6-module spine): <a href="certifications/index.html">certifications/index.html</a>.</span></p>
+</section>
+
+<!-- ══ DELIVERY MODES ══ -->
+<section class="block">
+  <div class="sec-head"><h2><span class="es-only">Modalidades de entrega</span><span class="en-only">Delivery modes</span></h2><span class="tag">delivery</span></div>
+  <p class="sec-intro"><span class="es-only">El mismo programa, a la medida de tu equipo: presencial en tu oficina, en vivo por video o a tu propio ritmo.</span><span class="en-only">The same program, tailored to your team: on-site at your office, live by video, or at your own pace.</span></p>
+  <div class="modes">
+    <div class="mode">
+      <h4>In-company</h4>
+      <div class="tag"><span class="es-only">En tu oficina</span><span class="en-only">At your office</span></div>
+      <ul>
+        <li><span class="es-only">Instructor en sitio</span><span class="en-only">On-site instructor</span></li>
+        <li><span class="es-only">Grupo completo</span><span class="en-only">Whole team</span></li>
+        <li><span class="es-only">Agenda a medida</span><span class="en-only">Tailored schedule</span></li>
+      </ul>
+    </div>
+    <div class="mode pop">
+      <h4><span class="es-only">Remoto en vivo</span><span class="en-only">Live online</span></h4>
+      <div class="tag">★ <span class="es-only">Por video</span><span class="en-only">By video</span></div>
+      <ul>
+        <li><span class="es-only">Clase en vivo</span><span class="en-only">Live class</span></li>
+        <li><span class="es-only">Grabación incluida</span><span class="en-only">Recording included</span></li>
+        <li><span class="es-only">Multi-sede</span><span class="en-only">Multi-site</span></li>
+      </ul>
+    </div>
+    <div class="mode">
+      <h4><span class="es-only">Autoestudio</span><span class="en-only">Self-paced</span></h4>
+      <div class="tag"><span class="es-only">A tu ritmo</span><span class="en-only">On your time</span></div>
+      <ul>
+        <li><span class="es-only">Manuales + material</span><span class="en-only">Manuals + material</span></li>
+        <li><span class="es-only">A tu ritmo</span><span class="en-only">At your pace</span></li>
+        <li><span class="es-only">Soporte por correo</span><span class="en-only">Email support</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BACK COVER / CLOSING ══ -->
+<section class="backcover">
+  <img class="backcover-bg" src="assets/img/academy-hero.png" alt="" onerror="this.remove()">
+  <div class="wrap">
+    <div class="eyebrow"><span class="es-only">¿Empezamos?</span><span class="en-only">Ready to start?</span></div>
+    <h2><span class="es-only">De probar IA<br>a <em>operarla</em>.</span><span class="en-only">From trying AI<br>to <em>operating it</em>.</span></h2>
+    <p class="bc-lead"><span class="es-only">Elige el nivel, la modalidad y la industria. Nosotros llevamos la teoría, la demo en vivo, el workshop y el certificado. Tu equipo sale usando IA con método.</span><span class="en-only">Pick the level, the format and the industry. We bring the theory, the live demo, the workshop and the certificate. Your team leaves using AI with a method.</span></p>
+    <div class="bc-contact">
+      <a class="bc-cta" href="/"><span class="es-only">Habla con NovAIFlow ▸</span><span class="en-only">Talk to NovAIFlow ▸</span></a>
+    </div>
+    <div class="bc-mark"><span class="m"><img src="assets/img/nf-mark.svg" alt="NovAIFlow"></span><span class="w">NovAIFlow</span></div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="foot">
+    <div class="c"><b>NovAIFlow</b><span class="es-only">Academy · IA aplicada · Miami, FL</span><span class="en-only">Academy · Applied AI · Miami, FL</span></div>
+    <div class="c"><b><span class="es-only">Muchos sistemas entran, un solo flujo sale.</span><span class="en-only">Many systems in, one flow out.</span></b><a href="/" style="text-decoration:none">novaiflow.com</a></div>
+    <div class="c"><b><a href="/" style="text-decoration:none">novaiflow.com</a></b>© 2026 · <span class="es-only">Todos los derechos reservados</span><span class="en-only">All rights reserved</span></div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var KEY='nf-academy-lang';
+    function set(l){localStorage.setItem(KEY,l);document.documentElement.setAttribute('data-lang',l);
+      document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-lang-btn')===l)});}
+    document.querySelectorAll('[data-lang-btn]').forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-lang-btn'))})});
+    set(localStorage.getItem(KEY)||'en');
+  })();
+</script>
+</body>
+</html>
