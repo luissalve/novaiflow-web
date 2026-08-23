@@ -1,0 +1,16 @@
+{
+  "name": "NovAIFlow web",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8000 --bind 0.0.0.0",
+      "description": "Serves the static site (index, /academy, /pitch, /one-pager) from the repo root at http://localhost:8000. Root-absolute links such as /academy/ require serving from the repository root."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 8000
+    }
+  ]
+}
