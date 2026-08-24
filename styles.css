@@ -383,8 +383,8 @@ html.js :where(.reveal){opacity:0;transform:translateY(22px);transition:opacity 
    v2 — photo cards, FrontDesk, sectors, journey
    ============================================================ */
 .hero-copy,.hero-copy{max-width:40rem}
-.fd-split,.fd-split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.25rem);align-items:center}
-.fd-visual,.fd-visual{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--nf-line)}
+.fd-split,.fd-split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.25rem);align-items:start}
+.fd-visual,.fd-visual{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--nf-line);align-self:start}
 .fd-visual img,.fd-visual img{width:100%;height:auto;max-height:280px;aspect-ratio:16/9;object-fit:cover;object-position:center 40%;display:block}
 .fd-points,.fd-points{list-style:none;display:flex;flex-direction:column;gap:.65rem;margin:1.2rem 0 1.4rem;color:var(--nf-text)}
 .fd-points li,.fd-points li{padding-left:1.15rem;position:relative}
