@@ -1,16 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="NovAIFlow">
-  <title>NovAIFlow favicon</title>
-  <defs>
-    <linearGradient id="nfFav" gradientUnits="userSpaceOnUse" x1="12" y1="50" x2="54" y2="30">
-      <stop offset="0" stop-color="#18C8E6"/>
-      <stop offset="1" stop-color="#5B4BDB"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="#0A1020"/>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 50 L40 24 L54 42" stroke="url(#nfFav)" stroke-width="5.5"/>
-    <path d="M54 42 L53.2 35.6 M54 42 L47.8 40.6" stroke="#5B4BDB" stroke-width="5.5"/>
-  </g>
-  <circle cx="40" cy="24" r="8" fill="#FFB23E"/>
-  <circle cx="40" cy="24" r="2.9" fill="#FFE0A8"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="288" height="288" viewBox="0 0 288 288" role="img" aria-label="NovAIFlow"><title>NovAIFlow</title><rect width="288" height="288" rx="58" fill="#0A1020"/><g transform="translate(22 22) scale(.8472)"><path fill="#FFB23E" d="M174 124 218 150 174 175Z"/><path fill="#FFFFFF" d="M96 42 137 18Q144 14 151 18L231 64Q239 68 239 78V130Q239 138 232 142L218 150 96 80Q90 77 90 70V52Q90 46 96 42Z"/><path fill="#5B4BDB" d="M80 87Q87 83 94 87L136 111Q143 115 140 122Q139 125 135 127L99 148Q91 153 91 163V229Q91 236 84 240L77 244Q71 248 64 244L24 221Q18 218 18 210V131Q18 124 24 121Z"/><path fill="#5B4BDB" d="M102 171 143 195Q150 199 157 195L241 147Q248 143 255 147L263 152Q270 156 270 164V204Q270 212 263 216L157 267Q150 271 143 267L109 247Q102 243 102 235Z"/></g></svg>

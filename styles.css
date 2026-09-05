@@ -150,9 +150,11 @@ main:focus{outline:none}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
 .header-right{display:flex;align-items:center;gap:1.1rem}
 .brand{display:inline-flex;align-items:center;gap:.6rem}
-.brand-mark{flex:none}
-.brand-word{font-family:var(--nf-font-display);font-weight:600;font-size:var(--fs-lg);
-  letter-spacing:var(--tracking-display);color:var(--nf-heading)}
+.brand-image{flex:none;width:160px;height:40px;object-fit:contain}
+.logo-on-light{display:block}
+.logo-on-dark{display:none}
+[data-theme="dark"] .logo-on-light{display:none}
+[data-theme="dark"] .logo-on-dark{display:block}
 .site-nav{display:flex;align-items:center;gap:1.3rem}
 .site-nav a:not(.btn){font-weight:500;color:var(--nf-text);transition:color var(--dur) var(--ease-flow)}
 .site-nav a:not(.btn):hover{color:var(--nf-heading)}
@@ -221,9 +223,8 @@ main:focus{outline:none}
 .map-connectors circle{fill:var(--nf-accent)}
 .map-core{position:relative;border:1px solid var(--nf-accent);border-radius:var(--radius-md);background:var(--nf-surface-2);padding:1.4rem 1rem;text-align:center;box-shadow:0 10px 28px -22px var(--nf-accent)}
 .map-core-label{display:block;color:var(--nf-muted);font-size:.6rem;letter-spacing:.12em;margin-bottom:.4rem}
-.map-wordmark{position:relative;display:inline-block;font-family:var(--nf-font-display);font-size:2rem;font-weight:600;letter-spacing:-.04em;color:var(--nf-heading)}
-.map-wordmark>span:first-child{color:var(--nf-accent);font-weight:700}
-.map-node{position:absolute;right:-13px;top:8px;width:6px;height:6px;border-radius:50%;background:var(--nf-nova);box-shadow:0 0 0 4px rgba(255,178,62,.14)}
+.map-wordmark{display:block;width:220px;max-width:100%;margin-inline:auto}
+.map-wordmark img{width:100%;height:auto;object-fit:contain}
 .map-capabilities{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem .85rem;padding-top:.8rem;margin-top:.8rem;border-top:1px solid var(--nf-line-soft);font-size:.7rem;color:var(--nf-text)}
 .map-output-line{height:42px;display:flex;justify-content:center;color:var(--nf-accent)}
 .map-output-line span{display:block;font-size:1.6rem;line-height:42px}
@@ -469,7 +470,7 @@ html.js :where(.reveal){opacity:0;transform:translateY(22px);transition:opacity 
   .site-nav{display:none}
   .nav-disclosure{display:block}
   .header-inner{height:60px}
-  .brand-word{font-size:var(--fs-base)}
+  .brand-image{width:140px;height:35px}
   .proof-head{flex-direction:column;align-items:flex-start;gap:.35rem}
   .section-lede{font-size:var(--fs-base)}
   .stat-band{grid-template-columns:1fr}
