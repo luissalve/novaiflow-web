@@ -16,8 +16,10 @@
   var I18N = {
     "en": {
       "skip": "Skip to content",
-      "meta_title": "NovAIFlow — Custom AI engineering and integration",
-      "meta_desc": "Custom AI solutions for your business. NovAIFlow brings together AI agents, automation, system integration and software development, from strategy to operation.",
+      "sector_link": "Explore this sector",
+      "service_link": "Explore this capability",
+      "meta_title": "AI Integration & Engineering in Florida | NovAIFlow",
+      "meta_desc": "Custom AI integration, agents and business automation for companies in Florida and across the US. Engineering led from Miami, in English and Spanish.",
       "nav_services": "Capabilities",
       "nav_sectors": "Sectors",
       "nav_integration": "Integration",
@@ -29,7 +31,7 @@
       "hero_lede": "We design and integrate AI solutions around your processes, data and goals. From agents and automation to custom software, we take your project from strategy into operation.",
       "hero_cta2": "Explore our capabilities <span aria-hidden=\"true\">→</span>",
       "hero_meta1": "STRATEGY → BUILD → INTEGRATE",
-      "hero_meta2": "US · LATAM",
+      "hero_meta2": "FLORIDA · UNITED STATES",
       "map_caption": "From your challenge to production",
       "map_context": "Your business",
       "map_data": "Data",
@@ -157,7 +159,7 @@
       "appr_anchor_d": "We support adoption, monitor performance and refine the solution as your operation and priorities evolve.",
       "fnd_kicker": "The team behind the work",
       "fnd_title": "Hands-on engineering. Direct accountability.",
-      "fnd_p": "NovAIFlow is led by Luis Monsalve, an applied AI engineer in Miami. We design, build and operate the systems we deliver, connecting technical decisions to the needs of the business. We work in English and Spanish across the US and LATAM.",
+      "fnd_p": "NovAIFlow is led by Luis Monsalve, an applied AI engineer in Miami. We design, build and operate the systems we deliver, connecting technical decisions to the needs of the business. We work in English and Spanish with companies in Florida and across the United States.",
       "contact_kicker": "Let's talk",
       "contact_title": "What does your business need to solve?",
       "contact_lede": "A process to improve, systems to connect or a new capability to build. Tell us the challenge and we will explore how AI and engineering can help.",
@@ -169,8 +171,10 @@
     },
     "es": {
       "skip": "Saltar al contenido",
-      "meta_title": "NovAIFlow — Ingeniería e integración de IA a medida",
-      "meta_desc": "Soluciones de IA a la medida de tu empresa. NovAIFlow combina agentes de IA, automatización, integración de sistemas y desarrollo de software, de la estrategia a la operación.",
+      "sector_link": "Explorar este sector",
+      "service_link": "Explorar esta capacidad",
+      "meta_title": "Integración e ingeniería de IA en Florida | NovAIFlow",
+      "meta_desc": "Integración de IA, agentes y automatización a medida para empresas de Florida y Estados Unidos. Ingeniería desde Miami, en español e inglés.",
       "nav_services": "Capacidades",
       "nav_sectors": "Sectores",
       "nav_integration": "Integración",
@@ -182,7 +186,7 @@
       "hero_lede": "Diseñamos e integramos soluciones de IA alrededor de tus procesos, datos y objetivos. Desde agentes y automatización hasta software a medida, acompañamos tu proyecto de la estrategia a la operación.",
       "hero_cta2": "Explora nuestras capacidades <span aria-hidden=\"true\">→</span>",
       "hero_meta1": "ESTRATEGIA → DESARROLLO → INTEGRACIÓN",
-      "hero_meta2": "EE. UU. · LATAM",
+      "hero_meta2": "FLORIDA · ESTADOS UNIDOS",
       "map_caption": "De tu reto a producción",
       "map_context": "Tu empresa",
       "map_data": "Datos",
@@ -310,7 +314,7 @@
       "appr_anchor_d": "Acompañamos la adopción, supervisamos el desempeño y ajustamos la solución a medida que evolucionan tu operación y tus prioridades.",
       "fnd_kicker": "El equipo detrás del trabajo",
       "fnd_title": "Ingeniería de principio a fin. Responsabilidad directa.",
-      "fnd_p": "NovAIFlow está liderada por Luis Monsalve, ingeniero de IA aplicada en Miami. Diseñamos, construimos y operamos los sistemas que entregamos, conectando las decisiones técnicas con las necesidades del negocio. Trabajamos en inglés y español en Estados Unidos y LATAM.",
+      "fnd_p": "NovAIFlow está liderada por Luis Monsalve, ingeniero de IA aplicada en Miami. Diseñamos, construimos y operamos los sistemas que entregamos, conectando las decisiones técnicas con las necesidades del negocio. Trabajamos en inglés y español con empresas de Florida y el resto de Estados Unidos.",
       "contact_kicker": "Conversemos",
       "contact_title": "¿Qué necesita resolver tu empresa?",
       "contact_lede": "Un proceso que mejorar, sistemas que conectar o una nueva capacidad que construir. Cuéntanos el desafío y exploremos cómo la IA y la ingeniería pueden ayudar.",
@@ -379,6 +383,8 @@
   var currentLang = root.getAttribute('lang') === 'es' ? 'es' : 'en';
   applyLang(currentLang);
   document.querySelectorAll('.lang-toggle').forEach(function (btn) {
+    // Locale links expose complete, crawlable pages and work without JavaScript.
+    if (btn.tagName === 'A') return;
     btn.addEventListener('click', function () {
       currentLang = currentLang === 'en' ? 'es' : 'en';
       applyLang(currentLang);
