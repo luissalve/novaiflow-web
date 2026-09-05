@@ -26,16 +26,14 @@
     function updateControl() {
       var spanish = (root.getAttribute('lang') || 'en').toLowerCase().indexOf('es') === 0;
       var paused = userPaused || reduced.matches;
-      var label = reduced.matches ? (spanish ? 'Movimiento reducido' : 'Reduced motion') :
-        paused ? (spanish ? 'Reanudar' : 'Resume') : (spanish ? 'Pausar' : 'Pause');
-      var accessible = reduced.matches ?
-        (spanish ? 'Animación desactivada por tu preferencia de movimiento reducido' : 'Animation disabled by your reduced-motion preference') :
-        paused ? (spanish ? 'Reanudar animación del flujo' : 'Resume flow animation') :
+      var label = paused ? (spanish ? 'Reanudar' : 'Resume') : (spanish ? 'Pausar' : 'Pause');
+      var accessible = paused ? (spanish ? 'Reanudar animación del flujo' : 'Resume flow animation') :
           (spanish ? 'Pausar animación del flujo' : 'Pause flow animation');
       button.querySelector('.flow-control-label').textContent = label;
       button.setAttribute('aria-label', accessible);
       button.setAttribute('data-paused', paused ? 'true' : 'false');
       button.disabled = reduced.matches;
+      button.hidden = reduced.matches;
     }
 
     function syncPlayback() {
@@ -75,7 +73,6 @@
       updateControl();
       syncPlayback();
     });
-    button.hidden = false;
     updateControl();
     syncPlayback();
 

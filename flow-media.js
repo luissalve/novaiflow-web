@@ -22,13 +22,11 @@
     function updateControl() {
       var es = (root.lang || 'en').toLowerCase().indexOf('es') === 0;
       var paused = userPaused || reduced.matches || savingData();
-      var label = reduced.matches ? (es ? 'Movimiento reducido' : 'Reduced motion') :
-        savingData() ? (es ? 'Ahorro de datos' : 'Data saver') :
-          paused ? (es ? 'Reproducir animación' : 'Play animation') : (es ? 'Pausar animación' : 'Pause animation');
+      var label = paused ? (es ? 'Reproducir animación' : 'Play animation') : (es ? 'Pausar animación' : 'Pause animation');
       button.querySelector('span').textContent = label;
       button.setAttribute('data-paused', paused ? 'true' : 'false');
       button.disabled = reduced.matches || savingData();
-      button.hidden = failed;
+      button.hidden = failed || reduced.matches || savingData();
     }
 
     function syncPlayback() {
