@@ -22,7 +22,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6362d475aee7">
+  <link rel="stylesheet" href="styles.css?v=68e0f8f686fd">
+  <link rel="stylesheet" href="hero-flow.css?v=46b6dbf7a804">
+  <link rel="stylesheet" href="flow-media.css?v=d9d657ecc8b8">
 
   <script>
     (function () {
@@ -95,9 +97,9 @@
           </div>
           <p class="hero-meta"><span class="mono" data-i18n="hero_meta1">STRATEGY → BUILD → INTEGRATE</span><span class="mono" data-i18n="hero_meta2">US · LATAM</span></p>
         </div>
-        <figure class="solution-map" aria-labelledby="map-caption">
+        <figure class="solution-map" aria-labelledby="map-caption" data-hero-flow>
           <figcaption id="map-caption" class="map-caption mono"><span class="map-number" aria-hidden="true">01 /</span> <span data-i18n="map_caption">From your challenge to production</span></figcaption>
-          <div class="map-diagram">
+          <div class="map-diagram" id="hero-flow-diagram">
             <div class="map-context">
               <p class="map-label mono" data-i18n="map_context">Your business</p>
               <ul class="map-inputs" role="list">
@@ -106,11 +108,23 @@
                 <li><span class="map-input-icon" aria-hidden="true">◎</span><span data-i18n="map_teams">Teams</span></li>
               </ul>
             </div>
-            <svg class="map-connectors" viewBox="0 0 420 70" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <path d="M70 0V24Q70 34 80 34H200Q210 34 210 44V70M210 0V70M350 0V24Q350 34 340 34H220Q210 34 210 44"/>
-              <circle cx="210" cy="34" r="4"/>
+            <svg class="map-connectors" viewBox="0 0 420 70" preserveAspectRatio="none" aria-hidden="true" focusable="false" data-flow-svg>
+              <path id="hero-flow-data" d="M70 0V24Q70 34 80 34H200Q210 34 210 44V70"/>
+              <path id="hero-flow-systems" d="M210 0V70"/>
+              <path id="hero-flow-teams" d="M350 0V24Q350 34 340 34H220Q210 34 210 44V70"/>
+              <circle class="flow-junction" cx="210" cy="34" r="3"/>
+              <circle class="flow-packet flow-packet-data" r="4">
+                <animateMotion begin="indefinite" dur="6.4s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.06;0.40;1" calcMode="linear"><mpath href="#hero-flow-data"/></animateMotion>
+              </circle>
+              <circle class="flow-packet flow-packet-systems" r="4">
+                <animateMotion begin="indefinite" dur="6.4s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.18;0.44;1" calcMode="linear"><mpath href="#hero-flow-systems"/></animateMotion>
+              </circle>
+              <circle class="flow-packet flow-packet-teams" r="4">
+                <animateMotion begin="indefinite" dur="6.4s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.12;0.48;1" calcMode="linear"><mpath href="#hero-flow-teams"/></animateMotion>
+              </circle>
             </svg>
             <div class="map-core">
+              <span class="flow-core-port flow-core-in" aria-hidden="true"></span>
               <span class="map-core-label mono" data-i18n="map_core">AI engineering</span>
               <span class="map-wordmark">
                 <img class="logo-on-light" src="assets/brand/novaiflow-modular-horizontal-light.svg" alt="NovAIFlow" width="220" height="55">
@@ -121,11 +135,27 @@
                 <li data-i18n="map_flows">Automation</li>
                 <li data-i18n="map_software">Custom software</li>
               </ul>
+              <span class="flow-core-port flow-core-out" aria-hidden="true"></span>
             </div>
-            <div class="map-output-line" aria-hidden="true"><span>↓</span></div>
+            <div class="map-output-line" aria-hidden="true">
+              <svg class="flow-output" viewBox="0 0 40 42" focusable="false" data-flow-svg>
+                <path id="hero-flow-output" d="M20 0V36"/>
+                <path d="M15 30L20 36L25 30"/>
+                <circle class="flow-packet flow-packet-output" r="3.5">
+                  <animateMotion begin="indefinite" dur="6.4s" repeatCount="indefinite" keyPoints="0;0;1;1" keyTimes="0;0.60;0.86;1" calcMode="linear"><mpath href="#hero-flow-output"/></animateMotion>
+                </circle>
+              </svg>
+            </div>
             <p class="map-result" data-i18n="map_result">A solution integrated into your business</p>
           </div>
-          <p class="map-note"><span aria-hidden="true">↳</span> <span data-i18n="map_note">Designed around your business</span></p>
+          <p class="map-note">
+            <span aria-hidden="true">↳</span> <span data-i18n="map_note">Designed around your business</span>
+            <button class="flow-toggle" type="button" aria-controls="hero-flow-diagram" aria-label="Pause flow animation" hidden>
+              <svg class="flow-pause-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3V13M11 3V13"/></svg>
+              <svg class="flow-play-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M5 3L12 8L5 13Z"/></svg>
+              <span class="flow-control-label">Pause</span>
+            </button>
+          </p>
         </figure>
       </div>
     </section>
@@ -257,8 +287,16 @@
 
     <section class="section integration dark-plate" id="integration" aria-labelledby="integration-title">
       <div class="container integration-inner">
-        <div class="integration-visual reveal" aria-hidden="true">
-          <img src="assets/nova-flow.jpg" alt="" width="1280" height="720" loading="lazy" decoding="async">
+        <div class="integration-visual reveal" data-flow-media>
+          <div class="flow-media-frame" aria-hidden="true">
+            <img src="assets/flow/convergence-1280.webp" srcset="assets/flow/convergence-640.webp 640w, assets/flow/convergence-1280.webp 1280w, assets/flow/convergence-4k.webp 4096w" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 920px) 640px, 550px" alt="" width="4096" height="2304" loading="lazy" decoding="async">
+            <video id="integration-flow-video" muted loop playsinline preload="none" data-src="assets/flow/convergence-loop.mp4" tabindex="-1"></video>
+          </div>
+          <button class="flow-media-toggle" type="button" aria-controls="integration-flow-video" hidden>
+            <svg class="media-pause-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3v10M11 3v10"/></svg>
+            <svg class="media-play-icon" viewBox="0 0 16 16" aria-hidden="true"><path d="m5 3 8 5-8 5Z"/></svg>
+            <span>Pause animation</span>
+          </button>
         </div>
         <div class="integration-copy reveal">
           <p class="kicker" data-i18n="int_kicker">Built around your business</p>
@@ -283,42 +321,54 @@
         </header>
         <ul class="sector-grid" role="list">
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-logistics.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-logistics-1280.webp" srcset="assets/responsive/sec-logistics-640.webp 640w, assets/responsive/sec-logistics-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec1_t">Logistics &amp; air cargo</h3>
               <p data-i18n="sec1_p">Connect booking, warehousing, transport and billing. Bring operational visibility and intelligent coordination into the movement of goods.</p>
             </div>
           </li>
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-clinic.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-clinic-1280.webp" srcset="assets/responsive/sec-clinic-640.webp 640w, assets/responsive/sec-clinic-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec2_t">Healthcare &amp; clinics</h3>
               <p data-i18n="sec2_p">Support administrative workflows, patient communication and document handling, with defined access and human review.</p>
             </div>
           </li>
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-trades.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-trades-1280.webp" srcset="assets/responsive/sec-trades-640.webp 640w, assets/responsive/sec-trades-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec3_t">Manufacturing &amp; workshops</h3>
               <p data-i18n="sec3_p">Connect quoting, production planning and shop-floor activity. Give teams clearer priorities and visibility into each job.</p>
             </div>
           </li>
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-wholesale.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-wholesale-1280.webp" srcset="assets/responsive/sec-wholesale-640.webp 640w, assets/responsive/sec-wholesale-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec4_t">Wholesale &amp; distribution</h3>
               <p data-i18n="sec4_p">Bring together orders, inventory, purchasing and invoicing. Use data to support replenishment and commercial decisions.</p>
             </div>
           </li>
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-pro.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-pro-1280.webp" srcset="assets/responsive/sec-pro-640.webp 640w, assets/responsive/sec-pro-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec5_t">Professional services</h3>
               <p data-i18n="sec5_p">Organize business knowledge, automate document workflows and support research, service delivery and client communication.</p>
             </div>
           </li>
           <li class="sector-card reveal">
-            <img src="assets/v2/sec-field.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-field-1280.webp" srcset="assets/responsive/sec-field-640.webp 640w, assets/responsive/sec-field-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 800px) 90vw, (max-width: 920px) calc(100vw - 80px), (max-width: 1180px) calc(50vw - 49.2px), 541px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <div class="sector-body">
               <h3 data-i18n="sec6_t">Field service &amp; fleet operations</h3>
               <p data-i18n="sec6_p">Connect service requests, dispatch, field activity and billing. Help office and field teams work from shared information.</p>
@@ -337,42 +387,54 @@
         </header>
         <ul class="case-grid" role="list">
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/sol-voice.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sol-voice-1280.webp" srcset="assets/responsive/sol-voice-640.webp 640w, assets/responsive/sol-voice-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case1_tag">FIELD OPERATIONS · AUTOMATION</p>
             <h3 data-i18n="case1_t">99.4% of legacy invoices reconciled automatically</h3>
             <p data-i18n="case1_p">A field-service operation with 3,000+ devices: 12+ agents triage tickets, dispatch technicians and communicate with customers through WhatsApp, Telegram, voice and email — 24/7.</p>
             <p class="case-metric" data-i18n-html="case1_m"><strong>23,000+</strong> invoices · agents working overnight</p>
           </li>
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/frontdesk.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/frontdesk-1280.webp" srcset="assets/responsive/frontdesk-640.webp 640w, assets/responsive/frontdesk-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case2_tag">CUSTOMER COMMUNICATION · VOICE AI</p>
             <h3 data-i18n="case2_t">Bilingual call handling beyond business hours</h3>
             <p data-i18n="case2_p">Voice agents on live business lines for logistics, HVAC and clinics — with English and Spanish support, PBX routing, human handoff and written follow-up.</p>
             <p class="case-metric" data-i18n-html="case2_m"><strong>4+</strong> live lines · 24/7 · zero reported downtime during carrier migration</p>
           </li>
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/sol-integration.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sol-integration-1280.webp" srcset="assets/responsive/sol-integration-640.webp 640w, assets/responsive/sol-integration-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case3_tag">SYSTEM INTEGRATION · AI ASSISTANTS</p>
             <h3 data-i18n="case3_t">Business systems connected to Claude and ChatGPT</h3>
             <p data-i18n="case3_p">Production connectors with OAuth let teams query tickets, devices, invoices and customer records through controlled tools — 36 on one platform — from their existing AI assistants.</p>
             <p class="case-metric" data-i18n-html="case3_m"><strong>3</strong> production connectors · audited</p>
           </li>
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/sol-crm.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sol-crm-1280.webp" srcset="assets/responsive/sol-crm-640.webp 640w, assets/responsive/sol-crm-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case4_tag">COMPLIANCE · CUSTOM SOFTWARE</p>
             <h3 data-i18n="case4_t">570 carriers managed beyond spreadsheets</h3>
             <p data-i18n="case4_p">A Miami trucking-compliance firm: a multi-tenant system for deadlines, auto-filled DOT/FMCSA forms and 48,000 migrated historical documents.</p>
             <p class="case-metric" data-i18n-html="case4_m">Live <strong>in under 30 days</strong></p>
           </li>
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/sec-logistics.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sec-logistics-1280.webp" srcset="assets/responsive/sec-logistics-640.webp 640w, assets/responsive/sec-logistics-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case5_tag">AIR CARGO · INTEGRATED PLATFORM</p>
             <h3 data-i18n="case5_t">An integrated operation, from booking to invoicing</h3>
             <p data-i18n="case5_p">A Miami air-cargo operator: booking, warehousing, delivery and invoicing in one platform, with a live public demo.</p>
             <p class="case-metric" data-i18n-html="case5_m"><strong>1,800+</strong> automated tests passing in CI</p>
           </li>
           <li class="case-card case-card-photo reveal">
-            <img src="assets/v2/sol-crm.jpg?v=2" loading="lazy" decoding="async" alt="" width="1920" height="1080">
+            <img src="assets/responsive/sol-crm-1280.webp" srcset="assets/responsive/sol-crm-640.webp 640w, assets/responsive/sol-crm-1280.webp 1280w"
+              sizes="(max-width: 400px) calc(100vw - 40px), (max-width: 755px) 90vw, (max-width: 800px) calc(45vw - 10px), (max-width: 1109px) calc(50vw - 50px), 354px"
+              loading="lazy" decoding="async" alt="" width="1280" height="720">
             <p class="case-tag mono" data-i18n="case6_tag">DOCUMENT INTELLIGENCE · REPORTING</p>
             <h3 data-i18n="case6_t">A personalized insight report for every participant</h3>
             <p data-i18n="case6_p">A behavioral-assessment platform on AWS: an orchestrated AI pipeline generates multi-section reports from participant assessments.</p>
@@ -461,6 +523,8 @@
     </div>
   </footer>
 
-  <script src="main.js?v=69a23dcb3013" defer></script>
+  <script src="main.js?v=de69ee45f473" defer></script>
+  <script src="hero-flow.js?v=c141f768385a" defer></script>
+  <script src="flow-media.js?v=046091f14ff7" defer></script>
 </body>
 </html>

@@ -185,6 +185,7 @@ main:focus{outline:none}
 .nav-disclosure[open] .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .mobile-nav{position:absolute;top:calc(100% + 14px);right:0;min-width:230px;z-index:120;
   display:flex;flex-direction:column;gap:.1rem;padding:1rem 1.25rem 1.25rem;
+  max-height:calc(100vh - 88px);max-height:calc(100dvh - 88px);overflow-y:auto;overscroll-behavior:contain;
   background:var(--nf-surface-2);border:1px solid var(--nf-line);border-radius:var(--radius-md);
   box-shadow:0 24px 50px -20px rgba(7,11,22,.35)}
 .mobile-nav a:not(.btn){padding:.75rem .25rem;color:var(--nf-text);font-weight:500;border-bottom:1px solid var(--nf-line-soft)}
@@ -425,10 +426,10 @@ html.js :where(.reveal){opacity:0;transform:translateY(22px);transition:opacity 
 .photo-card-cta .photo-body,.photo-card-cta .photo-body{justify-content:center}
 
 .sector-grid,.sector-grid{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:1.15rem}
-.sector-card,.sector-card{position:relative;aspect-ratio:16/9;max-height:240px;border-radius:var(--radius-lg);overflow:hidden;
+.sector-card,.sector-card{position:relative;display:grid;width:100%;min-width:0;min-height:240px;border-radius:var(--radius-lg);overflow:hidden;
   border:1px solid var(--nf-line)}
 .sector-card img,.sector-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.sector-body,.sector-body{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+.sector-body,.sector-body{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-end;
   padding:1.4rem 1.35rem 1.3rem;background:linear-gradient(180deg,transparent 20%,rgba(7,11,22,.88) 100%);color:#F7F9FC}
 .sector-body h3{font-size:var(--fs-xl);margin-bottom:.4rem;color:#fff}
 .sector-body p{font-size:var(--fs-sm);color:rgba(247,249,252,.82);max-width:34rem}
@@ -496,6 +497,7 @@ html.js :where(.reveal){opacity:0;transform:translateY(22px);transition:opacity 
   .btn{width:100%;justify-content:center}
   .hero-actions .btn,.contact-actions .btn{width:100%}
   .card,.case-card{padding:1.45rem 1.3rem}
+  .case-card-photo{padding:0}
   .node-card{padding:1.6rem 1.4rem}
   .stat-band{gap:1.15rem 1rem}
   .stat{padding-left:.9rem}
