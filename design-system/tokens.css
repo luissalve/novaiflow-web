@@ -1,0 +1,142 @@
+/* ============================================================
+   NovAIFlow — Design Tokens · v2 (Modular)
+   Fuente de verdad de color, tipografía, espaciado, radio,
+   elevación y movimiento para web, producto y paneles internos.
+   Documentación: brand/DESIGN-SYSTEM.md · brand/BRAND-GUIDELINES.md
+   ------------------------------------------------------------
+   Capas:
+     1. Primitivas  --nf-*        constantes de marca (no cambian con el tema)
+     2. Semánticas  --nf-canvas…  cambian con [data-theme="light"|"dark"]
+     3. Componentes --nf-btn-*…   derivadas de las semánticas
+   Regla de acento: en la interfaz hay UN solo momento de acento por
+   vista (el botón primario). Cian sobre oscuro, violeta sobre claro.
+   El ámbar pertenece al logo; en UI solo oscuro y tamaños grandes.
+   ============================================================ */
+
+:root {
+  /* ---- 1. Primitivas · tinta y superficies ---- */
+  --nf-ink:        #0A1020; /* Flow Ink · tinta principal / superficie oscura */
+  --nf-carbon:     #070B16; /* Carbon · superficie más profunda */
+  --nf-paper:      #F7F9FC; /* Paper · superficie clara principal */
+  --nf-node-mist:  #EEF2F8; /* Node Mist · superficie 2 en claro */
+  --nf-hairline:   #D9E0EC; /* Hairline · bordes y divisores en claro */
+
+  /* ---- 1. Primitivas · texto ---- */
+  --nf-slate:      #475569; /* cuerpo en claro (7.18:1 sobre Paper) */
+  --nf-mist:       #C7D2EA; /* cuerpo en oscuro (12.49:1 sobre Ink) */
+
+  /* ---- 1. Primitivas · acentos de marca ---- */
+  --nf-cyan:          #18C8E6; /* Nova Cyan · acento en OSCURO (9.43:1 sobre Ink) */
+  --nf-violet:        #5B4BDB; /* Flow Violet · acento en CLARO y módulos del logo (5.73:1) */
+  --nf-violet-strong: #4A3CC4; /* Flow Violet Strong · enlaces pequeños en claro (7.28:1) */
+  --nf-nova:          #FFB23E; /* Nova Amber · flecha del logo; en UI solo oscuro/grande */
+  --nf-nova-text:     #FFC46B; /* Nova Amber Light · texto cálido pequeño, solo oscuro */
+  --nf-nova-glow:     #FFE0A8; /* resalte cálido, uso excepcional */
+
+  /* ---- 1. Primitivas · estados (añadidos en v2) ---- */
+  --nf-success:       #1AA37A; --nf-success-strong: #0E7A5A; --nf-success-soft: #E6F7F1;
+  --nf-warning:       #E0A526; --nf-warning-strong: #8A5A00; --nf-warning-soft: #FFF4DD;
+  --nf-danger:        #E5484D; --nf-danger-strong:  #B3261E; --nf-danger-soft:  #FDECEC;
+  --nf-info:          #3B82F6; --nf-info-strong:    #1D4ED8; --nf-info-soft:    #E8F0FE;
+
+  /* ---- Degradados (heredados de v1; nunca en texto ni en el logo) ---- */
+  --nf-grad-flow:         linear-gradient(120deg, #18C8E6 0%, #5B4BDB 100%);
+  --nf-grad-flow-warm:    linear-gradient(120deg, #18C8E6 0%, #5B4BDB 70%, #FFB23E 100%);
+  --nf-grad-surface-dark: linear-gradient(180deg, #0A1020 0%, #070B16 100%);
+
+  /* ---- Tipografía ---- */
+  --nf-font-display: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --nf-font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --nf-font-mono:    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* Escala 1.25 (tercera mayor) sobre 16 px */
+  --fs-xs:   0.75rem;   /* 12 · caption, kicker */
+  --fs-sm:   0.875rem;  /* 14 · small, etiquetas */
+  --fs-base: 1rem;      /* 16 · body */
+  --fs-lg:   1.25rem;   /* 20 · lead */
+  --fs-xl:   1.5625rem; /* 25 · h4 */
+  --fs-2xl:  1.9375rem; /* 31 · h3 */
+  --fs-3xl:  2.4375rem; /* 39 · h2 */
+  --fs-4xl:  3.0625rem; /* 49 · h1 */
+  --fs-5xl:  3.8125rem; /* 61 · display */
+  --fs-hero: 4.75rem;   /* 76 · hero */
+
+  --lh-tight: 1.12; --lh-snug: 1.2; --lh-body: 1.6;
+  --tracking-display: -0.015em; --tracking-tight: -0.02em; --tracking-label: 0.08em;
+
+  /* ---- Espaciado (ritmo de 8 pt) ---- */
+  --space-1: 0.25rem; --space-2: 0.5rem;  --space-3: 0.75rem; --space-4: 1rem;
+  --space-5: 1.5rem;  --space-6: 2rem;    --space-8: 3rem;    --space-10: 4rem;
+  --space-12: 6rem;   --space-16: 8rem;   --space-20: 10rem;
+
+  /* ---- Radio ---- */
+  --radius-xs: 4px; --radius-sm: 8px; --radius-md: 14px; --radius-lg: 22px; --radius-pill: 999px;
+
+  /* ---- Movimiento ---- */
+  --ease-flow: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms; --dur: 320ms; --dur-slow: 1200ms;
+
+  /* ---- Layout ---- */
+  --container: 1200px;
+  --pad: clamp(1.25rem, 5vw, 2.5rem);
+  --control-h: 44px;   /* altura mínima de botones e inputs (zona táctil) */
+  --control-h-sm: 36px;
+  --control-h-lg: 52px;
+
+  /* ---- 2. Semánticas · tema OSCURO (por defecto si no hay data-theme) ---- */
+  --nf-canvas:       var(--nf-ink);
+  --nf-heading:      var(--nf-paper);
+  --nf-text:         var(--nf-mist);
+  --nf-muted:        #8C9BB8;                 /* ≥ 6:1 sobre Ink */
+  --nf-surface-2:    #111A2E;                 /* tarjetas, paneles */
+  --nf-surface-3:    #0E1626;                 /* base de tarjeta, inputs */
+  --nf-line:         rgba(199,210,234,0.12);
+  --nf-line-soft:    rgba(199,210,234,0.07);
+  --nf-accent:       var(--nf-cyan);
+  --nf-accent-strong:var(--nf-cyan);
+  --nf-accent-soft:  rgba(24,200,230,0.14);
+  --nf-btn-ink:      var(--nf-ink);           /* texto sobre botón primario */
+  --nf-nova-ink:     var(--nf-nova-text);
+  --nf-success-ink:  #5BD6A8; --nf-warning-ink: #FFC46B; --nf-danger-ink: #FF8A8E; --nf-info-ink: #8AB4FF;
+  --nf-success-bg:   rgba(26,163,122,0.18); --nf-warning-bg: rgba(224,165,38,0.18);
+  --nf-danger-bg:    rgba(229,72,77,0.18);  --nf-info-bg:    rgba(59,130,246,0.18);
+  --shadow-card:     0 1px 0 rgba(255,255,255,0.04) inset, 0 18px 40px -24px rgba(0,0,0,0.7);
+  --shadow-overlay:  0 24px 50px -20px rgba(7,11,22,0.6);
+  --shadow-glow:     0 0 0 1px rgba(24,200,230,0.16), 0 0 44px -8px rgba(24,200,230,0.28);
+  --focus-ring:      0 0 0 3px rgba(24,200,230,0.18);
+}
+
+/* ---- 2. Semánticas · tema CLARO (Paper) · tema por defecto de la web ---- */
+[data-theme="light"] {
+  --nf-canvas:       var(--nf-paper);
+  --nf-heading:      #0F172A;
+  --nf-text:         var(--nf-slate);
+  --nf-muted:        #556377;                 /* ≈ 5.6:1 sobre Paper */
+  --nf-surface-2:    #FFFFFF;
+  --nf-surface-3:    var(--nf-node-mist);
+  --nf-line:         var(--nf-hairline);
+  --nf-line-soft:    #E7ECF4;
+  --nf-accent:       var(--nf-violet);
+  --nf-accent-strong:var(--nf-violet-strong);
+  --nf-accent-soft:  #ECEAFB;
+  --nf-btn-ink:      #FFFFFF;
+  --nf-nova-ink:     #A16207;
+  --nf-success-ink:  var(--nf-success-strong); --nf-warning-ink: var(--nf-warning-strong);
+  --nf-danger-ink:   var(--nf-danger-strong);  --nf-info-ink:    var(--nf-info-strong);
+  --nf-success-bg:   var(--nf-success-soft); --nf-warning-bg: var(--nf-warning-soft);
+  --nf-danger-bg:    var(--nf-danger-soft);  --nf-info-bg:    var(--nf-info-soft);
+  --shadow-card:     0 10px 30px -18px rgba(7,11,22,0.25);
+  --shadow-overlay:  0 24px 50px -20px rgba(7,11,22,0.35);
+  --shadow-glow:     0 0 0 1px rgba(91,75,219,0.18), 0 14px 40px -10px rgba(91,75,219,0.35);
+  --focus-ring:      0 0 0 3px rgba(91,75,219,0.18);
+}
+
+/* Plato de tinta: una sección oscura dentro de una página clara. */
+.dark-plate, [data-theme="light"] .dark-plate {
+  --nf-canvas: var(--nf-ink); --nf-heading: var(--nf-paper); --nf-text: var(--nf-mist); --nf-muted: #8C9BB8;
+  --nf-surface-2: #111A2E; --nf-surface-3: #0E1626;
+  --nf-line: rgba(199,210,234,0.12); --nf-line-soft: rgba(199,210,234,0.07);
+  --nf-accent: var(--nf-cyan); --nf-accent-strong: var(--nf-cyan); --nf-accent-soft: rgba(24,200,230,0.14);
+  --nf-btn-ink: var(--nf-ink); --nf-nova-ink: var(--nf-nova-text);
+  --focus-ring: 0 0 0 3px rgba(24,200,230,0.18);
+}

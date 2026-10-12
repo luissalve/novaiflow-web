@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovAIFlow Design System · Guía de componentes</title>
+  <meta name="description" content="Design system y librería de componentes de NovAIFlow: tokens, tipografía, botones, formularios, tarjetas, navegación, datos y overlays.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="components.css">
+  <style>
+    body { margin: 0; }
+    .ds-top { position: sticky; top: 0; z-index: 10; }
+    .ds-section { padding: var(--space-8) 0; border-bottom: 1px solid var(--nf-line); }
+    .ds-section > .nf-container > h2 { margin-bottom: var(--space-2); }
+    .ds-section > .nf-container > .nf-lead { margin: 0 0 var(--space-6); max-width: 720px; }
+    .ds-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-5); }
+    .ds-panel { border-radius: var(--radius-lg); padding: var(--space-5); background: var(--nf-canvas); color: var(--nf-text); border: 1px solid var(--nf-line); display: flex; flex-direction: column; gap: var(--space-4); }
+    .ds-panel > .nf-mono { color: var(--nf-muted); }
+    .ds-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--space-4); }
+    .ds-swatch { display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-xs); }
+    .ds-swatch i { display: block; height: 72px; border-radius: var(--radius-md); border: 1px solid var(--nf-line); }
+    .ds-swatch b { font-family: var(--nf-font-display); font-weight: 600; font-size: var(--fs-sm); color: var(--nf-heading); }
+    .ds-swatch code { font-family: var(--nf-font-mono); color: var(--nf-muted); }
+    .ds-type { display: grid; grid-template-columns: 180px 1fr; gap: var(--space-4); align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--nf-line-soft); }
+    .ds-type code { font-family: var(--nf-font-mono); font-size: var(--fs-xs); color: var(--nf-muted); }
+    .ds-logo { height: 180px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); }
+    .ds-logo img { width: 360px; max-width: 80%; height: auto; }
+    .ds-spacing { display: flex; align-items: center; gap: 14px; font-size: var(--fs-xs); font-family: var(--nf-font-mono); }
+    .ds-spacing i { display: block; height: 18px; border-radius: 4px; background: var(--nf-accent); }
+    .ds-overlay-demo { position: relative; min-height: 360px; border-radius: var(--radius-lg); background: var(--nf-surface-3); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .ds-overlay-demo .nf-backdrop { position: absolute; }
+    @media (max-width: 720px) { .ds-type { grid-template-columns: 1fr; gap: 6px; } }
+  </style>
+</head>
+<body class="nf-ui">
+
+  <header class="nf-header ds-top">
+    <a class="nf-header__logo" href="/" aria-label="NovAIFlow, inicio">
+      <img src="/assets/brand/novaiflow-modular-horizontal-light.svg" alt="NovAIFlow" width="160" height="41" id="logo-img">
+    </a>
+    <nav class="nf-nav" aria-label="Secciones">
+      <a href="#marca">Marca</a><a href="#color">Color</a><a href="#tipografia">Tipografía</a><a href="#botones">Botones</a><a href="#formularios">Formularios</a><a href="#tarjetas">Tarjetas</a><a href="#navegacion">Navegación</a><a href="#datos">Datos</a><a href="#overlays">Overlays</a>
+    </nav>
+    <div class="nf-row">
+      <button class="nf-iconbtn" id="theme-toggle" type="button" aria-label="Cambiar tema">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a class="nf-btn nf-btn--primary nf-btn--sm" href="https://github.com/luissalve/novaiflow-web/tree/main/design-system">Código</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="ds-section" id="intro">
+      <div class="nf-container nf-stack">
+        <p class="nf-kicker">Design System · v2 Modular · Octubre 2026</p>
+        <h1>Sistema de diseño y librería de componentes</h1>
+        <p class="nf-lead">Una sola fuente de verdad para color, tipografía, espaciado, forma y componentes de interfaz de NovAIFlow. Carga <code class="nf-mono">tokens.css</code> y <code class="nf-mono">components.css</code>, aplica la clase <code class="nf-mono">nf-ui</code> al contenedor y usa <code class="nf-mono">data-theme="light"</code> o <code class="nf-mono">"dark"</code>.</p>
+        <div class="nf-row">
+          <span class="nf-badge nf-badge--accent">Un botón primario por vista</span>
+          <span class="nf-badge">Zona táctil ≥ 44 px</span>
+          <span class="nf-badge">Contraste AA en ambos temas</span>
+          <span class="nf-badge">Sin degradados en texto ni logo</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="marca">
+      <div class="nf-container">
+        <h2>Marca · logo Modular</h2>
+        <p class="nf-lead">Tres módulos que encajan y una flecha ámbar que sale del conjunto. Vector plano, sin degradados ni sombras. Siempre como imagen: el wordmark no se recompone con fuentes vivas.</p>
+        <div class="ds-two">
+          <div class="ds-logo" style="background:#0A1020"><img src="/assets/brand/novaiflow-modular-horizontal-dark.svg" alt="Lockup sobre oscuro"></div>
+          <div class="ds-logo" style="background:#FFFFFF;border:1px solid #D9E0EC"><img src="/assets/brand/novaiflow-modular-horizontal-light.svg" alt="Lockup sobre claro"></div>
+        </div>
+        <div class="nf-row" style="margin-top: var(--space-5); gap: var(--space-5)">
+          <img src="/assets/brand/novaiflow-modular-symbol-light.svg" alt="Símbolo" width="64" height="64" id="symbol-img">
+          <img src="/favicon.svg" alt="Favicon" width="48" height="48">
+          <p class="nf-small" style="margin:0;max-width:560px">Espacio de respeto: la altura de la flecha ámbar por cada lado. Mínimos: lockup 120 px, símbolo 24 px, favicon 16 px. Nunca recolorear, estirar, añadir efectos ni colocar sobre fotos sin plato Ink o Paper.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="color">
+      <div class="nf-container">
+        <h2>Color</h2>
+        <p class="nf-lead">Casi monocromo con el acento racionado. Cian sobre oscuro, violeta sobre claro. El ámbar pertenece al logo.</p>
+        <div class="ds-swatches">
+          <div class="ds-swatch"><i style="background:#0A1020"></i><b>Flow Ink</b><code>--nf-ink · #0A1020</code></div>
+          <div class="ds-swatch"><i style="background:#070B16"></i><b>Carbon</b><code>--nf-carbon · #070B16</code></div>
+          <div class="ds-swatch"><i style="background:#F7F9FC"></i><b>Paper</b><code>--nf-paper · #F7F9FC</code></div>
+          <div class="ds-swatch"><i style="background:#EEF2F8"></i><b>Node Mist</b><code>--nf-node-mist · #EEF2F8</code></div>
+          <div class="ds-swatch"><i style="background:#D9E0EC"></i><b>Hairline</b><code>--nf-hairline · #D9E0EC</code></div>
+          <div class="ds-swatch"><i style="background:#475569"></i><b>Mesh Slate</b><code>--nf-slate · #475569</code></div>
+          <div class="ds-swatch"><i style="background:#C7D2EA"></i><b>Mist</b><code>--nf-mist · #C7D2EA</code></div>
+          <div class="ds-swatch"><i style="background:#18C8E6"></i><b>Nova Cyan</b><code>--nf-cyan · #18C8E6</code></div>
+          <div class="ds-swatch"><i style="background:#5B4BDB"></i><b>Flow Violet</b><code>--nf-violet · #5B4BDB</code></div>
+          <div class="ds-swatch"><i style="background:#4A3CC4"></i><b>Violet Strong</b><code>--nf-violet-strong · #4A3CC4</code></div>
+          <div class="ds-swatch"><i style="background:#FFB23E"></i><b>Nova Amber</b><code>--nf-nova · #FFB23E</code></div>
+          <div class="ds-swatch"><i style="background:#1AA37A"></i><b>Success</b><code>--nf-success · #1AA37A</code></div>
+          <div class="ds-swatch"><i style="background:#E0A526"></i><b>Warning</b><code>--nf-warning · #E0A526</code></div>
+          <div class="ds-swatch"><i style="background:#E5484D"></i><b>Danger</b><code>--nf-danger · #E5484D</code></div>
+          <div class="ds-swatch"><i style="background:#3B82F6"></i><b>Info</b><code>--nf-info · #3B82F6</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="tipografia">
+      <div class="nf-container">
+        <h2>Tipografía</h2>
+        <p class="nf-lead">Space Grotesk para display, Inter para cuerpo e interfaz, JetBrains Mono para kickers, cifras y código. Escala 1.25 sobre 16 px.</p>
+        <div class="ds-type"><code>hero · 76 · Grotesk 600</code><div style="font-family:var(--nf-font-display);font-weight:600;font-size:var(--fs-hero);line-height:1.08;letter-spacing:-0.02em;color:var(--nf-heading)">Un flujo</div></div>
+        <div class="ds-type"><code>h1 · 49</code><h1>IA a la medida de tu empresa</h1></div>
+        <div class="ds-type"><code>h2 · 39</code><h2>Integración de sistemas</h2></div>
+        <div class="ds-type"><code>h3 · 31</code><h3>Agentes para operaciones</h3></div>
+        <div class="ds-type"><code>h4 · 25</code><h4>Indicadores automatizados</h4></div>
+        <div class="ds-type"><code>lead · 20 · Inter 400</code><p class="nf-lead" style="margin:0">Diseñamos e integramos soluciones de IA alrededor de tus procesos, datos y objetivos.</p></div>
+        <div class="ds-type"><code>body · 16</code><p style="margin:0;max-width:680px">El trabajo manual desaparece cuando CRM, ERP y APIs hablan el mismo idioma. Diseñamos el flujo, lo conectamos y lo mantenemos en producción.</p></div>
+        <div class="ds-type"><code>small · 14</code><p class="nf-small" style="margin:0">Texto de apoyo en tarjetas, tablas y formularios.</p></div>
+        <div class="ds-type"><code>caption · 12</code><p class="nf-caption" style="margin:0">Leyendas y metadatos. Nunca por debajo de 12 px.</p></div>
+        <div class="ds-type" style="border-bottom:0"><code>kicker · mono 12</code><p class="nf-kicker" style="margin:0">Strategy → Build → Integrate</p></div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="forma">
+      <div class="nf-container">
+        <h2>Espaciado, radio y elevación</h2>
+        <p class="nf-lead">Ritmo de 8 pt. Radios 4 · 8 · 14 · 22 · píldora. Elevación contenida: borde hairline por defecto, sombra solo en tarjetas clicables y overlays.</p>
+        <div class="ds-two">
+          <div class="nf-stack">
+            <div class="ds-spacing"><span style="width:90px">space-1 · 4</span><i style="width:4px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-2 · 8</span><i style="width:8px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-3 · 12</span><i style="width:12px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-4 · 16</span><i style="width:16px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-5 · 24</span><i style="width:24px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-6 · 32</span><i style="width:32px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-8 · 48</span><i style="width:48px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-10 · 64</span><i style="width:64px"></i></div>
+            <div class="ds-spacing"><span style="width:90px">space-12 · 96</span><i style="width:96px"></i></div>
+          </div>
+          <div class="nf-row" style="align-items:flex-start">
+            <div class="ds-swatch" style="flex:1 1 100px"><i style="border-radius:4px;border:1.5px solid var(--nf-accent)"></i><b>xs · 4</b><code>checkbox, foco</code></div>
+            <div class="ds-swatch" style="flex:1 1 100px"><i style="border-radius:8px;border:1.5px solid var(--nf-accent)"></i><b>sm · 8</b><code>inputs, iconos</code></div>
+            <div class="ds-swatch" style="flex:1 1 100px"><i style="border-radius:14px;border:1.5px solid var(--nf-accent)"></i><b>md · 14</b><code>tarjetas, menús</code></div>
+            <div class="ds-swatch" style="flex:1 1 100px"><i style="border-radius:22px;border:1.5px solid var(--nf-accent)"></i><b>lg · 22</b><code>paneles, hero</code></div>
+            <div class="ds-swatch" style="flex:1 1 100px"><i style="border-radius:999px;border:1.5px solid var(--nf-accent)"></i><b>pill</b><code>botones, badges</code></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="botones">
+      <div class="nf-container">
+        <h2>Botones</h2>
+        <p class="nf-lead">Píldora, Space Grotesk 600, altura mínima 44 px. Un primario por vista. El hover eleva 2 px y añade halo en el acento.</p>
+        <div class="ds-two">
+          <div class="ds-panel" data-theme="dark"><span class="nf-mono">Tema oscuro · acento cian</span>
+            <div class="nf-row"><button class="nf-btn nf-btn--primary">Empezar</button><button class="nf-btn nf-btn--secondary">Ver demo</button><button class="nf-btn nf-btn--ghost">Hablemos</button><a class="nf-btn nf-btn--link" href="#botones">Saber más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></a><button class="nf-btn nf-btn--danger">Eliminar</button><button class="nf-btn nf-btn--primary" disabled>Disabled</button></div>
+            <div class="nf-row"><button class="nf-btn nf-btn--primary nf-btn--sm">Pequeño</button><button class="nf-btn nf-btn--primary">Mediano</button><button class="nf-btn nf-btn--primary nf-btn--lg">Grande</button></div>
+            <div class="nf-row"><button class="nf-iconbtn" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button class="nf-iconbtn nf-iconbtn--primary" aria-label="Añadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="nf-segmented"><button type="button" aria-pressed="true">7 d</button><button type="button" aria-pressed="false">30 d</button><button type="button" aria-pressed="false">90 d</button></div></div>
+          </div>
+          <div class="ds-panel" data-theme="light"><span class="nf-mono">Tema claro · acento violeta</span>
+            <div class="nf-row"><button class="nf-btn nf-btn--primary">Empezar</button><button class="nf-btn nf-btn--secondary">Ver demo</button><button class="nf-btn nf-btn--ghost">Hablemos</button><a class="nf-btn nf-btn--link" href="#botones">Saber más <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></a><button class="nf-btn nf-btn--danger">Eliminar</button><button class="nf-btn nf-btn--primary" disabled>Disabled</button></div>
+            <div class="nf-row"><button class="nf-btn nf-btn--primary nf-btn--sm">Pequeño</button><button class="nf-btn nf-btn--primary">Mediano</button><button class="nf-btn nf-btn--primary nf-btn--lg">Grande</button></div>
+            <div class="nf-row"><button class="nf-iconbtn" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button><button class="nf-iconbtn nf-iconbtn--primary" aria-label="Añadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="nf-segmented"><button type="button" aria-pressed="true">Semana</button><button type="button" aria-pressed="false">Mes</button><button type="button" aria-pressed="false">Trimestre</button></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="formularios">
+      <div class="nf-container">
+        <h2>Formularios</h2>
+        <p class="nf-lead">Etiqueta siempre visible, radio 8 px, 44 px de alto. El borde pasa al acento en foco; el error sustituye a la ayuda y lleva icono. Validar al perder el foco.</p>
+        <div class="ds-two">
+          <form class="ds-panel" data-theme="light" onsubmit="return false">
+            <span class="nf-mono">Tema claro</span>
+            <div class="nf-field"><label for="l-name">Nombre completo</label><input class="nf-input" id="l-name" type="text" placeholder="Ej. Ana Martínez"><div class="nf-help">Default · borde hairline.</div></div>
+            <div class="nf-field"><label for="l-co">Empresa</label><input class="nf-input" id="l-co" type="text" value="Acme Logística" aria-invalid="true"><div class="nf-help nf-help--error"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/></svg>Ya existe una cuenta con este dominio.</div></div>
+            <div class="nf-field"><label for="l-sel">Capacidad de interés</label><select class="nf-select" id="l-sel"><option>Automatización de procesos</option><option>Integración de sistemas</option><option>Agentes y asistentes de IA</option></select></div>
+            <div class="nf-field"><label for="l-txt">Cuéntanos el reto</label><textarea class="nf-textarea" id="l-txt" placeholder="Qué sistemas entran, qué resultado esperas…"></textarea></div>
+            <div class="nf-row" style="gap: var(--space-5)">
+              <label class="nf-check"><input type="checkbox" checked><span></span>Automatización</label>
+              <label class="nf-check"><input type="checkbox"><span></span>Integración</label>
+              <label class="nf-radio"><input type="radio" name="l-size" checked><span></span>10 a 50</label>
+              <label class="nf-radio"><input type="radio" name="l-size"><span></span>50 a 200</label>
+              <label class="nf-switch"><input type="checkbox" checked><span></span>Notificar por correo</label>
+            </div>
+          </form>
+          <form class="ds-panel" data-theme="dark" onsubmit="return false">
+            <span class="nf-mono">Tema oscuro</span>
+            <div class="nf-field"><label for="d-name">Nombre completo</label><input class="nf-input" id="d-name" type="text" placeholder="Ej. Ana Martínez"><div class="nf-help">Default · superficie 3.</div></div>
+            <div class="nf-field"><label for="d-search">Búsqueda con icono</label><div class="nf-inputwrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="nf-input" id="d-search" type="search" placeholder="Buscar flujos, agentes…"></div></div>
+            <div class="nf-field"><label for="d-dis">Identificador</label><input class="nf-input" id="d-dis" type="text" value="NF-2026-0412" disabled><div class="nf-help">Disabled.</div></div>
+            <div class="nf-field"><label for="d-sel">Capacidad de interés</label><select class="nf-select" id="d-sel"><option>Automatización de procesos</option><option>Integración de sistemas</option></select></div>
+            <div class="nf-row" style="gap: var(--space-5)">
+              <label class="nf-check"><input type="checkbox" checked><span></span>Automatización</label>
+              <label class="nf-radio"><input type="radio" name="d-size" checked><span></span>Mensual</label>
+              <label class="nf-radio"><input type="radio" name="d-size"><span></span>Anual</label>
+              <label class="nf-switch"><input type="checkbox" checked><span></span>Alertas activas</label>
+              <label class="nf-switch"><input type="checkbox"><span></span>Modo silencioso</label>
+            </div>
+            <div class="nf-row" style="justify-content:flex-end;border-top:1px solid var(--nf-line);padding-top:var(--space-3)"><button class="nf-btn nf-btn--ghost" type="button">Cancelar</button><button class="nf-btn nf-btn--primary" type="submit">Enviar solicitud</button></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="tarjetas">
+      <div class="nf-container">
+        <h2>Tarjetas, badges, chips y alertas</h2>
+        <p class="nf-lead">Tarjetas planas con borde hairline y radio 14. Badges y alertas usan los colores de estado; el acento queda para lo interactivo.</p>
+        <div class="nf-grid">
+          <article class="nf-card nf-card--interactive">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--nf-accent)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="18" r="2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2.5"/><path d="M7 18l10-5M7 6l10 5"/></svg>
+            <span class="nf-mono nf-muted">02 · Integración</span>
+            <h3 class="nf-card__title">Integración de sistemas</h3>
+            <p class="nf-small" style="margin:0">Conecta aplicaciones, APIs y fuentes de datos y sincroniza la información en toda la operación.</p>
+            <a class="nf-card__more" href="#tarjetas">Explorar esta capacidad <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13 5l7 7-7 7"/></svg></a>
+          </article>
+          <article class="nf-card nf-card--media">
+            <div class="nf-card__media"><img src="/assets/brand/novaiflow-modular-symbol-dark.svg" alt="" width="56" height="56"></div>
+            <div class="nf-card__body">
+              <div class="nf-row"><span class="nf-badge">Caso de estudio</span><span class="nf-badge nf-badge--success nf-badge--dot">Publicado</span></div>
+              <h3 class="nf-card__title">Con media y badges</h3>
+              <p class="nf-small" style="margin:0">Plato de tinta para la imagen; el contenido conserva el padding de 24 px.</p>
+            </div>
+          </article>
+          <div class="nf-stack">
+            <div class="nf-row"><span class="nf-badge">Neutral</span><span class="nf-badge nf-badge--accent">Acento</span><span class="nf-badge nf-badge--success nf-badge--dot">Activo</span><span class="nf-badge nf-badge--warning nf-badge--dot">Pendiente</span><span class="nf-badge nf-badge--danger nf-badge--dot">Error</span><span class="nf-badge nf-badge--info nf-badge--dot">Info</span><span class="nf-badge nf-badge--nova">Nuevo</span></div>
+            <div class="nf-row"><button class="nf-chip" type="button">Todos</button><button class="nf-chip" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Automatización</button><button class="nf-chip" type="button">Integración</button><button class="nf-chip" type="button" disabled>Datos</button></div>
+            <div class="nf-alert nf-alert--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><div><strong>Sincronización programada</strong>La próxima ejecución será a las 02:00.</div></div>
+            <div class="nf-alert nf-alert--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div><strong>Flujo publicado</strong>«Órdenes a facturación» está activo.</div></div>
+            <div class="nf-alert nf-alert--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17h.01"/></svg><div><strong>Credencial a punto de expirar</strong>El token caduca en 3 días.</div></div>
+            <div class="nf-alert nf-alert--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div><strong>Fallo en la integración</strong>Salesforce devolvió 401. El flujo está en pausa.</div><button class="nf-alert__close" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="navegacion">
+      <div class="nf-container nf-stack">
+        <h2>Navegación</h2>
+        <p class="nf-lead" style="margin-bottom:0">Cabecera translúcida de 72 px con un solo botón primario. Menú lateral de producto sobre Carbon. Tabs con subrayado de 2 px. Paginación de 40 px.</p>
+        <nav class="nf-breadcrumb" aria-label="Ruta"><a href="#navegacion">Flujos</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><a href="#navegacion">Órdenes a facturación</a><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><span aria-current="page">Ejecución #4 812</span></nav>
+        <div class="nf-tabs"><a href="#navegacion" aria-current="page">Resumen</a><a href="#navegacion">Pasos <span class="nf-tabs__count">12</span></a><a href="#navegacion">Registro</a><a href="#navegacion">Ajustes</a></div>
+        <nav class="nf-row" aria-label="Paginación" style="justify-content:space-between">
+          <span class="nf-small">Mostrando <span class="nf-num">21 a 40</span> de <span class="nf-num">312</span></span>
+          <div class="nf-pagination"><a class="nf-pagination__edge" href="#navegacion" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></a><a href="#navegacion">1</a><a href="#navegacion" aria-current="page">2</a><a href="#navegacion">3</a><span>…</span><a href="#navegacion">16</a><a class="nf-pagination__edge" href="#navegacion" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></div>
+        </nav>
+        <div class="ds-two">
+          <nav class="nf-side" aria-label="Producto" style="border-radius: var(--radius-md); border: 1px solid var(--nf-line); width: auto; min-height: 320px">
+            <div class="nf-side__group nf-mono" style="color:#8C9BB8">Operaciones</div>
+            <a href="#navegacion" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>Panel</a>
+            <a href="#navegacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="18" r="2"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="12" r="2.5"/><path d="M7 18l10-5M7 6l10 5"/></svg>Flujos<span class="nf-side__count">24</span></a>
+            <a href="#navegacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7H6a3 3 0 0 0 0 6h3M15 7h3a3 3 0 0 1 0 6h-3M8 10h8"/></svg>Integraciones</a>
+            <div class="nf-side__group nf-mono" style="color:#8C9BB8;padding-top:16px">Análisis</div>
+            <a href="#navegacion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l4-5 4 3 5-7"/></svg>KPIs</a>
+          </nav>
+          <footer class="nf-footer" style="border-radius: var(--radius-md); grid-template-columns: 1fr 1fr">
+            <div class="nf-stack" style="gap:10px"><img src="/assets/brand/novaiflow-modular-horizontal-dark.svg" alt="NovAIFlow" width="160" height="41"><p class="nf-small" style="margin:0">AI engineered for your business.</p><span class="nf-mono" style="color:#8C9BB8">Florida · United States · EN / ES</span></div>
+            <div class="nf-stack" style="gap:8px;font-size:var(--fs-sm)"><h4>Capacidades</h4><a href="#navegacion">Automatización</a><a href="#navegacion">Integración</a><a href="#navegacion">Agentes</a><span style="color:#8C9BB8;font-size:12px;margin-top:8px">© 2026 NovAIFlow</span></div>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="datos">
+      <div class="nf-container nf-stack">
+        <h2>Datos</h2>
+        <p class="nf-lead" style="margin-bottom:0">Cifras tabulares en JetBrains Mono. Tablas con cabecera en kicker mono y divisores hairline. KPI con valor, variación y periodo.</p>
+        <div class="nf-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr))">
+          <div class="nf-kpi"><span class="nf-kpi__label">Flujos activos</span><span class="nf-kpi__value">24</span><span class="nf-kpi__delta nf-kpi__delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg><span class="nf-num">+3</span><span class="nf-muted">vs. mes anterior</span></span></div>
+          <div class="nf-kpi"><span class="nf-kpi__label">Ejecuciones · 30 d</span><span class="nf-kpi__value">18 402</span><span class="nf-kpi__delta nf-kpi__delta--up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg><span class="nf-num">+12,4 %</span></span></div>
+          <div class="nf-kpi"><span class="nf-kpi__label">Tasa de error</span><span class="nf-kpi__value">0,8 %</span><span class="nf-kpi__delta nf-kpi__delta--down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7l10 10M15 17H7V9"/></svg><span class="nf-num">+0,3 pt</span></span></div>
+          <div class="nf-kpi"><span class="nf-kpi__label">Horas ahorradas</span><span class="nf-kpi__value">1 260</span><span class="nf-kpi__delta"><span class="nf-muted">objetivo ≥ 1 000</span></span></div>
+        </div>
+        <div class="nf-tablewrap">
+          <div class="nf-tablewrap__head"><h3 style="font-size:var(--fs-base)">Flujos</h3><div class="nf-row"><button class="nf-btn nf-btn--ghost nf-btn--sm" type="button">Filtrar</button><button class="nf-btn nf-btn--primary nf-btn--sm" type="button">Nuevo flujo</button></div></div>
+          <div class="nf-tablewrap__scroll">
+            <table class="nf-table">
+              <thead><tr><th>Flujo</th><th>Estado</th><th class="nf-right">Ejecuciones</th><th>Éxito</th><th>Responsable</th><th>Última ejecución</th></tr></thead>
+              <tbody>
+                <tr><td class="nf-table__primary">Órdenes a facturación</td><td><span class="nf-badge nf-badge--success nf-badge--dot">Activo</span></td><td class="nf-num nf-right">4 812</td><td><span class="nf-progress nf-progress--success" style="width:72px"><span style="width:99%"></span></span></td><td><span class="nf-row" style="gap:8px"><span class="nf-avatar nf-avatar--sm">AM</span>Ana Martínez</span></td><td class="nf-num nf-muted">hace 4 min</td></tr>
+                <tr aria-selected="true"><td class="nf-table__primary">Sincronización ERP</td><td><span class="nf-badge nf-badge--warning nf-badge--dot">Pendiente</span></td><td class="nf-num nf-right">1 240</td><td><span class="nf-progress nf-progress--success" style="width:72px"><span style="width:96%"></span></span></td><td><span class="nf-row" style="gap:8px"><span class="nf-avatar nf-avatar--sm" style="background:#0A1020;color:#FFC46B">LM</span>Luis Monsalve</span></td><td class="nf-num nf-muted">hace 2 h</td></tr>
+                <tr><td class="nf-table__primary">Agente de atención 24/7</td><td><span class="nf-badge nf-badge--danger nf-badge--dot">Error</span></td><td class="nf-num nf-right">9 870</td><td><span class="nf-progress nf-progress--danger" style="width:72px"><span style="width:71%"></span></span></td><td><span class="nf-row" style="gap:8px"><span class="nf-avatar nf-avatar--sm nf-avatar--neutral">JR</span>Jorge Ruiz</span></td><td class="nf-num nf-muted">hace 18 min</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ds-two">
+          <div class="nf-card nf-stack">
+            <div class="nf-stack" style="gap:6px"><div class="nf-row" style="justify-content:space-between"><span class="nf-small" style="color:var(--nf-heading);font-weight:500">Migración de datos</span><span class="nf-num nf-small">64 %</span></div><span class="nf-progress"><span style="width:64%"></span></span></div>
+            <div class="nf-stack" style="gap:6px"><div class="nf-row" style="justify-content:space-between"><span class="nf-small" style="color:var(--nf-heading);font-weight:500">Cuota de API</span><span class="nf-num nf-small">91 %</span></div><span class="nf-progress nf-progress--warning"><span style="width:91%"></span></span></div>
+            <div class="nf-row"><div class="nf-avatar-group"><span class="nf-avatar">AM</span><span class="nf-avatar" style="background:#0A1020;color:#FFC46B">LM</span><span class="nf-avatar nf-avatar--neutral">JR</span><span class="nf-avatar nf-avatar--neutral">+4</span></div><span class="nf-avatar nf-avatar--lg">AM<span class="nf-avatar__presence"></span></span><span class="nf-small">Avatares 28 · 32 · 40 px.</span></div>
+          </div>
+          <div class="nf-empty"><img src="/assets/brand/novaiflow-modular-symbol-light.svg" alt="" width="48" height="48" style="opacity:.45" class="ds-empty-symbol"><h3>Aún no hay flujos</h3><p>Conecta tu primer sistema y crea un flujo. Tarda menos de cinco minutos.</p><button class="nf-btn nf-btn--primary nf-btn--sm" type="button">Crear flujo</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ds-section" id="overlays">
+      <div class="nf-container nf-stack">
+        <h2>Overlays</h2>
+        <p class="nf-lead" style="margin-bottom:0">Nivel 2 con radio 14 y sombra de overlay; fondo Carbon al 60 %. Escape cierra, el foco queda atrapado y vuelve al disparador. Capas: modal 20 · drawer 30 · menú y popover 40 · tooltip 50 · toast 60.</p>
+        <div class="ds-two">
+          <div class="ds-overlay-demo">
+            <div class="nf-backdrop">
+              <div class="nf-modal" role="dialog" aria-labelledby="dlg-t">
+                <div class="nf-modal__head"><span class="nf-modal__icon nf-modal__icon--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v6M14 11v6"/></svg></span><div class="nf-stack" style="gap:6px;flex:1"><h2 id="dlg-t">¿Eliminar el flujo?</h2><p class="nf-small" style="margin:0">Se perderá el historial de 4 812 ejecuciones. Esta acción no se puede deshacer.</p></div><button class="nf-iconbtn nf-iconbtn--plain nf-iconbtn--sm" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+                <div class="nf-field"><label for="dlg-in">Escribe ELIMINAR para confirmar</label><input class="nf-input" id="dlg-in" type="text" placeholder="ELIMINAR" style="font-family:var(--nf-font-mono)"></div>
+                <div class="nf-modal__actions"><button class="nf-btn nf-btn--ghost" type="button">Cancelar</button><button class="nf-btn nf-btn--danger-solid" type="button" disabled>Eliminar flujo</button></div>
+              </div>
+            </div>
+          </div>
+          <div class="nf-stack">
+            <div class="nf-toast nf-toast--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div><strong>Flujo guardado</strong>Los cambios ya están en producción.</div><button class="nf-alert__close" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+            <div class="nf-toast nf-toast--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg><div><strong>No se pudo conectar con SAP</strong>Reintentamos en 30 s. <a href="#overlays">Ver detalles</a></div></div>
+            <div class="nf-row" style="align-items:flex-start;gap:var(--space-5)">
+              <div class="nf-menu" role="menu">
+                <button type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-14 9z"/></svg>Ejecutar ahora<kbd>⌘R</kbd></button>
+                <button type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>Editar<kbd>E</kbd></button>
+                <button type="button" role="menuitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>Duplicar</button>
+                <hr>
+                <button type="button" role="menuitem" class="nf-menu__danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>Eliminar</button>
+              </div>
+              <div class="nf-stack"><span class="nf-tooltip" role="tooltip">Reejecutar desde el paso 3</span><div class="nf-popover"><strong style="color:var(--nf-heading)">Tasa de éxito</strong><span>Ejecuciones completadas sin reintento sobre el total del periodo.</span><a href="#overlays">Documentación</a></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="nf-footer" style="grid-template-columns: 1fr">
+    <p class="nf-small" style="margin:0">NovAIFlow Design System v2 · Fuente de verdad: <code class="nf-mono">brand/DESIGN-SYSTEM.md</code> y <code class="nf-mono">brand/tokens/</code> en el repositorio privado. Esta página se publica desde <code class="nf-mono">src/design-system/</code>.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById('theme-toggle');
+      var logo = document.getElementById('logo-img');
+      var sym = document.getElementById('symbol-img');
+      var empty = document.querySelector('.ds-empty-symbol');
+      function apply(t) {
+        root.setAttribute('data-theme', t);
+        var v = t === 'dark' ? 'dark' : 'light';
+        logo.src = '/assets/brand/novaiflow-modular-horizontal-' + v + '.svg';
+        sym.src = '/assets/brand/novaiflow-modular-symbol-' + v + '.svg';
+        if (empty) empty.src = '/assets/brand/novaiflow-modular-symbol-' + v + '.svg';
+        try { localStorage.setItem('nf-theme', t); } catch (e) {}
+      }
+      var saved = null; try { saved = localStorage.getItem('nf-theme'); } catch (e) {}
+      if (saved === 'dark' || saved === 'light') apply(saved);
+      btn.addEventListener('click', function () { apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); });
+    })();
+  </script>
+</body>
+</html>
